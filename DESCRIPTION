@@ -1,0 +1,29 @@
+Package: GSEAdv
+Type: Package
+Title: Analyze Gene Sets Properites 
+Version: 0.1.0
+Author@R: person("Lluís Revilla Sancho", email = "lluis.revilla@gmail.com",
+                  role = c("aut", "cre"),
+                  comment = c(ORCID = "0000-0001-9747-2570"))
+Author: Lluís Revilla Sancho <lluis.revilla@gmail.com>
+Maintainer: Lluís Revilla Sancho <lluis.revilla@gmail.com>
+Description: More about what it does (maybe more than one line)
+    Use four spaces when indenting paragraphs within the Description.
+License: GPL-3
+Encoding: UTF-8
+LazyData: true
+biocViews: GeneSetEnrichment, Software, StatisticalMethod, Bayesian
+Suggests:
+    testthat,
+    knitr,
+    rmarkdown,
+    ggplot2,
+    covr
+BugReports: https://github.com/llrs/GSEAdv/issues
+URL: https://github.com/llrs/GSEAdv/
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 6.0.1
+Depends:
+    GSEABase,
+    methods
+VignetteBuilder: knitr

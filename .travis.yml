@@ -1,0 +1,27 @@
+# R for travis: see documentation at https://docs.travis-ci.com/user/languages/r
+
+language: R
+sudo: false
+cache: packages
+r_packages:
+  - devtools
+  - covr
+  - roxygen2
+bioc_packages:
+  - org.Hs.eg.db
+  - reactome.db
+  - BiocCheck
+  - BiocStyle
+before_install:
+  Rscript -e 'update.packages(ask = FALSE)'
+after_success:
+  - Rscript -e 'covr::codecov()'
+  - R CMD BiocCheck .
+os:
+  - linux
+r:
+ - bioc-release
+notifications:
+  email:
+    on_success: change
+    on_failure: change
