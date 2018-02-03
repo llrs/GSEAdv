@@ -1,5 +1,5 @@
 [![Travis build status](https://travis-ci.org/llrs/GSEAdv.svg?branch=master)](https://travis-ci.org/llrs/GSEAdv)
-[![AppVeyor Build Status](https://ci.appveyor.com/llrs/GSEAdv)](https://ci.appveyor.com/api/projects/status/github//llrs/GSEAdv/?branch=master&svg=true)
+[![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/llrs/GSEAdv?branch=master&svg=true)](https://ci.appveyor.com/project/llrs/GSEAdv)
 [![Coverage status](https://codecov.io/gh/llrs/GSEAdv/branch/master/graph/badge.svg)](https://codecov.io/github/llrs/GSEAdv?branch=master)
 [![Depsy](http://depsy.org/api/package/cran/GSEAdv/badge.svg)](http://depsy.org/package/r/GSEAdv)
 [![lifecycle](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
