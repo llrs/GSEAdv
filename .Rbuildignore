@@ -2,6 +2,7 @@
 ^\.Rproj\.user$
 ^LICENSE\.md$
 ^CODE_OF_CONDUCT\.md$
+^ISSUE_TEMPLATE.md
 ^\.travis\.yml$
 ^appveyor\.yml$
 ^codecov\.yml$
