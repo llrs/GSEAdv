@@ -3,7 +3,7 @@
 #' The GSEAdv package provides methods enhancing the GSEABase package
 #'
 #' @section GSEAdv methods:
-#' - \code{\link[GSEadv]{summary}}: Some statistics of the GeneSetCollection.
+#' - \code{\link[GSEAdv]{summary}}: Some statistics of the GeneSetCollection.
 #' - \code{\link{genesPerPathway}}: The number of genes each gene set has.
 #' - \code{\link{pathwaysPerGene}}: The number of gene sets each gene has.
 #' - \code{\link{pathway}}: Information about a gene set.

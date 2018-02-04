@@ -13,12 +13,13 @@ License: GPL-3
 Encoding: UTF-8
 LazyData: true
 biocViews: GeneSetEnrichment, Software, StatisticalMethod, Bayesian
-Suggests:
+Suggests: 
     testthat,
     knitr,
     rmarkdown,
     ggplot2,
-    covr
+    covr,
+    BiocStyle
 BugReports: https://github.com/llrs/GSEAdv/issues
 URL: https://github.com/llrs/GSEAdv/
 Roxygen: list(markdown = TRUE)

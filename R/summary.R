@@ -7,6 +7,8 @@
 #' @return invisible a list of statistics
 #' @author Lluís Revilla
 #' @seealso \code{\link{genesPerPathway}}, \code{\link{pathwaysPerGene}}
+#' @rdname summary
+#' @aliases summary
 #' @export
 setMethod("summary",
           "GeneSetCollection",

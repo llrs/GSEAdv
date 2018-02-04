@@ -11,7 +11,7 @@ The GSEAdv package provides methods enhancing the GSEABase package
 \section{GSEAdv methods}{
 
 \itemize{
-\item \code{\link[GSEadv]{summary}}: Some statistics of the GeneSetCollection.
+\item \code{\link[GSEAdv]{summary}}: Some statistics of the GeneSetCollection.
 \item \code{\link{genesPerPathway}}: The number of genes each gene set has.
 \item \code{\link{pathwaysPerGene}}: The number of gene sets each gene has.
 \item \code{\link{pathway}}: Information about a gene set.

@@ -3,6 +3,7 @@
 \docType{methods}
 \name{summary,GeneSetCollection-method}
 \alias{summary,GeneSetCollection-method}
+\alias{summary}
 \title{Calculates some statistics of the GeneSetCollection}
 \usage{
 \S4method{summary}{GeneSetCollection}(object)
