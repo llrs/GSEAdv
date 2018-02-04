@@ -8,4 +8,5 @@
 #' @docType package
 #' @name GSEAdv
 #' @import GSEABase
+#' @import methods
 NULL

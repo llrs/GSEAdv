@@ -7,12 +7,16 @@
 inverseList(x)
 }
 \arguments{
-\item{incidence}{Incidence matrix}
+\item{x}{A list with genes as names and names of pathways as values of the
+list}
 }
 \value{
-The number of pathways each gene has
+The number of pathways each gene has.
 }
 \description{
-Calculate the pathways per gene of an incidence matrix
+Calculate the pathways per gene of list
+}
+\author{
+Lluís Revilla
 }
 \keyword{internal}

@@ -1,4 +1,4 @@
-
+#' @describeIn genesPerPathway Generic function
 genesPerPathway <- function(object) {
   warning("Did you want to use it in a GeneSetCollection?")
 }
