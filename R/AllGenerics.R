@@ -5,7 +5,7 @@
 #' @return a list of pathways per genes
 #' @author Lluís Revilla
 #' @aliases pathwaysPerGene
-#' @exportMethod pathwaysPerGene
+#' @export pathwaysPerGene
 #' @seealso \code{\link{genesPerPathway}}
 setGeneric("pathwaysPerGene", function(object) {
   standardGeneric("pathwaysPerGene")
@@ -18,7 +18,7 @@ setGeneric("pathwaysPerGene", function(object) {
 #' @return A list of genes per pathway.
 #' @author Lluís Revilla
 #' @aliases genesPerPathway
-#' @exportMethod genesPerPathway
+#' @export genesPerPathway
 #' @seealso \code{\link{pathwaysPerGene}}
 setGeneric("genesPerPathway", function(object) {
   standardGeneric("genesPerPathway")
@@ -37,7 +37,7 @@ setGeneric("genesPerPathway", function(object) {
 #' statistics will be printed on the screen), otherwise the data.frame of
 #' statistics.
 #' @author Lluís Revilla
-#' @exportMethod gene
+#' @export gene
 setGeneric("gene", function(object, gene) standardGeneric("gene") )
 
 #' Statistics about pathways
@@ -53,7 +53,7 @@ setGeneric("gene", function(object, gene) standardGeneric("gene") )
 #' statistics will be printed on the screen), otherwise the data.frame of
 #' statistics.
 #' @author Lluís Revilla
-#' @exportMethod pathway
+#' @export pathway
 setGeneric("pathway", function(object, pathway)
   standardGeneric("pathway")
 )
@@ -63,7 +63,7 @@ setGeneric("pathway", function(object, pathway)
 #' @param object A GeneSetCollection object
 #' @return A matrix
 #' @author Lluís Revilla
-#' @exportMethod condGene
+#' @export condGene
 setGeneric("condGene", function(object) standardGeneric("condGene"))
 
 
@@ -72,7 +72,7 @@ setGeneric("condGene", function(object) standardGeneric("condGene"))
 #' @param object A GeneSetCollection object
 #' @return A matrix
 #' @author Lluís Revilla
-#' @exportMethod condPath
+#' @export condPath
 setGeneric("condPath", function(object) standardGeneric("condPath"))
 
 #' Gene set size - gene relationship
@@ -81,6 +81,6 @@ setGeneric("condPath", function(object) standardGeneric("condPath"))
 #' @param object A GeneSetCollection object
 #' @return A matrix
 #' @author Lluís Revilla
-#' @exportMethod genesSizePathways
+#' @export genesSizePathways
 setGeneric("genesSizePathways", function(object)
   standardGeneric("genesSizePathways"))

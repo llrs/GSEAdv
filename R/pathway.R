@@ -8,7 +8,7 @@ setGeneric("pathway",
 )
 
 #' @describeIn pathway Calculates statistics for a single pathway
-#' @exportMethod pathway
+#' @export
 setMethod("pathway",
           signature(object = "GeneSetCollection", pathway = "character"),
           function(object, pathway) {
@@ -55,7 +55,7 @@ setMethod("pathway",
 )
 
 #' @describeIn pathway Calculates statistics for all pathways
-#' @exportMethod pathway
+#' @export
 setMethod("pathway",
           signature(object = "GeneSetCollection", pathway = "missing"),
           function(object, pathway) {

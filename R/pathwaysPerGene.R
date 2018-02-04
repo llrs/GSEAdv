@@ -3,7 +3,7 @@ pathwaysPerGene <- function(object) {
 }
 
 #' @describeIn pathwaysPerGene Pathways per gene in the GeneSetCollection
-#' @exportMethod pathwaysPerGene
+#' @export
 setMethod("pathwaysPerGene",
           "GeneSetCollection",
           function(object) {

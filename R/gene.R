@@ -1,7 +1,7 @@
 
 
 #' @describeIn gene Calculates statistics for a single gene
-#' @exportMethod gene
+#' @export
 setMethod("gene",
           signature(object = "GeneSetCollection", gene = "character"),
           function(object, gene) {
@@ -48,7 +48,7 @@ setMethod("gene",
 )
 
 #' @describeIn gene Calculates statistics for all genes
-#' @exportMethod gene
+#' @export
 setMethod("gene",
           signature(object = "GeneSetCollection", gene = "missing"),
           function(object, gene) {

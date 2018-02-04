@@ -3,12 +3,9 @@
 \docType{methods}
 \name{genesPerPathway}
 \alias{genesPerPathway}
-\alias{genesPerPathway}
 \alias{genesPerPathway,GeneSetCollection-method}
 \title{Genes per pathway}
 \usage{
-genesPerPathway(object)
-
 genesPerPathway(object)
 
 \S4method{genesPerPathway}{GeneSetCollection}(object)
