@@ -1,19 +1,31 @@
 ---
-title: "Vignette Title"
-author: "Vignette Author"
-date: "`r Sys.Date()`"
-output: rmarkdown::html_vignette
+title: "About GSEAdv"
+abstract: >
+  Describes the background of the package, important functions defined in the
+  package and some of the applications and usages.
+date: "`r BiocStyle::doc_date()`"
+package: "`r BiocStyle::pkg_ver('GSEAdv')`"
+output:
+  BiocStyle::html_document:
+    fig_caption: true
+    toc_float:
+      collapsed: true
+      toc_depth: 3
+author:
+- name: Lluís Revilla
+  affiliation: 
+    - August Pi i Sunyer Biomedical Research Institute (IDIBAPS); Liver Unit, Hospital Clinic
+  email: lrevilla@clinic.cat
 vignette: >
-  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteIndexEntry{About GSEAdv}
   %\VignetteEngine{knitr::rmarkdown}
-  %\VignetteEncoding{UTF-8}
+  %\VignetteEncoding{UTF-8}  
 ---
-
-```{r setup, include = FALSE}
-knitr::opts_chunk$set(
-  collapse = TRUE,
-  comment = "#>"
-)
+```{r knitsetup, message=FALSE, warning=FALSE, include=FALSE}
+knitr::opts_knit$set(root.dir = ".")
+knitr::opts_chunk$set(collapse = TRUE, warning = TRUE)
+BiocStyle::markdown()
+library("BiocStyle")
 ```
 
 Vignettes are long form documentation commonly included in packages. Because they are part of the distribution of the package, they need to be as compact as possible. The `html_vignette` output type provides a custom style sheet (and tweaks some options) to ensure that the resulting html is as small as possible. The `html_vignette` format:
