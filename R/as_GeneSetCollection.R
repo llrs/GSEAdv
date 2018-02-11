@@ -9,20 +9,32 @@
 #' @author Lluís Revilla
 #' @export as.GeneSetCollection
 #' @seealso \code{\link[GSEABase]{GeneSetCollection}}
-setGeneric("as.GeneSetCollection", function(object, ...)
+setGeneric("as.GeneSetCollection", function(object, filter, ...)
   standardGeneric("as.GeneSetCollection")
 )
 
 #' @describeIn as.GeneSetCollection Convert list to GeneSetCollections
 #' @export as.GeneSetCollection
-setMethod("as.GeneSetCollection", signature(object = "list"),
-          function(object, filter = TRUE){
-            stopifnot(is.logical(logical))
+setMethod("as.GeneSetCollection", signature(object = "list", filter = "logical"),
+          function(object, filter, ...){
             paths2gene <- inverseList(object)
             paths2gene <- lapply(paths2gene, unique)
-            if (filter){
+            if (filter) {
               paths2gene <- paths2gene[lengths(paths2gene) > 1]
             }
+            gsl <- sapply(names(paths2gene), function(x){
+              GeneSet(paths2gene[[x]], setName = x)})
+            GeneSetCollection(gsl)
+          }
+)
+
+#' @describeIn as.GeneSetCollection Convert list to GeneSetCollections
+#' @export as.GeneSetCollection
+setMethod("as.GeneSetCollection", signature(object = "list", filter = "missing"),
+          function(object, ...){
+            paths2gene <- inverseList(object)
+            paths2gene <- lapply(paths2gene, unique)
+            paths2gene <- paths2gene[lengths(paths2gene) > 1]
             gsl <- sapply(names(paths2gene), function(x){
               GeneSet(paths2gene[[x]], setName = x)})
             GeneSetCollection(gsl)

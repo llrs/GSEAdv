@@ -3,22 +3,25 @@
 \docType{methods}
 \name{as.GeneSetCollection}
 \alias{as.GeneSetCollection}
-\alias{as.GeneSetCollection,list-method}
-\alias{as.GeneSetCollection,AnnDbBimap-method}
+\alias{as.GeneSetCollection,list,logical-method}
+\alias{as.GeneSetCollection,list,missing-method}
+\alias{as.GeneSetCollection,AnnDbBimap,ANY-method}
 \title{Convert a list or a Bimap interface into GeneSetCollections}
 \usage{
-as.GeneSetCollection(object, ...)
+as.GeneSetCollection(object, filter, ...)
 
-\S4method{as.GeneSetCollection}{list}(object, filter = TRUE)
+\S4method{as.GeneSetCollection}{list,logical}(object, filter, ...)
 
-\S4method{as.GeneSetCollection}{AnnDbBimap}(object, ...)
+\S4method{as.GeneSetCollection}{list,missing}(object, filter, ...)
+
+\S4method{as.GeneSetCollection}{AnnDbBimap,ANY}(object, filter, ...)
 }
 \arguments{
 \item{object}{A list of genes and their pathways or an AnnDbBimap.}
 
-\item{...}{Other unused parameters passed down.}
-
 \item{filter}{A logical}
+
+\item{...}{Other unused parameters passed down.}
 }
 \value{
 A GeneSetCollection
@@ -29,9 +32,11 @@ gene identifiers an pathnames.
 }
 \section{Methods (by class)}{
 \itemize{
-\item \code{list}: Convert list to GeneSetCollections
+\item \code{object = list,filter = logical}: Convert list to GeneSetCollections
 
-\item \code{AnnDbBimap}: Convert AnnDbBimap to GeneSetCollections
+\item \code{object = list,filter = missing}: Convert list to GeneSetCollections
+
+\item \code{object = AnnDbBimap,filter = ANY}: Convert AnnDbBimap to GeneSetCollections
 }}
 
 \seealso{
