@@ -46,7 +46,6 @@ gss
 ##   types in collection:
 ##     geneIdType: SymbolIdentifier (1 total)
 ##     collectionType: BroadCollection (1 total)
-library("GSEAdv")
 summary(gss)
 ## Genes: 215 
 ##  Gene in more pathways: 1 pathways
@@ -59,6 +58,28 @@ summary(gss)
 ```
 
 Which tells us that each gene in the GeneSetCollection is only on one gene set.
+
+If we want to explore the human pathways of [REACTOME](https://reactome.org/)
+
+``` r
+library("reactome.db")
+genesReact <- as.list(reactomeEXTID2PATHID)
+# Remove genes and pathways which are not from human pathways 
+human <- sapply(genesReact, function(x){any(grepl(pattern = "R-HSA-", x))})
+genesReact <- genesReact[human]
+genesReact <- as.GeneSetCollection(genesReact, filter = TRUE)
+barplot(table(genesPerPathway(genesReact)), main = "Genes per pathway")
+```
+
+![Genes per pathways in humans](man/figures/README-unnamed-chunk-3-1.png)
+
+and the number of pathways
+
+``` r
+barplot(table(pathwaysPerGene(genesReact)), main = "Pathways per gene")
+```
+
+![Pathways per human gene](man/figures/README-unnamed-chunk-4-1.png)
 
 Who will use this repo or project?
 ==================================

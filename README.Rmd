@@ -1,5 +1,7 @@
 ---
 output: github_document
+editor_options: 
+  chunk_output_type: inline
 ---
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
@@ -31,6 +33,11 @@ the schema and as a whole.
 
 ## Installation
 
+```{r include=FALSE}
+install.packages(".", repos = NULL)
+```
+
+
 It is an R package you can install it from the Bioconductor project with:
 
 ```{r Bioc-installation, eval = FALSE}
@@ -54,10 +61,27 @@ library("GSEAdv")
 fl <- system.file("extdata", "Broad.xml", package = "GSEABase")
 gss <- getBroadSets(fl)
 gss
-library("GSEAdv")
 summary(gss)
 ```
 Which tells us that each gene in the GeneSetCollection is only on one gene set.
+
+If we want to explore the human pathways of [REACTOME](https://reactome.org/)
+
+```{r, fig.cap="Genes per pathways in humans"}
+library("reactome.db")
+genesReact <- as.list(reactomeEXTID2PATHID)
+# Remove genes and pathways which are not from human pathways 
+human <- sapply(genesReact, function(x){any(grepl(pattern = "R-HSA-", x))})
+genesReact <- genesReact[human]
+genesReact <- as.GeneSetCollection(genesReact, filter = TRUE)
+barplot(table(genesPerPathway(genesReact)), main = "Genes per pathway")
+```
+
+and the number of pathways
+
+```{r, fig.cap="Pathways per human gene"}
+barplot(table(pathwaysPerGene(genesReact)), main = "Pathways per gene")
+```
 
 # Who will use this repo or project?
 
