@@ -3,6 +3,7 @@
 export(as.GeneSetCollection)
 export(condGene)
 export(condPath)
+export(drop)
 export(gene)
 export(genesPerPathway)
 export(genesSizePathways)
