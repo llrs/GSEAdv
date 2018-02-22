@@ -1,0 +1,75 @@
+---
+title: "GSEAdv: Describe"
+abstract: >
+  Shows the methods and functions used to describe the relationship between genes and gene sets.
+date: "`r BiocStyle::doc_date()`"
+package: "`r BiocStyle::pkg_ver('GSEAdv')`"
+output:
+  BiocStyle::html_document:
+    fig_caption: true
+    toc_float:
+      collapsed: true
+      toc_depth: 3
+author:
+- name: Lluís Revilla
+  affiliation: 
+    - August Pi i Sunyer Biomedical Research Institute (IDIBAPS); Liver Unit, Hospital Clinic
+  email: lrevilla@clinic.cat
+vignette: >
+  %\VignetteIndexEntry{About GSEAdv}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}  
+---
+```{r knitsetup, message=FALSE, warning=FALSE, include=FALSE}
+knitr::opts_knit$set(root.dir = ".")
+knitr::opts_chunk$set(collapse = TRUE, warning = TRUE)
+BiocStyle::markdown()
+library("BiocStyle")
+library("GSEAdv")
+```
+
+# Introduction
+
+This vignette assumes that the reader is familiar with the infraestructure build in Bioconductor around gene sets, mainly `r Biocpkg("GSEABase")`. It provides examples of how to use the package to find the relationships between genes and gene sets.
+
+A `GeneSetCollection` is a collection of `GeneSet`s wchich can be totally unrelated or, as expected, related between them. All the over representative analysis (ORA), such as the hypergeometric test or chi-square test) assume that each gene is independent of other genes. This vignette shows how to check and describe the relationship between the genes and the gene sets to improve existing tools testing over-representation.
+
+# Preparation
+
+First let's load a `GeneSetCollection`
+
+```{r load}
+
+```
+
+We can see what the collection has but we don't know what is the relationship between genes and gene sets. As a `GeneSetCollection` is a collection of gene sets, we can see how many genes are for each gene sets. If the number of genes in all the gene sets is greater than the number of genes in the `GeneSetCollection` then there are some genes in several gene sets breaking the independence between gene sets.
+
+```{r gpp-independence}
+gpp <- genesPerPathway()
+sum(gpp) == length()
+```
+
+Here genesPerPathways returns the number of genes each pathway has. Thus adding them will summarize the total number of genes of the pa
+Or we can do the other way around if the number of pathways is lower than the number of genes the gene sets aren't independent.
+
+```{r}
+ppg <- pathwaysPerGene()
+length(ppg) > length()
+```
+
+These tests can be used via `independence()`.
+
+# Summary
+
+We can easily find more about the relationship between them by looking at the `summary`.
+
+```{r summary}
+summary()
+```
+
+Here we can see more information, like the h index for pathways or genes, and the entalpy or information content of the distributions of pathways per gene and of genes per pathway.
+
+# pathwaysPerGene and genesPerPathways
+
+
+
