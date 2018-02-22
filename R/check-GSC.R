@@ -19,7 +19,7 @@ check_collectionType <- function(object) {
 #' @importMethodsFrom GSEABase geneIdType
 check_geneIdType <- function(object) {
   typeGS <- lapply(object, geneIdType)
-  cl <- sapply(typeGS, class)
+  cl <- vapply(typeGS, class, FUN.VALUE = character(1))
   equal <- length(table(cl))
 
   if (equal > 1) {
@@ -30,7 +30,7 @@ check_geneIdType <- function(object) {
 
 # Checks that the GeneSetCollection is not from class GeneOntology
 # Checks that the identifiers are not mixed as self reported
-check_gsc <- function(object) {
+check <- function(object) {
   check_collectionType(object)
   check_geneIdType(object)
 }
