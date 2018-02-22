@@ -26,52 +26,58 @@ knitr::opts_knit$set(root.dir = ".")
 knitr::opts_chunk$set(collapse = TRUE, warning = TRUE)
 BiocStyle::markdown()
 library("BiocStyle")
+library("GSEAdv")
 ```
 
-Vignettes are long form documentation commonly included in packages. Because they are part of the distribution of the package, they need to be as compact as possible. The `html_vignette` output type provides a custom style sheet (and tweaks some options) to ensure that the resulting html is as small as possible. The `html_vignette` format:
+# Introduction
 
-- Never uses retina figures
-- Has a smaller default figure size
-- Uses a custom CSS stylesheet instead of the default Twitter Bootstrap style
+Bioconductor provides with the package `r Biocpkg("GSEABase")` which provides the basic methods and classes to join, create, and manipulate the gene sets. However few (if any packages) takes into account the relationship between genes and gene sets when using them. This package builds upon `GeneSetCollection` providing methods to *describe* the relationship between genes and gene sets, *evaluate* the relationship between genes and gene sets, and *simulate* gene set collections.
 
-## Vignette Info
+# Installation
 
-Note the various macros within the `vignette` section of the metadata block above. These are required in order to instruct R how to build the vignette. Note that you should change the `title` field and the `\VignetteIndexEntry` to match the title of your vignette.
-
-## Styles
-
-The `html_vignette` template includes a basic CSS theme. To override this theme you can specify your own CSS in the document metadata as follows:
-
-    output: 
-      rmarkdown::html_vignette:
-        css: mystyles.css
-
-## Figures
-
-The figure sizes have been customised so that you can easily put two images side-by-side. 
-
-```{r, fig.show='hold'}
-plot(1:10)
-plot(10:1)
+You can install it from [github](https://www.github.com/llrs/GSEAdv) to get the latest version:
+```{r, eval = FALSE}
+devtools::install_github("llrs/GSEAdv")
 ```
 
-You can enable figure captions by `fig_caption: yes` in YAML:
-
-    output:
-      rmarkdown::html_vignette:
-        fig_caption: yes
-
-Then you can use the chunk option `fig.cap = "Your figure caption."` in **knitr**.
-
-## More Examples
-
-You can write math expressions, e.g. $Y = X\beta + \epsilon$, footnotes^[A footnote here.], and tables, e.g. using `knitr::kable()`.
-
-```{r, echo=FALSE, results='asis'}
-knitr::kable(head(mtcars, 10))
+or from Bioconductor for a stable release:
+```{r Bioc-installation, eval = FALSE}
+## try http:// if https:// URLs are not supported
+## source("https://bioconductor.org/biocLite.R")
+## biocLite("GSEAdv")
 ```
 
-Also a quote using `>`:
+# Semantics
 
-> "He who gives up [code] safety for [code] speed deserves neither."
-([via](https://twitter.com/hadleywickham/status/504368538874703872))
+Thorough the vignettes and the help page a group of genes is both refered as gene sets or as pathways. A pathway or a gene set is defined as a group of genes (more than one) which can't contain twice the same gene. 
+
+Also all the genes should use the same identifier type, or Entrez, or a Symbol or Ensembl.
+
+In order of doing this there is a function `check` that checks if the `GeneSetCollection` adhers to this principles:
+
+```{r check}
+check(obj)
+```
+
+
+# Usage
+
+Once installed you just need to load it[^1]:
+
+[^1]:Note we recommend to use `suppressPackageStartupMessages` when loading this package to avoid a long message.
+
+```{r load}
+library("GSEAdv")
+```
+
+
+The package is thought for three main cases, each one has its own vignette:
+
+ - *Description*
+ To provide some insight about the relationship between genes and gene sets.
+ - *Evaluation*
+ Compare and estimate the relationship between genes and gene sets.
+ - *Simulate*
+ Given some approximations of the relationships between genes and gene sets creates a new gene set collection.
+
+
