@@ -17,7 +17,8 @@ pathwaysPerGene(object)
 a list of pathways per genes
 }
 \description{
-Calculates the pathways per gene of a GeneSetCollection
+Calculates the pathways per gene of a GeneSetCollection. In set theory it is
+called cardinality.
 }
 \section{Methods (by class)}{
 \itemize{

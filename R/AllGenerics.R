@@ -1,10 +1,10 @@
 #' Pathways per gene
 #'
-#' Calculates the pathways per gene of a GeneSetCollection
+#' Calculates the pathways per gene of a GeneSetCollection. In set theory it is
+#' called cardinality.
 #' @param object A GeneSetCollection object
 #' @return a list of pathways per genes
 #' @author Lluís Revilla
-#' @aliases pathwaysPerGene
 #' @export pathwaysPerGene
 #' @seealso \code{\link{genesPerPathway}}
 setGeneric("pathwaysPerGene", function(object) {
@@ -17,7 +17,6 @@ setGeneric("pathwaysPerGene", function(object) {
 #' @param object A GeneSetCollection object
 #' @return A list of genes per pathway.
 #' @author Lluís Revilla
-#' @aliases genesPerPathway
 #' @export genesPerPathway
 #' @seealso \code{\link{pathwaysPerGene}}
 setGeneric("genesPerPathway", function(object) {
@@ -84,3 +83,36 @@ setGeneric("condPath", function(object) standardGeneric("condPath"))
 #' @export genesSizePathways
 setGeneric("genesSizePathways", function(object)
   standardGeneric("genesSizePathways"))
+
+#' Number of genes
+#'
+#' Calculates the number of genes.
+#' @param object A GeneSetCollection object
+#' @return A number
+#' @author Lluís Revilla
+#' @export nGenes
+setGeneric("nGenes", function(object)
+  standardGeneric("nGenes"))
+
+#' Number of GeneSets
+#'
+#' Calculates the number of GeneSets
+#' @param object A GeneSetCollection object
+#' @return A number
+#' @author Lluís Revilla
+#' @aliases nPaths
+#' @aliases nGeneSets
+#' @export nPathways
+setGeneric("nPathways", function(object)
+  standardGeneric("nPathways"))
+
+#' Checks a GgeneSetCollection
+#'
+#' Checks that all the collection types is the same. Issues a warning when a
+#' GOCollection is detected. Checks tat all the geneIdTypes is the same for
+#' all the GeneSets. Checks that a GeneSet is bigger or equal to two genes.
+#' @param object A GeneSetCollection
+#' @return A geneSetCollection
+#' @export
+setGeneric("check", function(object)
+  standardGeneric("check"))
