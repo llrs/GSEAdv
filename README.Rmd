@@ -71,7 +71,7 @@ If we want to explore the human pathways of [REACTOME](https://reactome.org/)
 library("reactome.db")
 genesReact <- as.list(reactomeEXTID2PATHID)
 # Remove genes and pathways which are not from human pathways 
-human <- sapply(genesReact, function(x){any(grepl(pattern = "R-HSA-", x))})
+human <- sapply(genesReact, function(x){all(grepl(pattern = "R-HSA-", x))})
 genesReact <- genesReact[human]
 genesReact <- as.GeneSetCollection(genesReact, filter = TRUE)
 barplot(table(genesPerPathway(genesReact)), main = "Genes per pathway")
