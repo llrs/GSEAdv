@@ -64,7 +64,7 @@ check(obj)
 
 Once installed you just need to load it[^1]:
 
-[^1]:Note we recommend to use `suppressPackageStartupMessages` when loading this package to avoid a long message.
+[^1]:To avoid a long message it is recommend to use `suppressPackageStartupMessages` when loading this package.
 
 ```{r load}
 library("GSEAdv")
