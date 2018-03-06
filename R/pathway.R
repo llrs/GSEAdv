@@ -12,7 +12,7 @@ setGeneric("pathway",
 setMethod("pathway",
           signature(object = "GeneSetCollection", pathway = "character"),
           function(object, pathway) {
-            check_gsc(object)
+            object <- check(object)
             ppg <- pathwaysPerGene(object)
             gpp <- genesPerPathway(object)
 

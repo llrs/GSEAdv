@@ -4,7 +4,7 @@
 setMethod("genesSizePathways",
           signature(object = "GeneSetCollection"),
           function(object) {
-            check_gsc(object)
+            object <- check(object)
 
             genes2paths <- inverseList(GSEABase::geneIds(object))
             gpp <- genesPerPathway(object)

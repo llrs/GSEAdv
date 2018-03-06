@@ -5,7 +5,7 @@
 setMethod("gene",
           signature(object = "GeneSetCollection", gene = "character"),
           function(object, gene) {
-            check_gsc(object)
+            object <- check(object)
             ppg <- pathwaysPerGene(object)
             gpp <- genesPerPathway(object)
 

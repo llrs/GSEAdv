@@ -13,7 +13,7 @@
 setMethod("summary",
           "GeneSetCollection",
           function(object) {
-            check_gsc(object)
+            object <- check(object)
             gpp <- genesPerPathway(object)
             ppg <- pathwaysPerGene(object)
 
