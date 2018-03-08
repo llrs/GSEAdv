@@ -39,22 +39,23 @@ A `GeneSetCollection` is a collection of `GeneSet`s wchich can be totally unrela
 First let's load a `GeneSetCollection`
 
 ```{r load}
-
+fl <- system.file("extdata", "Broad.xml", package = "GSEABase")
+gss <- getBroadSets(fl)
 ```
 
 We can see what the collection has but we don't know what is the relationship between genes and gene sets. As a `GeneSetCollection` is a collection of gene sets, we can see how many genes are for each gene sets. If the number of genes in all the gene sets is greater than the number of genes in the `GeneSetCollection` then there are some genes in several gene sets breaking the independence between gene sets.
 
 ```{r gpp-independence}
-gpp <- genesPerPathway()
-sum(gpp) == length()
+gpp <- genesPerPathway(gss)
+length(gpp) == length(gss)
 ```
 
 Here genesPerPathways returns the number of genes each pathway has. Thus adding them will summarize the total number of genes of the pa
 Or we can do the other way around if the number of pathways is lower than the number of genes the gene sets aren't independent.
 
 ```{r}
-ppg <- pathwaysPerGene()
-length(ppg) > length()
+ppg <- pathwaysPerGene(gss)
+length(ppg) > length(gss)
 ```
 
 These tests can be used via `independence()`.
@@ -64,12 +65,12 @@ These tests can be used via `independence()`.
 We can easily find more about the relationship between them by looking at the `summary`.
 
 ```{r summary}
-summary()
+summary(gss)
 ```
 
 Here we can see more information, like the h index for pathways or genes, and the entalpy or information content of the distributions of pathways per gene and of genes per pathway.
 
 # pathwaysPerGene and genesPerPathways
 
-
+Something to write
 
