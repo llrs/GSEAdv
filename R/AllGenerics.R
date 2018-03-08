@@ -45,6 +45,7 @@ setGeneric("gene", function(object, gene) standardGeneric("gene") )
 #' pathway, the gene in more pathways, h-index and entropy or information
 #' content for the genes per pathway and pathways for genes and they percentage
 #' of the maximum.
+#' Uses \code{\link{check}} to validate the input
 #' @param object A GeneSetCollection object
 #' @param pathway A character of the pathway to analyze. If missing it will analyze
 #' all pathways
@@ -66,8 +67,12 @@ setGeneric("pathway", function(object, pathway)
 setGeneric("condGene", function(object) standardGeneric("condGene"))
 
 
-#' Conditional probability of the number of pathways given a pathway length
+#' Conditional probability of the number of pathways given pathways length
 #'
+#' Calculates the probability of a gene to have a number of pathways given the
+#' size of pathways.
+#'
+#' Uses \code{\link{check}} to validate the output.
 #' @param object A GeneSetCollection object
 #' @return A matrix
 #' @author Lluís Revilla
@@ -106,7 +111,7 @@ setGeneric("nGenes", function(object)
 setGeneric("nPathways", function(object)
   standardGeneric("nPathways"))
 
-#' Checks a GgeneSetCollection
+#' Checks a GeneSetCollection
 #'
 #' Checks that all the collection types is the same. Issues a warning when a
 #' GOCollection is detected. Checks tat all the geneIdTypes is the same for
@@ -116,3 +121,40 @@ setGeneric("nPathways", function(object)
 #' @export
 setGeneric("check", function(object)
   standardGeneric("check"))
+
+#' Checks isolated GeneSets
+#'
+#' Checks if any gene set has all the genes only present in that gene set.
+#' @param object A GeneSetCollection
+#' @return Invisible a logical value
+#' @export isolation
+setGeneric("isolation", function(object)
+  standardGeneric("isolation"))
+
+#' Remove from a GeneSetCollection
+#'
+#' Removes either genes or pathways of a GeneSetCollection if present
+#' @param obj A GeneSetCollection object.
+#' @param gene The number or names of the genes to be removed.
+#' @param pathway The number or names of the pathways to be removed.
+#' @return A GeneSetCollection object without those genes or pathways.
+#' @note Remember that a GeneSet is defined as a group of genes (more than one),
+#' and if one gene set has only one gene it is removed. Conversely, a gene is
+#' removed if it doesn't belong to any GeneSet.
+#' @export drop
+setGeneric("drop", function(object, gene, pathway)
+  standardGeneric("drop"))
+
+#' Remove a relationship from a GeneSetCollection
+#'
+#' Removes a gene-pathway relationship of a GeneSetCollection if present.
+#' @param obj A GeneSetCollection object.
+#' @param gene The name of the gene.
+#' @param pathway The name of the pathway.
+#' @return A GeneSetCollection object without that relationship.
+#' @note Remember that a GeneSet is defined as a group of genes (more than one),
+#' and if one gene set has only one gene it is removed. Conversely, a gene is
+#' removed if it doesn't belong to any GeneSet.
+#' @export dropRel
+setGeneric("dropRel", function(object, gene, pathway)
+  standardGeneric("dropRel"))
