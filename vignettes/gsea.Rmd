@@ -56,7 +56,9 @@ Also all the genes should use the same identifier type, or Entrez, or a Symbol o
 In order of doing this there is a function `check` that checks if the `GeneSetCollection` adhers to this principles:
 
 ```{r check}
-check(obj)
+fl <- system.file("extdata", "Broad.xml", package = "GSEABase")
+gss <- getBroadSets(fl)
+check(gss)
 ```
 
 
