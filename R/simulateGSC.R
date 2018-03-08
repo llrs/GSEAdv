@@ -38,7 +38,7 @@ y <- function(ppg) {
                                use.names = FALSE))
   names(pathways) <- paste0("GS_", seq_along(pathways))
   genes2pathways <- inverseList(pathways)
-  as.GeneSetCollection(genes2pathways)
+  as(genes2pathways, "GeneSetCollection")
 }
 
 
@@ -82,5 +82,53 @@ z <- function(gpp) {
   genes2pathways <- unique(unlist(genes2pathsG, recursive = FALSE,
                             use.names = FALSE))
   names(genes2pathways) <- paste0("G_", seq_along(genes2pathways))
-  as.GeneSetCollection(genes2pathways)
+  as(genes2pathways, "GeneSetCollection")
+}
+
+
+z2 <- function(gpp, ng) {
+
+  stopifnot(ng >= max(gpp))
+  stopifnot(ng > 2)
+
+  if (any(gpp == 1)) {
+    warning("Removing pathways of one gene")
+    gpp <- gpp[gpp >= 2]
+  }
+
+  genes <- paste0("G_", seq_len(ng))
+  paths2genes <- lapply(gpp, sample, x = genes)
+  as(paths2genes, "GeneSetCollection")
+}
+
+
+w <- function(ppg, np) {
+
+  stopifnot(max(ppg) <= np )
+  stopifnot(np > 2)
+
+  paths <- paste0("GS_", seq_len(np))
+  genes2paths <- sapply(ppg, sample, x = paths)
+  as(inverseList(genes2paths), "GeneSetCollection")
+}
+
+
+# TODO: FIXME
+v <- function(ng, np) {
+  genes <- paste0("G_", seq_len(ng))
+  paths <- paste0("GS_", seq_len(np))
+
+  count <- 0
+  paths2genes <- vector("list", np)
+  while(length(unique(paths2genes)) != np) {
+    for (i in paths){
+      x <- stats::rgeom(1, 0.25)
+      if (x < length(genes)){
+        paths2genes[[i]] <- sample(x = genes, size = x)
+      }
+    }
+    count <- count + 1
+  }
+  message(count)
+  paths2genes
 }

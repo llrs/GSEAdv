@@ -4,7 +4,7 @@
 \name{check}
 \alias{check}
 \alias{check,GeneSetCollection-method}
-\title{Checks a GgeneSetCollection}
+\title{Checks a GeneSetCollection}
 \usage{
 check(object)
 
@@ -29,6 +29,7 @@ all the GeneSets. Checks that a GeneSet is bigger or equal to two genes.
 \examples{
 data(sample.ExpressionSet)
 ai <- AnnotationIdentifier(annotation(sample.ExpressionSet))
+geneIds <- featureNames(sample.ExpressionSet)[100:109]
 gs3 <- GeneSet(geneIds=geneIds, type=ai,
                setName="sample1", setIdentifier="102")
 uprotIds <- c("Q9Y6Q1", "A6NJZ7", "Q9BXI6", "Q15035", "A1X283",
@@ -36,5 +37,5 @@ uprotIds <- c("Q9Y6Q1", "A6NJZ7", "Q9BXI6", "Q15035", "A1X283",
 gs4 <- GeneSet(uprotIds, geneIdType=UniprotIdentifier())
 gsc <- GeneSetCollection(list(gs3, gs4))
 gsc
-check(gsc)
+\donttest{check(gsc)}
 }

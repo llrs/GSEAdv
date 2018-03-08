@@ -29,6 +29,7 @@ Calculates some statistics of the genes, like the biggest
 pathway, the gene in more pathways, h-index and entropy or information
 content for the genes per pathway and pathways for genes and they percentage
 of the maximum.
+Uses \code{\link{check}} to validate the input
 }
 \section{Methods (by class)}{
 \itemize{

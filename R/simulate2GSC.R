@@ -69,5 +69,5 @@ yz <- function(ppg, gpp) {
   }
 
   genes2pathways <- inverseList(paths2genes)
-  as.GeneSetCollection(genes2pathways)
+  as(genes2pathways, "GeneSetCollection")
 }

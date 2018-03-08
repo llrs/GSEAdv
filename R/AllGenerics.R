@@ -134,7 +134,7 @@ setGeneric("isolation", function(object)
 #' Remove from a GeneSetCollection
 #'
 #' Removes either genes or pathways of a GeneSetCollection if present
-#' @param obj A GeneSetCollection object.
+#' @param object A GeneSetCollection object.
 #' @param gene The number or names of the genes to be removed.
 #' @param pathway The number or names of the pathways to be removed.
 #' @return A GeneSetCollection object without those genes or pathways.
@@ -148,7 +148,7 @@ setGeneric("drop", function(object, gene, pathway)
 #' Remove a relationship from a GeneSetCollection
 #'
 #' Removes a gene-pathway relationship of a GeneSetCollection if present.
-#' @param obj A GeneSetCollection object.
+#' @param object A GeneSetCollection object.
 #' @param gene The name of the gene.
 #' @param pathway The name of the pathway.
 #' @return A GeneSetCollection object without that relationship.

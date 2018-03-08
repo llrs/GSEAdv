@@ -6,12 +6,14 @@ check_collectionType <- function(object) {
   if (equal > 1) {
     warning("Several collections origins detected.",
             "Are you sure they are in the same id?")
+    invisible(NA)
   }
 
   if (any(cl %in% "GOCollection")) {
     warning("Gene Ontologies are not pathways
             (They have some complex dependencies).",
             "Proceed only if you want to compare the methods in GO data.")
+    return(invisible(FALSE))
   }
   invisible(TRUE)
 }
@@ -33,9 +35,9 @@ check_size <- function(object){
   ids <- lapply(ids, unique, use.name = FALSE)
   keep <- lengths(ids) >= 2
   if (sum(!keep) > 0 ){
-    warning("!Removing ", sum(!keep), "gene sets with less than one gene.")
+    warning("!Removing ", sum(!keep), " genes sets with less than one gene.")
     if (sum(!keep) == length(object)) {
-      stop("All pathways removed!")
+      stop("All pathways would be removed!")
     }
     return(as(inverseList(ids[keep]), "GeneSetCollection"))
   } else {
@@ -43,11 +45,35 @@ check_size <- function(object){
   }
 }
 
+# https://cran.r-project.org/web/packages/roxygen2/vignettes/rd.html
+#' @describeIn isolation Checks if a gene set is isolated.
+#' @export
+#' @examples
+#' fl <- system.file("extdata", "Broad.xml", package = "GSEABase")
+#' gss <- getBroadSets(fl)
+#' # Warning
+#' \donttest{{isolation(gss)}
+setMethod("isolation",
+          signature(object = "GeneSetCollection"),
+          function(object) {
+            paths2genes <- geneIds(object)
+            ppg <- pathwaysPerGene(object)
+            keep <- vapply(paths2genes, function(y){all(ppg[y] == 1)}, logical(1))
+            if (any(keep)) {
+              warning("Some gene sets has genes unique for the GeneSetCollection",
+                      "\n\tGene Sets:", paste(names(keep)[keep], collapse = ", "))
+              invisible(TRUE)
+            }
+            invisible(FALSE)
+          }
+)
+
 #' @describeIn check Applies the checks
 #' @export
 #' @examples
 #' data(sample.ExpressionSet)
 #' ai <- AnnotationIdentifier(annotation(sample.ExpressionSet))
+#' geneIds <- featureNames(sample.ExpressionSet)[100:109]
 #' gs3 <- GeneSet(geneIds=geneIds, type=ai,
 #'                setName="sample1", setIdentifier="102")
 #' uprotIds <- c("Q9Y6Q1", "A6NJZ7", "Q9BXI6", "Q15035", "A1X283",
@@ -55,7 +81,7 @@ check_size <- function(object){
 #' gs4 <- GeneSet(uprotIds, geneIdType=UniprotIdentifier())
 #' gsc <- GeneSetCollection(list(gs3, gs4))
 #' gsc
-#' check(gsc)
+#' \donttest{check(gsc)}
 setMethod("check",
           signature(object = "GeneSetCollection"),
           function(object) {

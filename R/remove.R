@@ -4,7 +4,7 @@ setMethod("drop",
           signature(object = "GeneSetCollection", gene = "ANY", pathway = "ANY"),
           function(object, gene = NULL, pathway = NULL) {
 
-            paths2genes <- geneIds(obj)
+            paths2genes <- geneIds(object)
 
             if (is(pathway, "character")) {
               remove <- match(names(paths2genes), pathway)
@@ -43,6 +43,9 @@ setMethod("drop",
 
 #' @describeIn drop Drop a gene a pathway or both
 #' @export
-dropRel <- function(obj, gene = NULL, pathway = NULL) {
-
-  }
+setMethod("dropRel",
+          signature(object = "GeneSetCollection", gene = "character", pathway = "character"),
+           function(object, gene = NULL, pathway = NULL) {
+            print("hi")
+           }
+)

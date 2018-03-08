@@ -2,7 +2,7 @@
 % Please edit documentation in R/AllGenerics.R
 \name{condPath}
 \alias{condPath}
-\title{Conditional probability of the number of pathways given a pathway length}
+\title{Conditional probability of the number of pathways given pathways length}
 \usage{
 condPath(object)
 }
@@ -13,7 +13,11 @@ condPath(object)
 A matrix
 }
 \description{
-Conditional probability of the number of pathways given a pathway length
+Calculates the probability of a gene to have a number of pathways given the
+size of pathways.
+}
+\details{
+Uses \code{\link{check}} to validate the output.
 }
 \author{
 Lluís Revilla
