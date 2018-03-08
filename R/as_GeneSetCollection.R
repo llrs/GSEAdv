@@ -13,7 +13,7 @@ setGeneric("as.GeneSetCollection", function(object, filter, ...)
   standardGeneric("as.GeneSetCollection")
 )
 
-#' @describeIn as.GeneSetCollection Convert list to GeneSetCollections
+#' @describeIn as.GeneSetCollection Convert a list to a GeneSetCollection object
 #' @export as.GeneSetCollection
 setMethod("as.GeneSetCollection", signature(object = "list", filter = "logical"),
           function(object, filter, ...){
@@ -24,7 +24,7 @@ setMethod("as.GeneSetCollection", signature(object = "list", filter = "logical")
             }
             gsl <- sapply(names(paths2gene), function(x){
               GeneSet(paths2gene[[x]], setName = x)})
-            GeneSetCollection(gsl)
+            check(GeneSetCollection(gsl))
           }
 )
 
@@ -37,7 +37,7 @@ setMethod("as.GeneSetCollection", signature(object = "list", filter = "missing")
             paths2gene <- paths2gene[lengths(paths2gene) > 1]
             gsl <- sapply(names(paths2gene), function(x){
               GeneSet(paths2gene[[x]], setName = x)})
-            GeneSetCollection(gsl)
+            check(GeneSetCollection(gsl))
           }
 )
 
@@ -46,14 +46,14 @@ setMethod("as.GeneSetCollection", signature(object = "list", filter = "missing")
 setMethod("as.GeneSetCollection",
           signature(object = "AnnDbBimap"),
           function(object, ...) {
-            as.GeneSetCollection(as.list(object), ...)
+            check(as.GeneSetCollection(as.list(object), ...))
           }
 )
 
 setAs("list", "GeneSetCollection",
-      function(from) { as.GeneSetCollection(from)}
+      function(from) { check(as.GeneSetCollection(from))}
 )
 
 setAs("AnnDbBimap", "GeneSetCollection",
-      function(from) { as.GeneSetCollection(from)}
+      function(from) { check(as.GeneSetCollection(from))}
 )
