@@ -53,8 +53,8 @@ summary(gss)
 ## Pathways: 2 
 ##  Biggest pathway: 129 genes
 ##  h-index: 1 pathways with at least 1 genes.
-## IC(genesPerPathway): 1 ( 1 of the maximum)
-## IC(pathwaysPerGene) 0 ( NaN of the maximum)
+## All genes in a single gene set.
+## Some gene set have all genes not present in other gene sets
 ```
 
 Which tells us that each gene in the GeneSetCollection is only on one gene set.
@@ -67,7 +67,8 @@ genesReact <- as.list(reactomeEXTID2PATHID)
 # Remove genes and pathways which are not from human pathways 
 human <- sapply(genesReact, function(x){all(grepl(pattern = "R-HSA-", x))})
 genesReact <- genesReact[human]
-genesReact <- as.GeneSetCollection(genesReact, filter = TRUE)
+genesReact <- as.GeneSetCollection(genesReact)
+## Warning in check_size(object): !Removing 203 genes sets with only one gene.
 barplot(table(genesPerPathway(genesReact)), main = "Genes per pathway")
 ```
 
@@ -79,17 +80,33 @@ and the number of pathways
 barplot(table(pathwaysPerGene(genesReact)), main = "Pathways per gene")
 ```
 
-![Pathways per human gene](man/figures/README-unnamed-chunk-4-1.png)
+![Pathways per human gene](man/figures/README-unnamed-chunk-4-1.png) And the relationship between them:
+
+``` r
+nPaths <- nPathways(genesReact)
+seqs <- seq(from = 100, to = 1900, by = 10)
+
+o <- sapply(rep(seqs, each = 10), function(x){
+    c("pathways" = x, 
+      # Randomly select some x pathways
+      # check the properties
+      # calculate the number of genes of these GeneSetCollection
+      "genes" = nGenes(check(genesReact[sample(seq_len(nPaths), x)]))) 
+  })
+out <- as.data.frame(t(o))
+library("ggplot2")
+ggplot(out, aes(pathways, genes)) + 
+  geom_point() + 
+  geom_smooth() + 
+  theme_bw()
+```
+
+![](man/figures/README-unnamed-chunk-5-1.png)
 
 Who will use this repo or project?
 ==================================
 
-It is intended for bioinformaticians, both people interested in *comparing* groups of gene sets or databases and people *developing* analysis using the information provided by *GSEAdv*.
-
-How to use GSEAdv?
-==================
-
-See the vignette.
+It is intended for bioinformaticians, both people interested in *comparing* databases and people *developing* analysis using the information provided by *GSEAdv*.
 
 What is the goal of this project?
 =================================
