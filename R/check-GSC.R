@@ -35,7 +35,7 @@ check_size <- function(object){
   ids <- lapply(ids, unique, use.name = FALSE)
   keep <- lengths(ids) >= 2
   if (sum(!keep) > 0 ){
-    warning("!Removing ", sum(!keep), " genes sets with less than one gene.")
+    warning("!Removing ", sum(!keep), " genes sets with only one gene.")
     if (sum(!keep) == length(object)) {
       stop("All pathways would be removed!")
     }
@@ -52,7 +52,7 @@ check_size <- function(object){
 #' fl <- system.file("extdata", "Broad.xml", package = "GSEABase")
 #' gss <- getBroadSets(fl)
 #' # Warning
-#' \donttest{{isolation(gss)}
+#' \donttest{isolation(gss)}
 setMethod("isolation",
           signature(object = "GeneSetCollection"),
           function(object) {
@@ -62,9 +62,24 @@ setMethod("isolation",
             if (any(keep)) {
               warning("Some gene sets has genes unique for the GeneSetCollection",
                       "\n\tGene Sets:", paste(names(keep)[keep], collapse = ", "))
-              invisible(TRUE)
+              return(invisible(TRUE))
             }
             invisible(FALSE)
+          }
+)
+
+#' @describeIn independence Checks if a all the genes are in a single pathway
+#' @export
+#' @examples
+#' fl <- system.file("extdata", "Broad.xml", package = "GSEABase")
+#' gss <- getBroadSets(fl)
+#' # Warning
+#' \donttest{independence(gss)}
+setMethod("independence",
+          signature(object = "GeneSetCollection"),
+          function(object) {
+            ppg <- pathwaysPerGene(object)
+            all(ppg == 1)
           }
 )
 
