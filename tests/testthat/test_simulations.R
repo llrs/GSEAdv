@@ -2,18 +2,18 @@ context("Testing simulations to create GeneSetCollections")
 
 test_that("z2", {
   gpp <- c(4, 5, 5, 8, 8, 6, 7, 2, 4)
-  test <- z2(gpp, 15)
+  expect_message(test <- z2(gpp, 15), "Iterations: ")
 
   expect_true(all(table(genesPerPathway(test)) == table(gpp)))
   names(gpp) <- letters[seq_along(gpp)]
-  test <- z2(gpp, 15)
+  expect_message(test <- z2(gpp, 15), "Iterations: ")
   expect_true(all(table(genesPerPathway(test)) == table(gpp)))
 
-  })
+})
 
 test_that("w", {
   ppg <- c(4, 5, 5, 8, 8, 6, 7, 2, 4)
-  test <- w(ppg, 15)
+  expect_message(test <- w(ppg, 15), "Iterations: ")
   expect_equal(nPathways(test), 15)
   expect_equal(nGenes(test), length(ppg))
   expect_false(is.null(names(genesPerPathway(test))))
@@ -24,14 +24,14 @@ test_that("w", {
 
 test_that("z", {
   gpp <- c(3, 7, 8, 5, 4, 9, 8, 4, 3, 2, 6, 5)
-  test <- z(gpp)
+  expect_message(test <- z(gpp), "Iterations: ")
   expect_equal(nPathways(test), length(gpp))
 })
 
 
 test_that("y", {
   ppg <- c(3, 7, 8, 5, 4, 9, 8, 4, 3, 2, 6, 5)
-  test <- y(ppg)
+  expect_message(test <- y(ppg), "Iterations: ")
   expect_equal(nGenes(test), length(ppg))
 })
 
