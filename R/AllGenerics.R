@@ -127,9 +127,20 @@ setGeneric("check", function(object)
 #' Checks if any gene set has all the genes only present in that gene set.
 #' @param object A GeneSetCollection
 #' @return Invisible a logical value
+#' @seealso \code{\link{independence}}
 #' @export isolation
 setGeneric("isolation", function(object)
   standardGeneric("isolation"))
+
+#' Checks independence of genes
+#'
+#' Checks if all the genes are only present in one gene set
+#' @param object A GeneSetCollection
+#' @return \code{TRUE} or \code{FALSE}.
+#' @seealso \code{\link{isolation}}
+#' @export independence
+setGeneric("independence", function(object)
+  standardGeneric("independence"))
 
 #' Remove from a GeneSetCollection
 #'
