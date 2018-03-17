@@ -12,6 +12,11 @@ setGeneric("pathway",
 setMethod("pathway",
           signature(object = "GeneSetCollection", pathway = "character"),
           function(object, pathway) {
+
+            if (length(pathway) > 1) {
+              stop("Please use only one pathway")
+            }
+
             object <- check(object)
             ppg <- pathwaysPerGene(object)
             gpp <- genesPerPathway(object)

@@ -5,6 +5,10 @@
 setMethod("gene",
           signature(object = "GeneSetCollection", gene = "character"),
           function(object, gene) {
+
+            if (length(gene) > 1) {
+              stop("Please use just one gene")
+            }
             object <- check(object)
             ppg <- pathwaysPerGene(object)
             gpp <- genesPerPathway(object)
