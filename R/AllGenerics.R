@@ -156,16 +156,18 @@ setGeneric("independence", function(object)
 setGeneric("drop", function(object, gene, pathway)
   standardGeneric("drop"))
 
-#' Remove a relationship from a GeneSetCollection
+#' Modify a relationship
 #'
-#' Removes a gene-pathway relationship of a GeneSetCollection if present.
-#' @param object A GeneSetCollection object.
-#' @param gene The name of the gene.
-#' @param pathway The name of the pathway.
-#' @return A GeneSetCollection object without that relationship.
-#' @note Remember that a GeneSet is defined as a group of genes (more than one),
-#' and if one gene set has only one gene it is removed. Conversely, a gene is
-#' removed if it doesn't belong to any GeneSet.
-#' @export dropRel
-setGeneric("dropRel", function(object, gene, pathway)
-  standardGeneric("dropRel"))
+#' Given a GeneSetCollection adds or remove a relationship between a gene and a
+#' pathway.
+#'
+#' It accepts one gene and one pathway, several genes and one pathway and
+#' several pathways and one gene, but not several pathways and several genes.
+#' @param gene A vector of character with genes.
+#' @param pathway A vector of character with pathways.
+#' @param object A GeneSetCollection
+#' @return A GeneSetCollection with those relationships flipped.
+#' @seealso \code{\link{drop}} To just remove a gene or a pathways
+#' @export modify
+setGeneric("modify", function(object, gene, pathway)
+  standardGeneric("modify"))
