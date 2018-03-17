@@ -3,6 +3,7 @@
 #' Calculates the number of combinations of each size.
 #' @param x A numeric vector
 #' @return A named numeric vector
+#' @export
 #' @examples
 #' genesPerPathway <- c(2, 4, 5, 8, 5, 8)
 #' completness(genesPerPathway)
