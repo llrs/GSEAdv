@@ -1,5 +1,5 @@
 
-#' @describeIn modify Drop a gene a pathway or both
+#' @describeIn drop Drop a gene a pathway or both
 #' @export
 setMethod("drop",
           signature(object = "GeneSetCollection", gene = "ANY", pathway = "ANY"),
@@ -74,7 +74,7 @@ m2 <- function(obj, gene, pathway) {
     paths2genes[[pathway]] <- paths2genes[[pathway]][!match]
     paths2genes[[pathway]] <- c(paths2genes[[pathway]], gene[!match2])
   } else {
-    paths2genes[[pathway]] <- genes
+    paths2genes[[pathway]] <- gene
   }
   as(inverseList(paths2genes), "GeneSetCollection")
 }
