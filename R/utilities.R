@@ -52,3 +52,21 @@ h_index <- function(x) {
 
   return(max(0, as.numeric(names(x)[position >= 0])))
 }
+
+#' Give a name to a vector
+#'
+#' Given a numeric vector sets names
+#' @param x The numeric vector
+#' @param pre The prefix for the names of the vector
+#' @return the same vector with names
+#' names_vec(1:3, "GS_")
+#' @keywords internal
+names_vec <- function(x, pre){
+  stopifnot(is.numeric(x))
+
+  if (is.null(names(x))) {
+    nam <- paste0(pre, seq_along(x))
+    names(x) <- nam
+  }
+  x
+}

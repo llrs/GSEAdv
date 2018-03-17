@@ -1,6 +1,6 @@
 #' Simulate GeneSetCollection
 #'
-#' Simulates a GeneSetCollection following a distribution
+#' Simulates a GeneSetCollection following the both distributions
 #' @param ppg The number of pathways per genes of the desired GeneSetCollection.
 #' @param gpp The number of genes per pathway of the desired GeneSetCollection.
 #' @return A GeneSetCollection
@@ -16,58 +16,76 @@ yz <- function(ppg, gpp) {
 
   # Remove empty pathways or pathways of single genes
   if (any(gpp < 2)) {
+    warning("Removing pathways with only one gene")
     gpp <- gpp[gpp < 2]
   }
 
   # Remove empty genes without pathways
   if (any(ppg == 0)) {
+    warning("Removing genes without pathway")
     ppg <- ppg[ppg == 0]
   }
 
+  # Check that a GeneSetCollection can be simulated
+  stopifnot(max(ppg) < length(gpp))
+  stopifnot(max(gpp) < length(ppg))
+
   # Set names
-  if (is.null(names(ppg))) {
-    genes <- paste0("G_", seq_along(ppg))
-    names(ppg) <- genes
+  ppg <- names_vec(ppg, "G_")
+  genes <- names(ppg)
+
+  gpp <- names_vec(gpp, "GS_")
+  pathways <- names(gpp)
+
+  genes2paths <- lapply(ppg, sample, x = pathways, prob = gpp)
+  paths2genes <- inverseList(genes2paths)
+
+  # Precalculate data
+  ppg_sim <- lengths(paths2genes)
+  t_ppg_sim <- table(ppg_sim)
+  t_ppg <- table(ppg)
+
+  # Logics
+  len <- length(t_ppg) == length(t_ppg_sim)
+  if (len){
+    nam <- all(names(t_ppg) == names(t_ppg_sim))
+    if (nam) {
+      keep <- all(t_ppg == t_ppg_sim)
+    } else {
+      keep <- FALSE
+    }
   } else {
-    genes <- names(ppg)
+    nam <- FALSE
+    keep <- FALSE
   }
 
-  if (is.null(names(gpp))) {
-    pathways <- paste0("GS_", seq_along(gpp))
-    names(gpp) <- pathways
-  } else {
-    pathways <- names(gpp)
-  }
-  # Store the original values just in case
-  gpp_orig <- gpp
-  ppg_orig <- ppg
-  # stop("Work unfinished")
+  iter <- 1
+  while (!(len & nam & keep)) {
+    iter <- iter + 1
 
-  paths2genes <- vector("list", length(gpp))
-  while(sum(gpp) >= 1 || sum(ppg) >=1) {
-    pathway <- sample(gpp, 1)
-    gpp[names(pathway)] <- gpp[names(pathway)] -1
-    if (pathway >= length(ppg)) {
-      message(pathway)
-      print(ppg)
-      stop("Unable to simulate a GeneSetCollection with those restrictions")
-    }
-    genes <- sample(names(ppg), pathway)
-    paths2genes[[names(pathway)]] <- genes
-    ppg[genes] <- ppg[genes] - 1
+    genes2paths <- lapply(ppg, sample, x = pathways, prob = gpp)
+    paths2genes <- inverseList(genes2paths)
 
-    # Remove empty pathways or pathways of single genes
-    if (any(gpp == 0 )) {
-      gpp <- gpp[gpp == 0]
-    }
+    # Precalculate data
+    ppg_sim <- lengths(paths2genes)
+    t_ppg_sim <- table(ppg_sim)
+    t_ppg <- table(ppg)
 
-    # Remove empty genes without pathways
-    if (any(ppg == 0)) {
-      ppg <- ppg[ppg == 0]
+    # Logics
+    len <- length(t_ppg) == length(t_ppg_sim)
+    if (len){
+      nam <- all(names(t_ppg) == names(t_ppg_sim))
+      if (nam) {
+        keep <- all(t_ppg == t_ppg_sim)
+      } else {
+        keep <- FALSE
+      }
+    } else {
+      nam <- FALSE
+      keep <- FALSE
     }
 
   }
-
-  genes2pathways <- inverseList(paths2genes)
-  as(genes2pathways, "GeneSetCollection")
+  message("Iterations: ", iter)
+  as(genes2paths, "GeneSetCollection")
 }

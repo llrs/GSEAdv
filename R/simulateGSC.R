@@ -16,12 +16,8 @@ y <- function(ppg) {
   }
 
   # Set names to the genes
-  if (is.null(names(ppg))) {
-    genes <- paste0("G_", seq_along(ppg))
-    names(ppg) <- genes
-  } else {
-    genes <- names(ppg)
-  }
+  ppg <- names_vec(ppg, "G_")
+  genes <- names(ppg)
 
   # Compares the actual number of pathways with the possible outcome of
   if (choose(length(ppg), 2) < max(ppg)){
@@ -104,13 +100,8 @@ z <- function(gpp) {
   }
 
   # Set names to the genes
-  if (is.null(names(gpp))) {
-    pathways <- paste0("GS_", seq_along(gpp))
-    names(gpp) <- pathways
-  } else {
-    pathways <- names(gpp)
-  }
-  # max(gpp), sum(gpp)
+  gpp <- names_vec(gpp, "GS_")
+  pathways <- names(gpp)
 
   # Compares the actual number of pathways with the possible outcome of
   if (choose(length(gpp), 2) < max(gpp)){
@@ -195,9 +186,8 @@ z2 <- function(gpp, nGenes) {
   }
 
   genes <- paste0("G_", seq_len(nGenes))
-  if (is.null(names(gpp))) {
-    names(gpp) <- paste0("GS", seq_along(gpp))
-  }
+  gpp <- names_vec(gpp, "GS_")
+
   helper <- function(gpp, genes){
     paths2genes <- lapply(gpp, sample, x = genes)
     suppressWarnings(gsc <- as(inverseList(paths2genes), "GeneSetCollection"))
@@ -225,15 +215,12 @@ z2 <- function(gpp, nGenes) {
 #' @seealso \code{\link{w}}
 #' @export
 w <- function(ppg, nPathways) {
-
   stopifnot(max(ppg) <= nPathways )
   stopifnot(nPathways > 2)
 
-  if (is.null(names(ppg))) {
-    names(ppg) <- paste0("G_", seq_along(ppg))
-  }
-
+  ppg <- names_vec(ppg, "G_")
   paths <- paste0("GS_", seq_len(nPathways))
+
   helper <- function(ppg, paths) {
     genes2paths <- sapply(ppg, sample, x = paths)
     suppressWarnings(obj <- as(genes2paths, "GeneSetCollection"))
