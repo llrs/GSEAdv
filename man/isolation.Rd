@@ -24,3 +24,12 @@ Checks if any gene set has all the genes only present in that gene set.
 \item \code{GeneSetCollection}: Checks if a gene set is isolated.
 }}
 
+\examples{
+fl <- system.file("extdata", "Broad.xml", package = "GSEABase")
+gss <- getBroadSets(fl)
+# Warning
+\donttest{isolation(gss)}
+}
+\seealso{
+\code{\link{independence}}
+}

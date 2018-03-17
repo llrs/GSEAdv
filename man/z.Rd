@@ -7,11 +7,12 @@
 z(gpp)
 }
 \arguments{
-\item{gpp}{The number of pathways per genes of the desired GeneSetCollection}
+\item{gpp}{The number of pathways per genes of the desired GeneSetCollection.}
 }
 \value{
 A GeneSetCollection
 }
 \description{
-Simulates a GeneSetCollection following a distribution
+Simulates a GeneSetCollection following the number of pathways per genes
+introduced.
 }

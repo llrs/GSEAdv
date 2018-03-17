@@ -15,5 +15,5 @@ yz(ppg, gpp)
 A GeneSetCollection
 }
 \description{
-Simulates a GeneSetCollection following a distribution
+Simulates a GeneSetCollection following the both distributions
 }
