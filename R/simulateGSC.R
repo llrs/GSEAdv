@@ -177,6 +177,10 @@ z <- function(gpp) {
 #' @export
 z2 <- function(gpp, nGenes) {
 
+  # Check input
+  if (any(gpp < 0) || !is.numeric(gpp)) {
+    stop("Provide integer values for pathways of the genes")
+  }
   stopifnot(nGenes >= max(gpp))
   stopifnot(nGenes > 2)
 
@@ -215,6 +219,10 @@ z2 <- function(gpp, nGenes) {
 #' @seealso \code{\link{w}}
 #' @export
 w <- function(ppg, nPathways) {
+  # Check input
+  if (any(ppg < 0) || !is.numeric(ppg)) {
+    stop("Provide integer values for genes in the pathways")
+  }
   stopifnot(max(ppg) <= nPathways )
   stopifnot(nPathways > 2)
 
@@ -235,26 +243,5 @@ w <- function(ppg, nPathways) {
   }
 
   message("Iterations: ", iter)
-  obj
-}
-
-
-# TODO: FIXME
-v <- function(ng, np) {
-  genes <- paste0("G_", seq_len(ng))
-  paths <- paste0("GS_", seq_len(np))
-
-  count <- 0
-  paths2genes <- vector("list", np)
-  while(length(unique(paths2genes)) != np) {
-    for (i in paths){
-      x <- stats::rgeom(1, 0.25)
-      if (x < length(genes)){
-        paths2genes[[i]] <- sample(x = genes, size = x)
-      }
-    }
-    count <- count + 1
-  }
-  message(count)
-  paths2genes
+  gsc
 }
