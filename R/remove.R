@@ -40,12 +40,3 @@ setMethod("drop",
             as(genes2paths, "GeneSetCollection")
           }
 )
-
-#' @describeIn drop Drop a gene a pathway or both
-#' @export
-setMethod("dropRel",
-          signature(object = "GeneSetCollection", gene = "character", pathway = "character"),
-           function(object, gene = NULL, pathway = NULL) {
-            print("hi")
-           }
-)

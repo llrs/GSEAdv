@@ -4,15 +4,11 @@
 \name{drop}
 \alias{drop}
 \alias{drop,GeneSetCollection-method}
-\alias{dropRel,GeneSetCollection,character,character-method}
 \title{Remove from a GeneSetCollection}
 \usage{
 drop(object, gene, pathway)
 
 \S4method{drop}{GeneSetCollection}(object, gene = NULL, pathway = NULL)
-
-\S4method{dropRel}{GeneSetCollection,character,character}(object, gene = NULL,
-  pathway = NULL)
 }
 \arguments{
 \item{object}{A GeneSetCollection object.}
@@ -30,8 +26,6 @@ Removes either genes or pathways of a GeneSetCollection if present
 \section{Methods (by class)}{
 \itemize{
 \item \code{GeneSetCollection}: Drop a gene a pathway or both
-
-\item \code{object = GeneSetCollection,gene = character,pathway = character}: Drop a gene a pathway or both
 }}
 
 \note{
