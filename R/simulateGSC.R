@@ -200,13 +200,13 @@ z2 <- function(gpp, nGenes) {
   obj <- helper(gpp, genes)
   i <- 1
 
-  while(nGenes(gsc) != nGenes) {
+  while(nGenes(obj) != nGenes) {
     i <- i +1
-    gsc <- helper(gpp, genes)
+    obj <- helper(gpp, genes)
   }
 
   message("Iterations: ", i)
-  gsc
+  obj
 }
 
 #' Simulate a GeneSetCollection
