@@ -1,7 +1,6 @@
 check_collectionType <- function(object) {
-  typeGS <- lapply(object, collectionType)
-  cl <- sapply(typeGS, class)
-  equal <- length(unique(cl, use.names = TRUE))
+  typeGS <- collectionType(object)
+  equal <- length(typeGS)
 
   if (equal > 1) {
     warning("Several collections origins detected.",
@@ -9,7 +8,7 @@ check_collectionType <- function(object) {
     invisible(NA)
   }
 
-  if (any(cl %in% "GOCollection")) {
+  if (any(typeGS %in% "GOCollection")) {
     warning("Gene Ontologies are not pathways
             (They have some complex dependencies).",
             "Proceed only if you want to compare the methods in GO data.")
@@ -19,9 +18,8 @@ check_collectionType <- function(object) {
 }
 
 check_geneIdType <- function(object) {
-  typeGS <- lapply(object, geneIdType)
-  cl <- vapply(typeGS, class, FUN.VALUE = character(1))
-  equal <- length(table(cl))
+  typeGS <- geneIdType(object)
+  equal <- length(typeGS)
 
   if (equal > 1) {
     stop("Several gene ID types detected.
@@ -103,5 +101,25 @@ setMethod("check",
             check_collectionType(object)
             check_geneIdType(object)
             check_size(object)
+          }
+)
+
+#' @describeIn check Returns the geneIdType present in the GeneSetCollection
+#' @export
+setMethod("geneIdType",
+          signature( object = "GeneSetCollection"),
+          function(object) {
+            typeGS <- lapply(object, geneIdType)
+            unique(vapply(typeGS, class, FUN.VALUE = character(1)))
+          }
+)
+
+#' @describeIn check Returns the collectionType present in the GeneSetCollection
+#' @export
+setMethod("collectionType",
+          signature( object = "GeneSetCollection"),
+          function(object) {
+            typeGS <- lapply(object, collectionType)
+            unique(vapply(typeGS, class, FUN.VALUE = character(1)))
           }
 )

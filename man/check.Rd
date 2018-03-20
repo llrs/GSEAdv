@@ -4,11 +4,17 @@
 \name{check}
 \alias{check}
 \alias{check,GeneSetCollection-method}
+\alias{geneIdType,GeneSetCollection-method}
+\alias{collectionType,GeneSetCollection-method}
 \title{Checks a GeneSetCollection}
 \usage{
 check(object)
 
 \S4method{check}{GeneSetCollection}(object)
+
+\S4method{geneIdType}{GeneSetCollection}(object)
+
+\S4method{collectionType}{GeneSetCollection}(object)
 }
 \arguments{
 \item{object}{A GeneSetCollection}
@@ -24,6 +30,10 @@ all the GeneSets. Checks that a GeneSet is bigger or equal to two genes.
 \section{Methods (by class)}{
 \itemize{
 \item \code{GeneSetCollection}: Applies the checks
+
+\item \code{GeneSetCollection}: Returns the geneIdType present in the GeneSetCollection
+
+\item \code{GeneSetCollection}: Returns the collectionType present in the GeneSetCollection
 }}
 
 \examples{
