@@ -2,7 +2,7 @@ context("Testing list to GeneSetCollection method")
 
 test_that("info", {
 
-  expect_warning(test <- as.GeneSetCollection(info, FALSE))
+  expect_warning(test <- as.GeneSetCollection(info))
   sum <- info[vapply(info, function(x){all(!is.na(x))}, logical(1))]
   expect_true(class(test) == "GeneSetCollection")
   expect_equal(length(inverseList(geneIds(test))),
