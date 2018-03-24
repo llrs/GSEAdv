@@ -2,22 +2,20 @@
 #' @export
 setMethod("drop",
           signature(object = "GeneSetCollection", gene = "character", pathway = "character"),
-          function(object, gene = NULL, pathway = NULL) {
+          function(object, gene, pathway) {
 
             paths2genes <- geneIds(object)
 
             if (is(pathway, "character")) {
-              remove <- match(names(paths2genes), pathway)
-              remove <- remove[!is.na(remove)]
-              genes2paths <- inverseList(paths2genes[-remove])
+              remove <- names(paths2genes) %in% pathway
+              genes2paths <- inverseList(paths2genes[!remove])
             } else {
               genes2paths <- inverseList(paths2genes)
             }
 
             if (is(gene, "character")) {
-              remove <- match(names(genes2paths), gene)
-              remove <- remove[!is.na(remove)]
-              genes2paths <- genes2paths[-remove]
+              remove <- names(genes2paths) %in% gene
+              genes2paths <- genes2paths[!remove]
             }
 
             # Return a GeneSetCollection
@@ -30,13 +28,12 @@ setMethod("drop",
 #' @export
 setMethod("drop",
           signature(object = "GeneSetCollection", gene = "missing", pathway = "character"),
-          function(object, gene = NULL, pathway = NULL) {
+          function(object, pathway) {
 
             paths2genes <- geneIds(object)
 
-            remove <- match(names(paths2genes), pathway)
-            remove <- remove[!is.na(remove)]
-            genes2paths <- inverseList(paths2genes[-remove])
+            remove <- names(paths2genes) %in% pathway
+            genes2paths <- inverseList(paths2genes[!remove])
 
                         # Return a GeneSetCollection
             as(genes2paths, "GeneSetCollection")
@@ -47,14 +44,13 @@ setMethod("drop",
 #' @export
 setMethod("drop",
           signature(object = "GeneSetCollection", gene = "character", pathway = "missing"),
-          function(object, gene = NULL, pathway = NULL) {
+          function(object, gene) {
 
             paths2genes <- geneIds(object)
             genes2paths <- inverseList(paths2genes)
 
-            remove <- match(names(genes2paths), gene)
-            remove <- remove[!is.na(remove)]
-            genes2paths <- genes2paths[-remove]
+            remove <- names(genes2paths) %in% gene
+            genes2paths <- genes2paths[!remove]
 
             # Return a GeneSetCollection
             as(genes2paths, "GeneSetCollection")
@@ -67,7 +63,7 @@ setMethod("drop",
 #' @export
 setMethod("drop",
           signature(object = "GeneSetCollection", gene = "numeric", pathway = "numeric"),
-          function(object, gene = NULL, pathway = NULL) {
+          function(object, gene, pathway) {
             stopifnot(gene >= 1)
             stopifnot(pathway >= 1)
 
@@ -91,7 +87,7 @@ setMethod("drop",
 #' @export
 setMethod("drop",
           signature(object = "GeneSetCollection", gene = "missing", pathway = "numeric"),
-          function(object, gene = NULL, pathway = NULL) {
+          function(object, pathway) {
             stopifnot(pathway >= 1)
 
             paths2genes <- geneIds(object)
@@ -111,11 +107,11 @@ setMethod("drop",
 #' @export
 setMethod("drop",
           signature(object = "GeneSetCollection", gene = "numeric", pathway = "missing"),
-          function(object, gene = NULL, pathway = NULL) {
+          function(object, gene, pathway) {
             stopifnot(gene >= 1)
 
             paths2genes <- geneIds(object)
-            genes2paths <- inverseList(paths2genes)
+            # genes2paths <- inverseList(paths2genes)
 
             # Remove genes
             remove <- sample(seq_along(genes2paths), gene)
