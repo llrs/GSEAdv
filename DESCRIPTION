@@ -19,6 +19,7 @@ Suggests:
     rmarkdown,
     ggplot2,
     covr,
+    fitdistrplus,
     BiocStyle
 BugReports: https://github.com/llrs/GSEAdv/issues
 URL: https://github.com/llrs/GSEAdv/

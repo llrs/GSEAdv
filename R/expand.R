@@ -1,7 +1,7 @@
 # TODO: Finish this draft
 expand <- function(obj, genes) {
 
-  if (!require("fitdistrplus")){
+  if (!requireNamespace("fitdistrplus")){
     stop("To use this function it needs the package fitdistrplus.
          Please install it with install.packages('fitdistrplus')")
   }
