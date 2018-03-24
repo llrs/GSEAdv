@@ -1,47 +1,19 @@
-
-#' @describeIn drop Drop a gene a pathway or both
+#' @describeIn modify Add or remove relationships between genes and gene sets
 #' @export
-setMethod("drop",
-          signature(object = "GeneSetCollection", gene = "ANY", pathway = "ANY"),
-          function(object, gene, pathway) {
-            paths2genes <- geneIds(object)
-            if (length(gene) == 1 & length(pathway) == 1) {
-              if (pathway %in% names(paths2genes)){
-                match <- paths2genes[[pathway]] %in% gene
-                if (match) {
-                  paths2genes[[pathway]] <- paths2genes[[pathway]][!match]
-                } else {
-                  paths2genes[[pathway]] <- c(paths2genes[[pathway]], gene)
-                }
-              } else {
-                paths2genes[[pathway]] <- gene
-              }
-            } else if (length(gene) >= 2 & length(pathway) == 1) {
-              if (pathway %in% names(paths2genes)){
-                match <- paths2genes[[pathway]] %in% gene
-                if (match) {
-                  # Doesn't hold
-                  # FIXME!! if pathway is of length bigger than 2 and there are only two genes
-
-                  paths2genes[[pathway]] <- paths2genes[[pathway]][!match]
-                } else {
-                  paths2genes[[pathway]] <- c(paths2genes[[pathway]], gene)
-                }
-              }
-            } else if ( length(gene) == 1 & length(pathway) >= 2) {
-              gene2paths <- inverseList(paths2genes)
-              if (gene %in% names(gene2paths)) {
-                match <- gene2paths[[gene]] %in% pathway
-                if (match)
-                  gene2paths[[gene]] <- "bu"
-              }
-            } # TODO: Simplify!! into three subfunctions
-            as(inverseList(paths2genes), "GeneSetCollection")
+setMethod("modify",
+          signature(object = "GeneSetCollection", gene = "character", pathway = "character"),
+          function(object, gene = NULL, pathway = NULL) {
+            if (length(gene) == 1 & length(pathway) == 1 ) {
+              m(object, gene, pathway)
+            } else if (length(gene) > 1 & length(pathway) == 1) {
+              m2(object, gene, pathway)
+            } else if (length(gene) == 1 & length(pathway) > 1) {
+              m3(object, gene, pathway)
+            } else {
+              stop("Error")
+            }
           }
 )
-
-
-
 
 # Given a gene and a pathway modify the object
 m <- function(obj, gene, pathway) {
@@ -62,7 +34,7 @@ m <- function(obj, gene, pathway) {
   as(inverseList(paths2genes), "GeneSetCollection")
 }
 
-# Given several genes and a patwhay modify the object
+# Given several genes and a pathway modify the object
 m2 <- function(obj, gene, pathway) {
   stopifnot(length(gene) > 1)
   stopifnot(length(pathway) == 1)
@@ -79,5 +51,21 @@ m2 <- function(obj, gene, pathway) {
   as(inverseList(paths2genes), "GeneSetCollection")
 }
 
-# TODO: FiXME add another case
-# For ewhen several pathways and a single gene
+# For when several pathways and a single gene
+m3 <- function(obj, gene, pathway) {
+  stopifnot(length(gene) == 1)
+  stopifnot(length(pathway) > 1)
+
+  paths2genes <- geneIds(obj)
+  genes2paths <- inverseList(paths2genes)
+
+  if (gene %in% names(genes2paths)) {
+    match <- genes2paths[[gene]] %in% pathway
+    match2 <- pathway %in% genes2paths[[gene]]
+    genes2paths[[gene]] <- genes2paths[[gene]][!match]
+    genes2paths[[gene]] <- c(genes2paths[[gene]], pathway[!match2])
+  } else {
+    genes2paths[[gene]] <- pathway
+  }
+  as(genes2paths, "GeneSetCollection")
+}
