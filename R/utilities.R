@@ -45,7 +45,7 @@ maxIC <- function(x) {
 #' @author Lluís Revilla
 #' @keywords internal
 h_index <- function(x) {
-  if (is(x, "table")) {
+  if (!is(x, "table")) {
     x <- table(x)
   }
   position <- x - as.numeric(names(x))
