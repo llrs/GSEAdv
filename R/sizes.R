@@ -82,7 +82,7 @@ setMethod("sizePathways",
             if (length(pathway) >= 1) {
               if (any(!pathway %in% names(paths2genes))) {
                 keep <- pathway %in% names(paths2genes)
-                if (sum(keeep) >= 1) {
+                if (sum(keep) >= 1) {
                   remove <- pathway[!keep]
                   pathway <- pathway[keep]
                   warning("Omitting ", remove, "pathway.\nIt wasn't present")
@@ -90,13 +90,13 @@ setMethod("sizePathways",
                   stop("No provided pathway is present.")
                 }
               }
-              out <- sapply(pathway, function(x){
+              out <- sapply(pathway, function(path){
                 genes <- paths2genes[[path]]
                 pSize <- table(ppg[genes])
               })
             } else {
               if (pathway %in% names(paths2genes)) {
-                genes <- paths2genes[[path]]
+                genes <- paths2genes[[pathway]]
                 out <- table(ppg[genes])
               } else {
                 stop("No pathway is present.")
