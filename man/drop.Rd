@@ -13,23 +13,17 @@
 \usage{
 drop(object, gene, pathway)
 
-\S4method{drop}{GeneSetCollection,character,character}(object, gene = NULL,
-  pathway = NULL)
+\S4method{drop}{GeneSetCollection,character,character}(object, gene, pathway)
 
-\S4method{drop}{GeneSetCollection,missing,character}(object, gene = NULL,
-  pathway = NULL)
+\S4method{drop}{GeneSetCollection,missing,character}(object, pathway)
 
-\S4method{drop}{GeneSetCollection,character,missing}(object, gene = NULL,
-  pathway = NULL)
+\S4method{drop}{GeneSetCollection,character,missing}(object, gene)
 
-\S4method{drop}{GeneSetCollection,numeric,numeric}(object, gene = NULL,
-  pathway = NULL)
+\S4method{drop}{GeneSetCollection,numeric,numeric}(object, gene, pathway)
 
-\S4method{drop}{GeneSetCollection,missing,numeric}(object, gene = NULL,
-  pathway = NULL)
+\S4method{drop}{GeneSetCollection,missing,numeric}(object, pathway)
 
-\S4method{drop}{GeneSetCollection,numeric,missing}(object, gene = NULL,
-  pathway = NULL)
+\S4method{drop}{GeneSetCollection,numeric,missing}(object, gene, pathway)
 }
 \arguments{
 \item{object}{A GeneSetCollection object.}
