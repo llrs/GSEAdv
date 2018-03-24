@@ -11,6 +11,7 @@ setMethod("condGene",
 
             uPPG <- unique(ppg)
             uGPP <- unique(gpp)
+
             # Create the matrix to fill
             m <- matrix(0, ncol = length(uPPG), nrow = length(uGPP),
                         dimnames =
@@ -20,7 +21,7 @@ setMethod("condGene",
             paths2genes <- GSEABase::geneIds(object)
             genes2paths <- inverseList(paths2genes)
 
-            # Find the genes with those pathways
+            # Find the genes and the size of its pathways
             for (g in colnames(m)) {
               genes <- names(ppg)[ppg == g]
               paths <- unique(unlist(genes2paths[genes], use.names = FALSE))
@@ -30,7 +31,7 @@ setMethod("condGene",
                 if (length(pSize) == 0) {
                   m[pSize, g] <- 0
                 }
-                m[pSize, g] <- sum(subGPP == pSize, na.rm = TRUE)/length(subGPP)
+                m[pSize, g] <- sum(subGPP == pSize, na.rm = TRUE)
               }
             }
             m

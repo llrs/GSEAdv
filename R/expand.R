@@ -1,14 +1,13 @@
 # TODO: Finish this draft
 expand <- function(obj, genes) {
-  if (!any(genes %in% names(pathwaysPerGene(obj)))){
-    stop("To expand the gene set some genes must be inside the object")
-  }
-  if (any(!names(pathwaysPerGene(obj) %in% genes))){
-    message("Including the genes in obj")
+
+  if (!require("fitdistrplus")){
+    stop("To use this function it needs the package fitdistrplus.
+         Please install it with install.packages('fitdistrplus')")
   }
 
-  # Sample from all the genes
 
+  # Find the distribution of genes and pathways
   # Follow the distribution/pattern
   # A raw distribution (fitted)
   # The interaction

@@ -30,7 +30,7 @@ setMethod("condPath",
                 if (length(gSize) == 0) {
                   m[p, gSize] <- 0
                 }
-                m[p, gSize] <- sum(subPPG == gSize, na.rm = TRUE)/length(subPPG)
+                m[p, gSize] <- sum(subPPG == gSize, na.rm = TRUE)
               }
             }
             m

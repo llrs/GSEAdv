@@ -20,7 +20,8 @@ condGene(object)
 A matrix
 }
 \description{
-Conditional probability of pathway length given the number of pathways
+Calculates the number of genes in a pathway of a given size, separated by the
+number of pathways each gene has.
 }
 \section{Methods (by class)}{
 \itemize{
@@ -31,6 +32,9 @@ of having a size of gene set
 of having a number of pathways
 }}
 
+\seealso{
+\code{\link{condPath}}
+}
 \author{
 Lluís Revilla
 }

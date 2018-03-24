@@ -19,6 +19,9 @@ size of pathways.
 \details{
 Uses \code{\link{check}} to validate the output.
 }
+\seealso{
+\code{\link{condGene}}
+}
 \author{
 Lluís Revilla
 }
