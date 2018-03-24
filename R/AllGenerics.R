@@ -60,9 +60,12 @@ setGeneric("pathway", function(object, pathway)
 
 #' Conditional probability of pathway length given the number of pathways
 #'
+#' Calculates the number of genes in a pathway of a given size, separated by the
+#' number of pathways each gene has.
 #' @param object A GeneSetCollection object
 #' @return A matrix
 #' @author Lluís Revilla
+#' @seealso \code{\link{condPath}}
 #' @export condGene
 setGeneric("condGene", function(object) standardGeneric("condGene"))
 
@@ -76,6 +79,7 @@ setGeneric("condGene", function(object) standardGeneric("condGene"))
 #' @param object A GeneSetCollection object
 #' @return A matrix
 #' @author Lluís Revilla
+#' @seealso \code{\link{condGene}}
 #' @export condPath
 setGeneric("condPath", function(object) standardGeneric("condPath"))
 
@@ -171,3 +175,26 @@ setGeneric("drop", function(object, gene, pathway)
 #' @export modify
 setGeneric("modify", function(object, gene, pathway)
   standardGeneric("modify"))
+
+#' Number of genes in pathways of genes
+#'
+#' Calculates the number of pathways per gene in pathways.
+#' @param gene A vector of character with genes.
+#' @param object A GeneSetCollection
+#' @return A matrix or a list of vectors if only some genes are requested
+#' @seealso \code{\link{sizePathways}} To equivalent for pathways
+#' @export sizeGenes
+setGeneric("sizeGenes", function(object, gene)
+  standardGeneric("sizeGenes"))
+
+#' Number of pathways in genes of pathways
+#'
+#' Calculates the number of pathways per gene in pathways.
+#'
+#' @param pathway A vector of character with pathways.
+#' @param object A GeneSetCollection
+#' @return A matrix or a list of vectors if only some pathways are requested
+#' @seealso \code{\link{sizeGenes}} The equivalent for genes
+#' @export sizePathways
+setGeneric("sizePathways", function(object,pathway)
+  standardGeneric("sizePathways"))
