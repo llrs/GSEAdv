@@ -8,15 +8,18 @@ test_that("collectionType", {
 })
 
 test_that("genesPerPathway", {
-  expect_equal(genesPerPathway(test),
-               structure(c(2L, 3L, 2L, 2L, 2L),
-                         .Names = c("1430728", "156580",
-                                    "156582", "194840", "211859")))
+  gpp <- genesPerPathway(test)
+  expect_equal(gpp,structure(c(2L, 3L, 2L, 2L, 2L),
+                             .Names = c("1430728", "156580",
+                                        "156582", "194840", "211859")))
+  expect_equal(length(gpp), nPathways(test))
 })
 
 test_that("pathwaysPerGene", {
-  expect_equal(pathwaysPerGene(test),
-               structure(c(4L, 1L, 2L, 4L), .Names = c("10", "2", "3", "9")))
+  ppg <- pathwaysPerGene(test)
+  expect_equal(ppg, structure(c(4L, 1L, 2L, 4L),
+                              .Names = c("10", "2", "3", "9")))
+  expect_equal(length(ppg), nGenes(test))
 })
 
 test_that("geneIdType", {
