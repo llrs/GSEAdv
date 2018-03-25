@@ -1,3 +1,17 @@
+#' Convert a list or a Bimap interface into GeneSetCollections
+#'
+#' Transform the list or Bimap structure into a GeneSetCollection with unique
+#' gene identifiers an pathnames.
+#' @param object A list of genes and their pathways or an AnnDbBimap.
+#' @param ... Other unused parameters passed down.
+#' @return A GeneSetCollection
+#' @author Lluís Revilla
+#' @export as.GeneSetCollection
+#' @seealso \code{\link[GSEABase]{GeneSetCollection}}
+setGeneric("as.GeneSetCollection", function(object, ...)
+  standardGeneric("as.GeneSetCollection")
+)
+
 #' Pathways per gene
 #'
 #' Calculates the pathways per gene of a GeneSetCollection. In set theory it is
