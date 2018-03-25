@@ -111,7 +111,7 @@ setMethod("drop",
             stopifnot(gene >= 1)
 
             paths2genes <- geneIds(object)
-            # genes2paths <- inverseList(paths2genes)
+            genes2paths <- inverseList(paths2genes)
 
             # Remove genes
             remove <- sample(seq_along(genes2paths), gene)
