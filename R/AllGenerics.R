@@ -212,3 +212,35 @@ setGeneric("sizeGenes", function(object, gene)
 #' @export sizePathways
 setGeneric("sizePathways", function(object,pathway)
   standardGeneric("sizePathways"))
+
+
+#' Duplicated genes
+#'
+#' Check if there are some pathways that are only present in the same genes.
+#'
+#' @param object A GeneSetCollection
+#' @return Either \code{TRUE} or \code{FALSE}
+#' @seealso \code{\link{duplicatedPathways}}
+#' @export duplicatedGenes
+setGeneric("duplicatedGenes", function(object)
+  standardGeneric("duplicatedGenes"))
+
+#' Duplicated pathways
+#'
+#' Check if there are some genes that are only present in the same pathways.
+#'
+#' @param object A GeneSetCollection
+#' @return Either \code{TRUE} or \code{FALSE}
+#' @seealso \code{\link{duplicatedGenes}}
+#' @export duplicatedPathways
+setGeneric("duplicatedPathways", function(object)
+  standardGeneric("duplicatedPathways"))
+
+#' Pathways included in other pathways
+#'
+#' Check if all the genes of a pathway are inside another pathway.
+#' @param object A GeneSetCollection
+#' @return A matrix with 1 if they are included and 0 if not. 1
+#' means that the pathways on the rows are in the ones of the columns
+setGeneric("nested", function(object)
+  standardGeneric("nested"))
