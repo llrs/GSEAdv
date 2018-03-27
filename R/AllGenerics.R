@@ -219,7 +219,7 @@ setGeneric("sizePathways", function(object,pathway)
 #' Check if there are some pathways that are only present in the same genes.
 #'
 #' @param object A GeneSetCollection
-#' @return Either \code{TRUE} or \code{FALSE}
+#' @return If some genes are duplicated returns \code{TRUE} else \code{FALSE}
 #' @seealso \code{\link{duplicatedPathways}}
 #' @export duplicatedGenes
 setGeneric("duplicatedGenes", function(object)
@@ -230,7 +230,7 @@ setGeneric("duplicatedGenes", function(object)
 #' Check if there are some genes that are only present in the same pathways.
 #'
 #' @param object A GeneSetCollection
-#' @return Either \code{TRUE} or \code{FALSE}
+#' @return  If some pathways are duplicated returns \code{TRUE} else \code{FALSE}
 #' @seealso \code{\link{duplicatedGenes}}
 #' @export duplicatedPathways
 setGeneric("duplicatedPathways", function(object)
