@@ -1,14 +1,47 @@
+check_vec <- function(ref, test) {
+  # Check size
+  lr <- length(ref)
+  lt <- length(test)
+
+  if (lr == lt) {
+    # Check
+    tr <- table(ref)
+    tt <- table(test)
+    if (length(tr) == length(tt)){
+      if (all(names(tr) == names(tt)) & all(tt == tr)) {
+        return(TRUE)
+      }
+    }
+  }
+  FALSE
+}
+
+check_combn <- function(x){
+  tx <- table(x)
+  l <- length(x)
+  o <- vapply(names(tx), function(y) {
+    choose(l, as.numeric(y)) >= tx[y]
+  }, FUN.VALUE = logical(1L))
+  all(o)
+}
+
+
 #' Simulate GeneSetCollection
 #'
 #' Simulates a GeneSetCollection following a distribution
 #' @param ppg The number of pathways per genes of the desired GeneSetCollection
 #' @return A GeneSetCollection
+#' @seealso \code{\link{fromGPP}}
 #' @export
-y <- function(ppg) {
+fromPPG <- function(ppg) {
   # Check input
-  if (any(ppg < 0) || !is.numeric(ppg)) {
+  if (!is.numeric(ppg)) {
     stop("Provide positive integer values for genes in the pathways")
   }
+   if (any(ppg <= 0)){
+     ppg <- ppg[ppg > 0]
+     warning("Removing genes with 0 pathways")
+   }
 
   # Remove empty genes without pathways
   if (any(ppg == 0)) {
@@ -20,7 +53,7 @@ y <- function(ppg) {
   genes <- names(ppg)
 
   # Compares the actual number of pathways with the possible outcome of
-  if (choose(length(ppg), 2) < max(ppg)){
+  if (!check_combn(ppg)){
     stop("Impossible combination of genes and pathways")
   }
 
@@ -42,37 +75,27 @@ y <- function(ppg) {
   }
 
   gsc <- helper(ppg, genes)
-
-  # Calculate the data
-  ppg_sim <- pathwaysPerGene(gsc)
-  t_ppg_sim <- table(ppg_sim)
-  t_ppg <- table(ppg)
-
-  # Checking the output fits the rules for a pathwayª
-  size <- length(ppg) == length(ppg_sim)
-  tables <- length(t_ppg) == length(t_ppg_sim)
-  if (tables) {
-    repet <- all(names(t_ppg) == names(t_ppg_sim))
+  if (!is(gsc, "GeneSetCollection")) {
+    pass <- FALSE
   } else {
-    repet <- FALSE
-  }
-  iter <- 1
-
-  while (size & tables & repet) {
-    gsc <- helper(ppg, genes)
 
     # Calculate the data
     ppg_sim <- pathwaysPerGene(gsc)
-    t_ppg_sim <- table(ppg_sim)
-    t_ppg <- table(ppg)
+    pass <- check_vec(ppg, ppg_sim)
+  }
 
-    # Checking the output fits the rules for a pathwayª
-    size <- length(ppg) == length(ppg_sim)
-    tables <- length(t_ppg) == length(t_ppg_sim)
-    if (tables) {
-      repet <- all(names(t_ppg) == names(t_ppg_sim))
+  iter <- 1
+
+  while (!pass) {
+    gsc <- helper(ppg, genes)
+
+    if (!is(gsc, "GeneSetCollection")) {
+      pass <- FALSE
     } else {
-      repet <- FALSE
+
+      # Calculate the data
+      ppg_sim <- pathwaysPerGene(gsc)
+      pass <- check_vec(ppg, ppg_sim)
     }
     iter <- iter +1
   }
@@ -87,8 +110,9 @@ y <- function(ppg) {
 #' introduced.
 #' @param gpp The number of pathways per genes of the desired GeneSetCollection.
 #' @return A GeneSetCollection
+#' @seealso \code{\link{fromPPG}}
 #' @export
-z <- function(gpp) {
+fromGPP <- function(gpp) {
   # Check input
   if (any(gpp < 0) || !is.numeric(gpp)) {
     stop("Provide positive integer values for pathways of the genes")
@@ -104,7 +128,7 @@ z <- function(gpp) {
   pathways <- names(gpp)
 
   # Compares the actual number of pathways with the possible outcome of
-  if (choose(length(gpp), 2) < max(gpp)){
+  if (!check_combn(gpp)){
     stop("Impossible combination of genes and pathways")
   }
 
@@ -129,37 +153,26 @@ z <- function(gpp) {
 
   # Calculate the data
   gpp_sim <- genesPerPathway(obj)
-  t_gpp_sim <- table(gpp_sim)
-  t_gpp <- table(gpp)
-
-  # Checking the output fits the rules for a pathwayª
-  size <- length(gpp) == length(gpp_sim)
-  tables <- length(t_gpp) == length(t_gpp_sim)
-  if (tables) {
-    repet <- all(names(t_gpp) == names(t_gpp_sim))
-  } else {
-    repet <- FALSE
-  }
+  pass <- check_vec(gpp, gpp_sim)
 
   iter <- 1
 
-  while (size & tables & repet) {
+  while (!pass) {
     obj <- helper(gpp, pathways)
     iter <- iter +1
 
     # Calculate the data
     gpp_sim <- genesPerPathway(obj)
-    t_gpp_sim <- table(gpp_sim)
-    t_gpp <- table(gpp)
+    pass <- check_vec(gpp, gpp_sim)
+    # if (iter %% 100) {
+    #   message("Loading...")
+    # }
+    #
+    # if (iter == 5000) {
+    #   message("5000 itertions.\nTime to stop?")
+    #   Sys.sleep(5)
+    # }
 
-    # Checking the output fits the rules for a pathwayª
-    size <- length(gpp) == length(gpp_sim)
-    tables <- length(t_gpp) == length(t_gpp_sim)
-    if (tables) {
-      repet <- all(names(t_gpp) == names(t_gpp_sim))
-    } else {
-      repet <- FALSE
-    }
   }
   message("Iterations: ", iter)
   obj
@@ -173,9 +186,9 @@ z <- function(gpp) {
 #' @param gpp Genes per pathway.
 #' @param nGenes Number of genes.
 #' @return A GeneSetCollection with those genes distributed in those pathways.
-#' @seealso \code{\link{w}}
+#' @seealso \code{\link{fromPPG_nPathways}}
 #' @export
-z2 <- function(gpp, nGenes) {
+fromGPP_nGenes <- function(gpp, nGenes) {
 
   # Check input
   if (any(gpp < 0) || !is.numeric(gpp)) {
@@ -198,11 +211,16 @@ z2 <- function(gpp, nGenes) {
     gsc
   }
   obj <- helper(gpp, genes)
+  gpp_sim <- genesPerPathway(obj)
+  pass <- check_vec(gpp, gpp_sim)
+
   i <- 1
 
-  while(nGenes(obj) != nGenes) {
+  while(nGenes(obj) != nGenes & !pass) {
     i <- i +1
     obj <- helper(gpp, genes)
+    gpp_sim <- genesPerPathway(obj)
+    pass <- check_vec(gpp, gpp_sim)
   }
 
   message("Iterations: ", i)
@@ -216,9 +234,9 @@ z2 <- function(gpp, nGenes) {
 #' @param ppg Pathways per gene.
 #' @param nPathways Number of genes.
 #' @return A GeneSetCollection with those genes distributed in those pathways.
-#' @seealso \code{\link{w}}
+#' @seealso \code{\link{fromGPP_nGenes}}
 #' @export
-w <- function(ppg, nPathways) {
+fromPPG_nPathways <- function(ppg, nPathways) {
   # Check input
   if (any(ppg < 0) || !is.numeric(ppg)) {
     stop("Provide integer values for genes in the pathways")
@@ -236,10 +254,16 @@ w <- function(ppg, nPathways) {
   }
 
   gsc <- helper(ppg, paths)
+  ppg_sim <- pathwaysPerGene(gsc)
+  pass <- check_vec(ppg, ppg_sim)
+
   iter <- 1
-  while(nPathways(gsc) != nPathways) {
+  while(nPathways(gsc) != nPathways & !pass) {
     iter <- iter + 1
     gsc <- helper(ppg, paths)
+
+    ppg_sim <- pathwaysPerGene(gsc)
+    pass <- check_vec(ppg, ppg_sim)
   }
 
   message("Iterations: ", iter)

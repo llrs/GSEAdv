@@ -4,7 +4,9 @@
 #' @param ppg The number of pathways per genes of the desired GeneSetCollection.
 #' @param gpp The number of genes per pathway of the desired GeneSetCollection.
 #' @return A GeneSetCollection
-yz <- function(ppg, gpp) {
+#' @aliases fromGPP_PPG
+#' @export
+fromPPG_GPP <- function(ppg, gpp) {
 
   # Check input
   if (any(ppg < 0) || !is.numeric(ppg)) {
@@ -42,25 +44,13 @@ yz <- function(ppg, gpp) {
 
   # Precalculate data
   ppg_sim <- lengths(paths2genes)
-  t_ppg_sim <- table(ppg_sim)
-  t_ppg <- table(ppg)
+  pass1 <- check_vec(ppg, ppg_sim)
+  gpp_sim <- lengths(genes2paths)
+  pass2 <- check_vec(gpp, gpp_sim)
 
-  # Logics
-  len <- length(t_ppg) == length(t_ppg_sim)
-  if (len){
-    nam <- all(names(t_ppg) == names(t_ppg_sim))
-    if (nam) {
-      keep <- all(t_ppg == t_ppg_sim)
-    } else {
-      keep <- FALSE
-    }
-  } else {
-    nam <- FALSE
-    keep <- FALSE
-  }
 
   iter <- 1
-  while (!(len & nam & keep)) {
+  while (!(pass1  & pass2)) {
     iter <- iter + 1
 
     genes2paths <- lapply(ppg, sample, x = pathways, prob = gpp)
@@ -68,22 +58,9 @@ yz <- function(ppg, gpp) {
 
     # Precalculate data
     ppg_sim <- lengths(paths2genes)
-    t_ppg_sim <- table(ppg_sim)
-    t_ppg <- table(ppg)
-
-    # Logics
-    len <- length(t_ppg) == length(t_ppg_sim)
-    if (len){
-      nam <- all(names(t_ppg) == names(t_ppg_sim))
-      if (nam) {
-        keep <- all(t_ppg == t_ppg_sim)
-      } else {
-        keep <- FALSE
-      }
-    } else {
-      nam <- FALSE
-      keep <- FALSE
-    }
+    pass1 <- check_vec(ppg, ppg_sim)
+    gpp_sim <- lengths(genes2paths)
+    pass2 <- check_vec(gpp, gpp_sim)
 
   }
   message("Iterations: ", iter)
