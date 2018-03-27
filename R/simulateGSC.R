@@ -137,19 +137,22 @@ fromGPP <- function(gpp) {
     # For each pathway create a random group of genes
     # Could be done in parallel, as each gene doesn't depend on the previous
     genes2pathsG <- lapply(gpp, function(y) {
-      lapply(seq_len(y), sample, x = pathways)
+      lapply(seq(from = 2, to = y, by = 1), sample, x = pathways)
     })
 
     # Remove duplicate pathways
     genes2pathways <- unique(unlist(genes2pathsG, recursive = FALSE,
                                     use.names = FALSE))
+    genes2pathways <- genes2pathways[lengths(genes2pathways) >= 2]
     names(genes2pathways) <- paste0("G_", seq_along(genes2pathways))
 
     suppressWarnings(obj <- as(genes2pathways, "GeneSetCollection"))
     obj
   }
+  obj <- tryCatch(helper(gpp, pathways), error = function(e){
+    helper(gpp, pathways)
+  })
 
-  obj <- helper(gpp, pathways)
 
   # Calculate the data
   gpp_sim <- genesPerPathway(obj)
@@ -158,7 +161,10 @@ fromGPP <- function(gpp) {
   iter <- 1
 
   while (!pass) {
-    obj <- helper(gpp, pathways)
+
+    obj <- tryCatch(helper(gpp, pathways), error = function(e){
+      helper(gpp, pathways)
+    })
     iter <- iter +1
 
     # Calculate the data
@@ -216,7 +222,7 @@ fromGPP_nGenes <- function(gpp, nGenes) {
 
   i <- 1
 
-  while(nGenes(obj) != nGenes & !pass) {
+  while(!(nGenes(obj) == nGenes & pass)) {
     i <- i +1
     obj <- helper(gpp, genes)
     gpp_sim <- genesPerPathway(obj)
@@ -258,7 +264,8 @@ fromPPG_nPathways <- function(ppg, nPathways) {
   pass <- check_vec(ppg, ppg_sim)
 
   iter <- 1
-  while(nPathways(gsc) != nPathways & !pass) {
+
+  while(!(nPathways(gsc) == nPathways & pass)) {
     iter <- iter + 1
     gsc <- helper(ppg, paths)
 
