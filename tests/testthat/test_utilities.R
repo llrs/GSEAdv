@@ -34,3 +34,37 @@ test_that("nGenes", {
 test_that("nPathways", {
   expect_equal(nPathways(test), 5L)
 })
+
+test_that("h_index", {
+  a <- c(2, 2, 2, 2)
+  expect_equal(h_index(a), 2L)
+  b <- c(2, 2, 3, 3)
+  expect_equal(h_index(b), 2L)
+  d <- c(2, 2, 3, 3, 3, 4)
+  expect_equal(h_index(d), 3L)
+})
+
+
+test_that("IC", {
+  a <- c(2, 2, 2, 2)
+  expect_equal(IC(a), 0L)
+  expect_equal(maxIC(a), 0L)
+  b <- c(2, 2, 3, 3)
+  expect_equal(IC(b), 1)
+
+  expect_equal(maxIC(b), IC(b))
+})
+
+
+test_that("inverseList",  {
+  l <- list( A = letters[1:5], B = letters[2:3])
+  li <- list("a" = "A", "b" = c("A", "B"), "c" = c("A", "B"), "d" = "A", "e" = "A")
+  expect_equal(inverseList(l), li)
+})
+
+
+test_that("names_vec",  {
+  a <- c(2, 2, 20)
+  expect_false(is.null(names(names_vec(a, "G_"))))
+})
+
