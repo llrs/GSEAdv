@@ -14,7 +14,7 @@ duplicatedPathways(object)
 \item{object}{A GeneSetCollection}
 }
 \value{
-Either \code{TRUE} or \code{FALSE}
+If some pathways are duplicated returns \code{TRUE} else \code{FALSE}
 }
 \description{
 Check if there are some genes that are only present in the same pathways.
