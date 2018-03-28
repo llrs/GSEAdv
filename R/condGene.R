@@ -18,7 +18,7 @@ setMethod("condGene",
                           list("genesPerPathway" = uGPP[order(uGPP)],
                                "pathwaysPerGene" = uPPG[order(uPPG)]))
 
-            paths2genes <- GSEABase::geneIds(object)
+            paths2genes <- geneIds(object)
             genes2paths <- inverseList(paths2genes)
 
             # Find the genes and the size of its pathways

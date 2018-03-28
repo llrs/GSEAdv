@@ -13,7 +13,7 @@ setMethod("gene",
             ppg <- pathwaysPerGene(object)
             gpp <- genesPerPathway(object)
 
-            paths2genes <- GSEABase::geneIds(object)
+            paths2genes <- geneIds(object)
             genes2paths <- inverseList(paths2genes)
 
             totalGenes <- length(genes2paths)
@@ -59,7 +59,7 @@ setMethod("gene",
             ppg <- pathwaysPerGene(object)
             gpp <- genesPerPathway(object)
 
-            paths2genes <- GSEABase::geneIds(object)
+            paths2genes <- geneIds(object)
             genes2paths <- inverseList(paths2genes)
 
             totalGenes <- length(genes2paths)

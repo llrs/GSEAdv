@@ -7,7 +7,7 @@ pathwaysPerGene <- function(object) {
 setMethod("pathwaysPerGene",
           "GeneSetCollection",
           function(object) {
-            pathways2genes <- GSEABase::geneIds(object)
+            pathways2genes <- geneIds(object)
             lengths(inverseList(pathways2genes))
           }
 )

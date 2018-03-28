@@ -6,7 +6,7 @@ setMethod("genesSizePathways",
           function(object) {
             object <- check(object)
 
-            genes2paths <- inverseList(GSEABase::geneIds(object))
+            genes2paths <- inverseList(geneIds(object))
             gpp <- genesPerPathway(object)
             u_gpp <- unique(gpp)
             u_gpp <- u_gpp[order(u_gpp)]

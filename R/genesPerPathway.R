@@ -9,6 +9,6 @@ genesPerPathway <- function(object) {
 setMethod("genesPerPathway",
           "GeneSetCollection",
           function(object) {
-            lengths(GSEABase::geneIds(object))
+            lengths(geneIds(object))
           }
 )

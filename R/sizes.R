@@ -11,7 +11,7 @@ setMethod("sizeGenes",
             uPPG <- unique(ppg)
             uGPP <- unique(gpp)
 
-            paths2genes <- GSEABase::geneIds(object)
+            paths2genes <- geneIds(object)
             genes2paths <- inverseList(paths2genes)
 
             # Create the matrix to fill
@@ -43,7 +43,7 @@ setMethod("sizePathways",
             uPPG <- unique(ppg)
             uGPP <- unique(gpp)
 
-            paths2genes <- GSEABase::geneIds(object)
+            paths2genes <- geneIds(object)
             genes2paths <- inverseList(paths2genes)
 
             # Create the matrix to fill
@@ -76,7 +76,7 @@ setMethod("sizePathways",
             uPPG <- unique(ppg)
             uGPP <- unique(gpp)
 
-            paths2genes <- GSEABase::geneIds(object)
+            paths2genes <- geneIds(object)
             genes2paths <- inverseList(paths2genes)
 
             if (length(pathway) >= 1) {
