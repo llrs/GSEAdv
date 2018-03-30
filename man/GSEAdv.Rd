@@ -20,7 +20,8 @@ The GSEAdv package provides methods enhancing the GSEABase package
 pathway given the numer of gene sets a gene is in.
 \item \code{\link{condPath}}: The conditional probability of the numer of gene
 sets a gene is in given the length of a gene set.
-\item \code{\link{genesSizePathways}}
+\item \code{\link{sizePathways}}
+\item \code{\link{sizeGenes}}
 }
 }
 
