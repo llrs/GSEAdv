@@ -3,6 +3,10 @@
 #' @export as.GeneSetCollection
 setMethod("as.GeneSetCollection", signature(object = "list"),
           function(object, ...){
+            keep <- vapply(object, function(x){
+              all(is(x, "character"))
+            }, FUN.VALUE = logical(1))
+            object <- object[keep]
             paths2gene <- inverseList(object)
             paths2gene <- lapply(paths2gene, unique)
             gsl <- sapply(names(paths2gene), function(x){

@@ -9,7 +9,7 @@
 #' @keywords internal
 inverseList <- function(x) {
   stopifnot(length(names(x)) == length(x))
-  stopifnot(all(sapply(x, is.character)))
+  stopifnot(all(vapply(x, is.character, logical(1))))
   genes <- unlist(x, use.names = FALSE)
   pathways <- rep(names(x), lengths(x))
   split(pathways, genes)
