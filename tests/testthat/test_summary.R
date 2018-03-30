@@ -1,8 +1,7 @@
-context("Testing utilities method")
+context("Testing summary method")
 
-expect_warning(test <- as.GeneSetCollection(info))
+
 
 test_that("summary", {
-  expect_output(summary(test), "Genes:")
-  expect_output(summary(test), "Pathways:")
+  expect_warning(Info <- as.GeneSetCollection(info))
 })
