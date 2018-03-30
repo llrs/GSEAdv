@@ -4,11 +4,11 @@ setMethod("modify",
           signature(object = "GeneSetCollection", gene = "character", pathway = "character"),
           function(object, gene = NULL, pathway = NULL) {
             if (length(gene) == 1 & length(pathway) == 1 ) {
-              m(object, gene, pathway)
+              modifyRel(object, gene, pathway)
             } else if (length(gene) > 1 & length(pathway) == 1) {
-              m2(object, gene, pathway)
+              modifyPathway(object, gene, pathway)
             } else if (length(gene) == 1 & length(pathway) > 1) {
-              m3(object, gene, pathway)
+              modifyGene(object, gene, pathway)
             } else {
               stop("Error")
             }
@@ -16,7 +16,7 @@ setMethod("modify",
 )
 
 # Given a gene and a pathway modify the object
-m <- function(obj, gene, pathway) {
+modifyRel <- function(obj, gene, pathway) {
   stopifnot(length(gene) == 1)
   stopifnot(length(pathway) == 1)
 
@@ -35,7 +35,7 @@ m <- function(obj, gene, pathway) {
 }
 
 # Given several genes and a pathway modify the object
-m2 <- function(obj, gene, pathway) {
+modifyPathway <- function(obj, gene, pathway) {
   stopifnot(length(gene) > 1)
   stopifnot(length(pathway) == 1)
 
@@ -52,7 +52,7 @@ m2 <- function(obj, gene, pathway) {
 }
 
 # For when several pathways and a single gene
-m3 <- function(obj, gene, pathway) {
+modifyGene <- function(obj, gene, pathway) {
   stopifnot(length(gene) == 1)
   stopifnot(length(pathway) > 1)
 
