@@ -4,11 +4,14 @@
 \name{sizeGenes}
 \alias{sizeGenes}
 \alias{sizeGenes,GeneSetCollection,missing-method}
+\alias{sizeGenes,GeneSetCollection,character-method}
 \title{Number of genes in pathways of genes}
 \usage{
 sizeGenes(object, gene)
 
 \S4method{sizeGenes}{GeneSetCollection,missing}(object)
+
+\S4method{sizeGenes}{GeneSetCollection,character}(object, gene)
 }
 \arguments{
 \item{object}{A GeneSetCollection}
@@ -24,6 +27,8 @@ Calculates the number of pathways per gene in pathways.
 \section{Methods (by class)}{
 \itemize{
 \item \code{object = GeneSetCollection,gene = missing}: Number of genes per pathway in all genes
+
+\item \code{object = GeneSetCollection,gene = character}: Number of genes per pathway in all genes
 }}
 
 \seealso{

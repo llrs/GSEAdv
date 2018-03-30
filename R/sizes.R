@@ -29,6 +29,46 @@ setMethod("sizeGenes",
           }
 )
 
+#' @describeIn sizeGenes Number of genes per pathway in all genes
+#' @export
+setMethod("sizeGenes",
+          signature(object = "GeneSetCollection", gene = "character"),
+          function(object, gene) {
+            object <- check(object)
+
+            gpp <- genesPerPathway(object)
+            ppg <- pathwaysPerGene(object)
+
+            uPPG <- unique(ppg)
+            uGPP <- unique(gpp)
+
+            if (length(gene) >= 1) {
+              if (any(!gene %in% names(gene2paths))) {
+                keep <- gene %in% names(gene2paths)
+                if (sum(keep) >= 1) {
+                  remove <- gene[!keep]
+                  gene <- gene[keep]
+                  warning("Omitting ", remove, "genes.\nIt wasn't present")
+                } else {
+                  stop("No provided pathway is present.")
+                }
+              }
+              out <- sapply(gene, function(gen){
+                paths <- gene2paths[[gen]]
+                table(gpp[paths])
+              })
+            } else {
+              if (gene %in% names(gene2paths)) {
+                paths <- gene2paths[[gene]]
+                out <- table(gpp[paths])
+              } else {
+                stop("No gene is present.")
+              }
+            }
+            out
+          }
+)
+
 #' @describeIn sizePathways Number of pathways per gene in all pathways
 #' @export
 setMethod("sizePathways",
@@ -92,7 +132,7 @@ setMethod("sizePathways",
               }
               out <- sapply(pathway, function(path){
                 genes <- paths2genes[[path]]
-                pSize <- table(ppg[genes])
+                table(ppg[genes])
               })
             } else {
               if (pathway %in% names(paths2genes)) {
