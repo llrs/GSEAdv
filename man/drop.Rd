@@ -58,3 +58,7 @@ Remember that a GeneSet is defined as a group of genes (more than one),
 and if one gene set has only one gene it is removed. Conversely, a gene is
 removed if it doesn't belong to any GeneSet.
 }
+\seealso{
+\code{\link{add}} To just add a relationship.
+\code{\link{modify}} To remove and add relationship at once.
+}

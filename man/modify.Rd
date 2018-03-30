@@ -36,4 +36,5 @@ several pathways and one gene, but not several pathways and several genes.
 
 \seealso{
 \code{\link{drop}} To just remove a gene or a pathways
+\code{\link{add}} To just add a relationship.
 }

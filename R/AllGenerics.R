@@ -170,6 +170,9 @@ setGeneric("independence", function(object)
 #' @note Remember that a GeneSet is defined as a group of genes (more than one),
 #' and if one gene set has only one gene it is removed. Conversely, a gene is
 #' removed if it doesn't belong to any GeneSet.
+#' @seealso
+#' \code{\link{add}} To just add a relationship.
+#' \code{\link{modify}} To remove and add relationship at once.
 #' @export drop
 setGeneric("drop", function(object, gene, pathway)
   standardGeneric("drop"))
@@ -185,10 +188,30 @@ setGeneric("drop", function(object, gene, pathway)
 #' @param pathway A vector of character with pathways.
 #' @param object A GeneSetCollection
 #' @return A GeneSetCollection with those relationships flipped.
-#' @seealso \code{\link{drop}} To just remove a gene or a pathways
+#' @seealso
+#' \code{\link{drop}} To just remove a gene or a pathways
+#' \code{\link{add}} To just add a relationship.
 #' @export modify
 setGeneric("modify", function(object, gene, pathway)
   standardGeneric("modify"))
+
+#' Add a relationship
+#'
+#' Given a GeneSetCollection adds a relationship between a gene and a
+#' pathway.
+#'
+#' It accepts one gene and one pathway, several genes and one pathway and
+#' several pathways and one gene, but not several pathways and several genes.
+#' @param gene A vector of character with genes.
+#' @param pathway A vector of character with pathways.
+#' @param object A GeneSetCollection
+#' @return A GeneSetCollection with those relationships added.
+#' @seealso
+#'  \code{\link{drop}} To just remove a gene or a pathways.
+#'  \code{\link{modify}} To remove and add relationship at once.
+#' @export add
+setGeneric("add", function(object, gene, pathway)
+  standardGeneric("add"))
 
 #' Number of genes in pathways of genes
 #'
