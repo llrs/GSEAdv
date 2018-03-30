@@ -97,16 +97,6 @@ setGeneric("condGene", function(object) standardGeneric("condGene"))
 #' @export condPath
 setGeneric("condPath", function(object) standardGeneric("condPath"))
 
-#' Gene set size - gene relationship
-#'
-#' Calculates the number of gene sets of the same size a gene has.
-#' @param object A GeneSetCollection object
-#' @return A matrix
-#' @author Lluís Revilla
-#' @export genesSizePathways
-setGeneric("genesSizePathways", function(object)
-  standardGeneric("genesSizePathways"))
-
 #' Number of genes
 #'
 #' Calculates the number of genes.

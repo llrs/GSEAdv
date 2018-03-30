@@ -12,7 +12,8 @@
 #' pathway given the numer of gene sets a gene is in.
 #' - \code{\link{condPath}}: The conditional probability of the numer of gene
 #' sets a gene is in given the length of a gene set.
-#'  - \code{\link{genesSizePathways}}
+#'  - \code{\link{sizePathways}}
+#'  - \code{\link{sizeGenes}}
 #' @docType package
 #' @name GSEAdv
 #' @import GSEABase
