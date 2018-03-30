@@ -38,10 +38,10 @@ setMethod("summary",
             cat("\tBiggest pathway:", out["maxGPP"], "genes\n")
             cat("\th-index:", h_ppg, "pathways with at least", h_ppg, "genes.\n")
             if (!out["independence"]) {
-            cat("IC(genesPerPathway):", round(out["ICgpp"], 2),
-                "(", round(out["ICgpp"]/out["maxICgpp"], 2), "of the maximum)\n")
-            cat("IC(pathwaysPerGene)", round(out["ICppg"], 2),
-                "(", round(out["ICppg"]/out["maxICppg"], 2), "of the maximum)\n")
+              cat("IC(genesPerPathway):", round(out["ICgpp"], 2),
+                  "(", round(out["ICgpp"]/out["maxICgpp"], 2), "of the maximum)\n")
+              cat("IC(pathwaysPerGene)", round(out["ICppg"], 2),
+                  "(", round(out["ICppg"]/out["maxICppg"], 2), "of the maximum)\n")
             } else {
               cat("All genes in a single gene set.\n")
             }
