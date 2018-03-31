@@ -10,8 +10,8 @@ setMethod("modify",
             } else if (length(gene) == 1 & length(pathway) > 1) {
               modifyGene(object, gene, pathway)
             } else {
-              stop("Error")
-            }
+              stop("Please check the input.\nSee the help page.")
+              }
           }
 )
 
