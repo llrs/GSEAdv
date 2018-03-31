@@ -41,6 +41,7 @@ setMethod("sizeGenes",
 
             uPPG <- unique(ppg)
             uGPP <- unique(gpp)
+            gene2paths <- inverseList(geneIds(object))
 
             if (length(gene) >= 1) {
               if (any(!gene %in% names(gene2paths))) {
@@ -84,7 +85,6 @@ setMethod("sizePathways",
             uGPP <- unique(gpp)
 
             paths2genes <- geneIds(object)
-            genes2paths <- inverseList(paths2genes)
 
             # Create the matrix to fill
             m <- matrix(0, ncol = length(gpp), nrow = length(uPPG),
@@ -117,7 +117,6 @@ setMethod("sizePathways",
             uGPP <- unique(gpp)
 
             paths2genes <- geneIds(object)
-            genes2paths <- inverseList(paths2genes)
 
             if (length(pathway) >= 1) {
               if (any(!pathway %in% names(paths2genes))) {
