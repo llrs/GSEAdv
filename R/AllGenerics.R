@@ -255,5 +255,15 @@ setGeneric("duplicatedPathways", function(object)
 #' @param object A GeneSetCollection
 #' @return A matrix with 1 if they are included and 0 if not. 1
 #' means that the pathways on the rows are in the ones of the columns
+#' @export nested
 setGeneric("nested", function(object)
   standardGeneric("nested"))
+
+#' Pathways equal between two GeneSetCollections
+#'
+#' Check how many pathways are inside another geneSetCollection
+#' @param object1,object2 A GeneSetCollection
+#' @return The names of the pathways that are equivalent.
+#' @export compare
+setGeneric("compare", function(object1, object2)
+  standardGeneric("compare"))
