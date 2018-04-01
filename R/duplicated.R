@@ -4,8 +4,7 @@
 setMethod("duplicatedGenes",
           signature(object = "GeneSetCollection"),
           function(object) {
-            paths2genes <- geneIds(object)
-            length(paths2genes) != length(unique(paths2genes))
+            any(duplicated(t(incidence(object))))
           }
 )
 #' @describeIn duplicatedPathways Checks if a different pathways are described
@@ -14,8 +13,6 @@ setMethod("duplicatedGenes",
 setMethod("duplicatedPathways",
           signature(object = "GeneSetCollection"),
           function(object) {
-            paths2genes <- geneIds(object)
-            genes2paths <- inverseList(paths2genes)
-            length(genes2paths) != length(unique(genes2paths))
+            any(duplicated(incidence(object)))
           }
 )
