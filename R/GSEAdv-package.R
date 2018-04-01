@@ -19,3 +19,10 @@
 #' @import GSEABase
 #' @import methods
 NULL
+
+#' A GeneSetCollection
+#'
+#' A version of pathways of the KEGG database from the org.Hs.eg.db package
+#' @format A GeneSetCollection
+#' @source \code{\link{as.GeneSetCollection(org.Hs.egPATH)}}
+"genesKegg"
