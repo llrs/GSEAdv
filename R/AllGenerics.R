@@ -72,31 +72,6 @@ setGeneric("pathway", function(object, pathway)
   standardGeneric("pathway")
 )
 
-#' Conditional probability of pathway length given the number of pathways
-#'
-#' Calculates the number of genes in a pathway of a given size, separated by the
-#' number of pathways each gene has.
-#' @param object A GeneSetCollection object
-#' @return A matrix
-#' @author Lluís Revilla
-#' @seealso \code{\link{condPath}}
-#' @export condGene
-setGeneric("condGene", function(object) standardGeneric("condGene"))
-
-
-#' Conditional probability of the number of pathways given pathways length
-#'
-#' Calculates the probability of a gene to have a number of pathways given the
-#' size of pathways.
-#'
-#' Uses \code{\link{check}} to validate the output.
-#' @param object A GeneSetCollection object
-#' @return A matrix
-#' @author Lluís Revilla
-#' @seealso \code{\link{condGene}}
-#' @export condPath
-setGeneric("condPath", function(object) standardGeneric("condPath"))
-
 #' Number of genes
 #'
 #' Calculates the number of genes.
