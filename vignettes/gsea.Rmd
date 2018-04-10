@@ -31,7 +31,7 @@ library("GSEAdv")
 
 # Introduction
 
-Bioconductor provides with the package `r Biocpkg("GSEABase")` which provides the basic methods and classes to join, create, and manipulate the gene sets. However few (if any packages) takes into account the relationship between genes and gene sets when using them. This package builds upon `GeneSetCollection` providing methods to *describe* the relationship between genes and gene sets, *evaluate* the relationship between genes and gene sets, and *simulate* gene set collections.
+Bioconductor provides with the package `r Biocpkg("GSEABase")` which provides the basic methods and classes to join, create, and manipulate the gene sets. However few (if any) packages take into account the relationship between genes and gene sets when using them. This package builds upon `GeneSetCollection` providing methods to *describe* the relationship between genes and gene sets, *evaluate* the relationship between genes and gene sets, and *simulate* gene set collections.
 
 # Installation
 
@@ -51,7 +51,7 @@ or from Bioconductor for a stable release:
 
 Thorough the vignettes and the help page a group of genes is both refered as gene sets or as pathways. A pathway or a gene set is defined as a group of genes (more than one) which can't contain twice the same gene. 
 
-Also all the genes should use the same identifier type, or Entrez, or a Symbol or Ensembl.
+Also all the genes should use the same identifier type, Entrez, or a Symbol or Ensembl.
 
 In order of doing this there is a function `check` that checks if the `GeneSetCollection` adhers to this principles:
 
@@ -66,7 +66,7 @@ check(gss)
 
 Once installed you just need to load it[^1]:
 
-[^1]:To avoid a long message it is recommend to use `suppressPackageStartupMessages` when loading this package.
+[^1]:To avoid a long message due to GSEAdv's dependencies it is recommend to use `suppressPackageStartupMessages` when loading this package.
 
 ```{r load}
 library("GSEAdv")
@@ -76,7 +76,7 @@ library("GSEAdv")
 The package is thought for three main cases, each one has its own vignette:
 
  - *Description*
- To provide some insight about the relationship between genes and gene sets.
+ To provide insight about the relationship between genes and gene sets.
  - *Evaluation*
  Compare and estimate the relationship between genes and gene sets.
  - *Simulate*
