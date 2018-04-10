@@ -1,10 +1,10 @@
 context("Testing nested method")
 
-expect_warning(test <- as.GeneSetCollection(info))
+expect_warning(Info <- as.GeneSetCollection(info))
 
 test_that("nested", {
 
-  n <- nested(test)
+  n <- nested(Info)
   expect_true(all(diag(n) == 1L))
   expect_equal(n[1, 2], 1L)
 })

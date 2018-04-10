@@ -2,12 +2,12 @@ context("Testing list to GeneSetCollection method")
 
 test_that("info", {
 
-  expect_warning(test <- as.GeneSetCollection(info))
-  sum <- info[vapply(info, function(x){all(!is.na(x))}, logical(1))]
-  expect_true(class(test) == "GeneSetCollection")
-  expect_equal(length(inverseList(geneIds(test))),
+  expect_warning(Info <- as.GeneSetCollection(info))
+  sum <- Info[vapply(Info, function(x){all(!is.na(x))}, logical(1))]
+  expect_true(class(Info) == "GeneSetCollection")
+  expect_equal(length(inverseList(geneIds(Info))),
                length(sum))
-  expect_equal(lengths(inverseList(geneIds(test)))[["2"]], 1)
+  expect_equal(lengths(inverseList(geneIds(Info)))[["2"]], 1)
 
 })
 

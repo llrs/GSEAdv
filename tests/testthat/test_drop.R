@@ -16,10 +16,10 @@ test_that("gene as character", {
 
 
 test_that("drop gene as numeric", {
-  # TODO: FIXME: Only 50% of time it will work, set a seed or somethin
-  # expect_warning(gsc <- drop(test, gene = 2), "Removing ")
+  set.seed(1054)
+  expect_warning(gsc <- drop(test, gene = 2), "Removing ")
   #
-  # expect_equal(nGenes(gsc), nGenes(test) - 2)
+  expect_equal(nGenes(gsc), nGenes(test) - 2)
 
   expect_error(gsc <- drop(test, gene = 3), "All pathways ")
 })

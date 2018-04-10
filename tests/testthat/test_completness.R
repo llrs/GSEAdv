@@ -1,7 +1,5 @@
 context("Testing utilities method")
 
-expect_warning(test <- as.GeneSetCollection(info))
-
 test_that("completness", {
 
   genesPerPathway <- c(2, 4, 5, 8, 5, 8)
