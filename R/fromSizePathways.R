@@ -25,7 +25,7 @@ fromSizePathways <- function(sizePathways){
   m2 <- prop.table(sizePathways, 1L)
 
   helper <- function(){
-    genes2paths <- sapply(genes, function(x){
+    genes2paths <- lapply(genes, function(x){
       unique(sample(colnames(sizePathways), x,
                     prob = m2[as.character(x), ]))
     })
