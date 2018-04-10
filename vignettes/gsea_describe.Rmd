@@ -16,7 +16,7 @@ author:
     - August Pi i Sunyer Biomedical Research Institute (IDIBAPS); Liver Unit, Hospital Clinic
   email: lrevilla@clinic.cat
 vignette: >
-  %\VignetteIndexEntry{About GSEAdv}
+  %\VignetteIndexEntry{GSEAdv: Describe}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}  
 ---
@@ -41,36 +41,50 @@ First let's load a `GeneSetCollection`
 ```{r load}
 fl <- system.file("extdata", "Broad.xml", package = "GSEABase")
 gss <- getBroadSets(fl)
+gss
 ```
 
-We can see what the collection has but we don't know what is the relationship between genes and gene sets. As a `GeneSetCollection` is a collection of gene sets, we can see how many genes are for each gene sets. If the number of genes in all the gene sets is greater than the number of genes in the `GeneSetCollection` then there are some genes in several gene sets breaking the independence between gene sets.
+We can see what the collection has but we don't know what is the relationship between genes and gene sets. A first approach would be to use summary to find more information about that relationship:
+
+```{r, summary}
+summary(gss)
+```
+This provide us with some information we already knew, like the number of gnes and pathways but also the biggest pathway, and that all genes are in a single gene set.
+
+As a `GeneSetCollection` is a collection of gene sets, we can see how many genes are for each gene sets. If the number of genes in all the gene sets is greater than the number of genes in the `GeneSetCollection` then there are some genes in several gene sets breaking the independence between gene sets.
 
 ```{r gpp-independence}
 gpp <- genesPerPathway(gss)
-length(gpp) == length(gss)
+gpp
 ```
 
-Here genesPerPathways returns the number of genes each pathway has. Thus adding them will summarize the total number of genes of the pa
-Or we can do the other way around if the number of pathways is lower than the number of genes the gene sets aren't independent.
+Here genesPerPathways returns the number of genes each pathway have, thus adding them will summarize the total number of genes if they are not duplicated. If they are whe have the method `nGenes`, which return  `r nGenes(gss)` genes in both pathways.
 
-```{r}
+We can retrieve in how many pathways each gene is :
+
+```{r ppg}
 ppg <- pathwaysPerGene(gss)
-length(ppg) > length(gss)
+head(ppg)
 ```
+As expected all the genes `all(ppg == 1)` are in a single gene set. If genes would be repeated in several pathways we could use the `nPathways` method wich returns what we knew, that there are `r nPathways(gss)` pathways in total.
+We can also test if gene sets are independent from each other with `independence()`, in this case: `r independence(gss)`.
 
-These tests can be used via `independence()`.
+We can also check if there are duplicated genes (genes that are exactly in the same pathways), and duplicated pathways (pathways with the same genes)
 
-# Summary
-
-We can easily find more about the relationship between them by looking at the `summary`.
-
-```{r summary}
-summary(gss)
+```{r duplicate}
+duplicatedGenes(gss)
+duplicatedPathways(gss)
 ```
+We can also see if some pathways are inside another pathway using `nested` method.
 
-Here we can see more information, like the h index for pathways or genes, and the entalpy or information content of the distributions of pathways per gene and of genes per pathway.
+```{r nested}
+nested(Info)
+```
+This would mean that pathway "1430728" is in the pathway "156580" and "156582" and "211859".
 
-# pathwaysPerGene and genesPerPathways
-
-Something to write
+We can also measure the information content and the probability to have such a pathways and genes with `gene` and `pathway`:
+```{r}
+pathway(gss)
+head(gene(gss)) # To avoid a long table
+```
 
