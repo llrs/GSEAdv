@@ -94,11 +94,3 @@ test_that("names_vec",  {
   a <- c(2, 2, 20)
   expect_false(is.null(names(names_vec(a, "G_"))))
 })
-
-
-
-test_that("check_comb",  {
-  expect_true(check_combn(c(2, 2, 2 ,3)))
-  expect_false(check_combn(c(3, 3, 3)))
-  expect_true(check_combn(c(2, 2, 2)))
-})

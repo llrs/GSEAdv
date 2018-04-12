@@ -16,16 +16,6 @@ check_vec <- function(ref, test) {
   FALSE
 }
 
-check_combn <- function(x){
-  tx <- table(x)
-  l <- length(x)
-  o <- vapply(names(tx), function(y) {
-    choose(l, as.numeric(y)) >= tx[y]
-  }, FUN.VALUE = logical(1L))
-  all(o)
-}
-
-
 #' Simulate GeneSetCollection
 #'
 #' Simulates a GeneSetCollection following a distribution
@@ -52,10 +42,7 @@ fromPPG <- function(ppg) {
   ppg <- names_vec(ppg, "G_")
   genes <- names(ppg)
 
-  # Compares the actual number of pathways with the possible outcome of
-  if (!check_combn(ppg)){
-    stop("Impossible combination of genes and pathways")
-  }
+  min_paths <- max(ppg)
 
   # Workhorse of the function
   helper <- function(ppg, genes) {
@@ -68,13 +55,20 @@ fromPPG <- function(ppg) {
     # Remove duplicate pathways
     pathways <- unique(unlist(genes2pathsG, recursive = FALSE,
                               use.names = FALSE))
+
     names(pathways) <- paste0("GS_", seq_along(pathways))
     genes2pathways <- inverseList(pathways)
     suppressWarnings(obj <- as(genes2pathways, "GeneSetCollection"))
+
+    if (nPathways(obj) >= min_paths) {
+      obj <- helper(ppg, genes)
+    }
+
     obj
   }
 
   gsc <- helper(ppg, genes)
+
   if (!is(gsc, "GeneSetCollection")) {
     pass <- FALSE
   } else {
@@ -127,11 +121,7 @@ fromGPP <- function(gpp) {
   gpp <- names_vec(gpp, "GS_")
   pathways <- names(gpp)
 
-  # Compares the actual number of pathways with the possible outcome of
-  if (!check_combn(gpp)){
-    stop("Impossible combination of genes and pathways")
-  }
-
+  min_genes <- max(gpp)
 
   helper <- function(gpp, pathways){
     # For each pathway create a random group of genes
@@ -147,8 +137,16 @@ fromGPP <- function(gpp) {
     names(genes2pathways) <- paste0("G_", seq_along(genes2pathways))
 
     suppressWarnings(obj <- as(genes2pathways, "GeneSetCollection"))
+
+    if (nGenes(obj) >= min_genes) {
+      obj <- helper(gpp, pathways)
+    }
+
     obj
   }
+
+
+
   obj <- tryCatch(helper(gpp, pathways), error = function(e){
     helper(gpp, pathways)
   })
