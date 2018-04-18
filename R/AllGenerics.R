@@ -233,12 +233,3 @@ setGeneric("duplicatedPathways", function(object)
 #' @export nested
 setGeneric("nested", function(object)
   standardGeneric("nested"))
-
-#' Pathways equal between two GeneSetCollections
-#'
-#' Check how many pathways are inside another geneSetCollection
-#' @param object1,object2 A GeneSetCollection
-#' @return The names of the pathways that are equivalent.
-#' @export compare
-setGeneric("compare", function(object1, object2)
-  standardGeneric("compare"))
