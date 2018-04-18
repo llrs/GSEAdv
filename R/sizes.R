@@ -5,26 +5,10 @@ setMethod("sizeGenes",
           function(object) {
             object <- check(object)
 
-            gpp <- genesPerPathway(object)
-            ppg <- pathwaysPerGene(object)
-
-            uPPG <- unique(ppg)
-            uGPP <- unique(gpp)
-
             paths2genes <- geneIds(object)
             genes2paths <- inverseList(paths2genes)
-
-            # Create the matrix to fill
-            m <- matrix(0, ncol = length(ppg), nrow = length(uGPP),
-                        dimnames =
-                          list("genesPerPathway" = uGPP[order(uGPP)],
-                               "Genes" = names(ppg)))
-
-            for (gene in colnames(m)) {
-              paths <- genes2paths[[gene]]
-              pSize <- table(gpp[paths])
-              m[names(pSize), gene] <- pSize
-            }
+            m <- helper_sizes(genes2paths, paths2genes)
+            names(dimnames(m)) <- c("genePerPathway", "Gene")
             m
           }
 )
@@ -36,37 +20,23 @@ setMethod("sizeGenes",
           function(object, gene) {
             object <- check(object)
 
-            gpp <- genesPerPathway(object)
-            ppg <- pathwaysPerGene(object)
-
-            uPPG <- unique(ppg)
-            uGPP <- unique(gpp)
             gene2paths <- inverseList(geneIds(object))
 
-            if (length(gene) >= 1) {
-              if (any(!gene %in% names(gene2paths))) {
-                keep <- gene %in% names(gene2paths)
-                if (sum(keep) >= 1) {
-                  remove <- gene[!keep]
-                  gene <- gene[keep]
-                  warning("Omitting ", remove, "genes.\nIt wasn't present")
-                } else {
-                  stop("No provided pathway is present.")
-                }
-              }
-              out <- sapply(gene, function(gen){
-                paths <- gene2paths[[gen]]
-                table(gpp[paths])
-              })
-            } else {
-              if (gene %in% names(gene2paths)) {
-                paths <- gene2paths[[gene]]
-                out <- table(gpp[paths])
+            # Handles missing genes
+            if (any(!gene %in% names(gene2paths))) {
+              keep <- gene %in% names(gene2paths)
+              if (sum(keep) >= 1) {
+                remove <- gene[!keep]
+                gene <- gene[keep]
+                warning("Omitting ", sum(keep), "genes not present.")
               } else {
-                stop("No gene is present.")
+                stop("No provided gene is present.")
               }
             }
-            out
+
+            m <- helper_sizes(gene2paths[gene], inverseList(gene2paths[gene]))
+            names(dimnames(m)) <- c("genePerPathway", "Gene")
+            m
           }
 )
 
@@ -77,26 +47,10 @@ setMethod("sizePathways",
           function(object) {
 
             object <- check(object)
-
-            gpp <- genesPerPathway(object)
-            ppg <- pathwaysPerGene(object)
-
-            uPPG <- unique(ppg)
-            uGPP <- unique(gpp)
-
             paths2genes <- geneIds(object)
-
-            # Create the matrix to fill
-            m <- matrix(0, ncol = length(gpp), nrow = length(uPPG),
-                        dimnames =
-                          list("pathwaysPerGene" = uPPG[order(uPPG)],
-                               "Pathway" = names(gpp)))
-
-            for (path in colnames(m)) {
-              genes <- paths2genes[[path]]
-              pSize <- table(ppg[genes])
-              m[names(pSize), path] <- pSize
-            }
+            genes2paths <- inverseList(paths2genes)
+            m <- helper_sizes(paths2genes, genes2paths)
+            names(dimnames(m)) <- c("pathwaysPerGene", "Pathway")
             m
           }
 )
@@ -110,38 +64,51 @@ setMethod("sizePathways",
 
             object <- check(object)
 
-            gpp <- genesPerPathway(object)
-            ppg <- pathwaysPerGene(object)
+            path2gene <- geneIds(object)
 
-            uPPG <- unique(ppg)
-            uGPP <- unique(gpp)
 
-            paths2genes <- geneIds(object)
-
-            if (length(pathway) >= 1) {
-              if (any(!pathway %in% names(paths2genes))) {
-                keep <- pathway %in% names(paths2genes)
-                if (sum(keep) >= 1) {
-                  remove <- pathway[!keep]
-                  pathway <- pathway[keep]
-                  warning("Omitting ", remove, "pathway.\nIt wasn't present")
-                } else {
-                  stop("No provided pathway is present.")
-                }
-              }
-              out <- sapply(pathway, function(path){
-                genes <- paths2genes[[path]]
-                table(ppg[genes])
-              })
-            } else {
-              if (pathway %in% names(paths2genes)) {
-                genes <- paths2genes[[pathway]]
-                out <- table(ppg[genes])
+            # Handles missing genes
+            if (any(!pathway %in% names(path2gene))) {
+              keep <- pathway %in% names(path2gene)
+              if (sum(keep) >= 1) {
+                remove <- pathway[!keep]
+                pathway <- pathway[keep]
+                warning("Omitting ", sum(keep), "pathway not present.")
               } else {
-                stop("No pathway is present.")
+                stop("No provided pathway is present.")
               }
             }
 
-            out
+            m <- helper_sizes(path2gene[pathway], inverseList(path2gene[pathway]))
+            names(dimnames(m)) <- c("pathwaysPerGene", "Pathway")
+            m
           }
 )
+
+#' Helper for sizes
+#'
+#' Return
+#' @param data1 The list of genes to pathways or of pathways to genes
+#' @param data2 The inverse of the other
+#' @return A matrix with the sizes of the data grouped
+#' @keywords internal
+helper_sizes <- function(data1, data2){
+
+  stopifnot(is.list(data1))
+  stopifnot(is.list(data2))
+  size_data2 <- lengths(data2)
+  sizes <- as.character(unique(lengths(data2)))
+  u_sizes <- sizes[order(sizes, decreasing = FALSE)]
+
+  # Create the matrix to fill
+  m <- matrix(0, ncol = length(names(data1)), nrow = length(sizes),
+              dimnames = list(u_sizes, names(data1)))
+
+  for (obj in colnames(m)) {
+    groups <- data1[[obj]]
+    pSize <- table(size_data2[groups])
+    m[names(pSize), obj] <- pSize
+  }
+
+  m[rowSums(m, na.rm = TRUE) != 0, , drop = FALSE]
+}

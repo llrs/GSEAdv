@@ -12,8 +12,11 @@ test_that("Genes per Pathway and sizePathways", {
 
 test_that("Pathway per Genes and sizeGenes", {
   m <- sizePathways(Info, c("156580", "156582"))
-  expect_s3_class(m[[1]], "table")
-  expect_length(m, 2L)
+  expect_equal(nrow(m), 2L)
+  expect_equal(ncol(m), 2L)
+  expect_equal(names(dimnames(m)), c("pathwaysPerGene", "Pathway"))
+  expect_warning(sizePathways(Info, c("156580", "156582", "a")))
+  expect_error(sizePathways(Info, c("a", "b", "c")))
 })
 
 
@@ -27,6 +30,9 @@ test_that("Pathway per Genes and sizeGenes", {
 
 test_that("Pathway per Genes and sizeGenes", {
   m <- sizeGenes(Info, c("10", "2"))
-  expect_s3_class(m[[1]], "table")
-  expect_length(m, 2L)
+  expect_equal(nrow(m), 1L)
+  expect_equal(ncol(m), 2L)
+  expect_equal(names(dimnames(m)), c("genePerPathway", "Gene"))
+  expect_warning(sizeGenes(Info, c("10", "2", "a")))
+  expect_error(sizeGenes(Info, c("a", "b", "c")))
 })
