@@ -1,6 +1,7 @@
 #' Simulate GeneSetCollection
 #'
-#' Simulates a GeneSetCollection following the both distributions
+#' Simulates a GeneSetCollection following distributions of genes per pathway
+#' and of pathways per gene.
 #' @param ppg The number of pathways per genes of the desired GeneSetCollection.
 #' @param gpp The number of genes per pathway of the desired GeneSetCollection.
 #' @return A GeneSetCollection
@@ -31,6 +32,11 @@ fromPPG_GPP <- function(ppg, gpp) {
   # Check that a GeneSetCollection can be simulated
   stopifnot(max(ppg) < length(gpp))
   stopifnot(max(gpp) < length(ppg))
+
+  if (sum(ppg) != sum(gpp)) {
+    stop("These genes per pathways and this pathways per gene do not match.\n
+         Arrange so that the sum of the elements are equal.")
+  }
 
   # Set names
   ppg <- names_vec(ppg, "G_")

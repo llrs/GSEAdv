@@ -16,5 +16,6 @@ fromPPG_GPP(ppg, gpp)
 A GeneSetCollection
 }
 \description{
-Simulates a GeneSetCollection following the both distributions
+Simulates a GeneSetCollection following distributions of genes per pathway
+and of pathways per gene.
 }
