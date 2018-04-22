@@ -6,19 +6,22 @@
 \alias{GSEAdv-package}
 \title{GSEAdv: A package for analyzing gene sets.}
 \description{
-The GSEAdv package provides methods enhancing the GSEABase package
+The GSEAdv package provides methods enhancing the GSEABase package. Mainly it
+address thre points related to GeneSetCollections, describe, analyze, and
+simulate them. Each one has a specific vignette.
 }
 \section{GSEAdv methods}{
 
+There are several new methods for GeneSetCollections
 \itemize{
 \item \code{\link[GSEAdv]{summary}}: Some statistics of the GeneSetCollection.
 \item \code{\link{genesPerPathway}}: The number of genes each gene set has.
 \item \code{\link{pathwaysPerGene}}: The number of gene sets each gene has.
 \item \code{\link{pathway}}: Information about a gene set.
 \item \code{\link{gene}}: Information about a gene.
-\item \code{\link{condGene}}: The conditional probability of the length of a
+\item \code{\link{condPerGene}}: The conditional probability of the length of a
 pathway given the numer of gene sets a gene is in.
-\item \code{\link{condPath}}: The conditional probability of the numer of gene
+\item \code{\link{condPerPath}}: The conditional probability of the numer of gene
 sets a gene is in given the length of a gene set.
 \item \code{\link{sizePathways}}
 \item \code{\link{sizeGenes}}
