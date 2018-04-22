@@ -233,3 +233,26 @@ setGeneric("duplicatedPathways", function(object)
 #' @export nested
 setGeneric("nested", function(object)
   standardGeneric("nested"))
+
+
+#' Conditional probability by genes per pathway
+#'
+#' Calculates the probability of having a number of pathways per gene given the
+#' number of genes in a pathway
+#' @param object A GeneSetCollection
+#' @param genesPerPathway A numeric vector of the number of genes per pathways.
+#' @return A matrix with the probabilities
+#' @author Lluís Revilla Sancho
+setGeneric("condPerGenes", function(object, genesPerPathway)
+  standardGeneric("condPerGenes"))
+
+#' Conditional probability by genes per pathway
+#'
+#' Calculates the probability of having a number of genes per pathway given the
+#' number of pathways in a gene
+#' @param object A GeneSetCollection
+#' @param pathwaysPerGene A numeric vector of the number of pathways per genes.
+#' @return A matrix with the probabilities
+#' @author Lluís Revilla Sancho
+setGeneric("condPerPathways", function(object, pathwaysPerGene)
+  standardGeneric("condPerPathways"))
