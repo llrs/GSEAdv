@@ -1,7 +1,6 @@
 context("Testing summary method")
 
-
-
 test_that("summary", {
-  expect_warning(Info <- as.GeneSetCollection(info))
+  r <- evaluate_promise(summary(Info))
+  expect_true(is(r, "list"))
 })

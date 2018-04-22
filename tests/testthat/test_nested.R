@@ -1,7 +1,5 @@
 context("Testing nested method")
 
-expect_warning(Info <- as.GeneSetCollection(info))
-
 test_that("nested", {
 
   n <- nested(Info)

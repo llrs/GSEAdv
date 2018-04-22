@@ -6,7 +6,6 @@ doble_dup <- structure(list(G_1 = c("GS_1", "GS_4"),
                        .Names = c("G_1", "G_2", "G_3", "G_4"))
 
 doble_dup <- as(doble_dup, "GeneSetCollection")
-expect_warning(Info <- as(info, "GeneSetCollection"))
 
 fl <- system.file("extdata", "Broad.xml", package = "GSEABase")
 gss <- getBroadSets(fl)

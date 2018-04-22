@@ -1,7 +1,5 @@
 context("Testing sizePathways and sizeGenes")
 
-expect_warning(Info <- as.GeneSetCollection(info))
-
 test_that("Genes per Pathway and sizePathways", {
   gpp <- genesPerPathway(Info)
   m <- sizePathways(Info)

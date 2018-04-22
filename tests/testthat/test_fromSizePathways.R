@@ -1,7 +1,5 @@
 context("Testing drop method")
 
-expect_warning(Info <- as.GeneSetCollection(info))
-
 test_that("fromSizePathways", {
   sP <- sizePathways(Info)
 

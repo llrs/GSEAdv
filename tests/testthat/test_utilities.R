@@ -1,7 +1,5 @@
 context("Testing utilities method")
 
-expect_warning(Info <- as.GeneSetCollection(info))
-
 test_that("collectionType", {
   expect_length(collectionType(Info), 1L)
   expect_equal(collectionType(Info), "NullCollection")
