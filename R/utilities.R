@@ -1,20 +1,27 @@
-#' Invert a list
+#' Inverts a list
 #'
-#' Calculate the pathways per gene of list
-#'
-#' @param x A list with genes as names and names of pathways as values of the
-#' list
-#' @return The number of pathways each gene has.
+#' @param x A list with tags and values
+#' @return The same list but the values are now the tags
 #' @author Lluís Revilla
 #' @keywords internal
 inverseList <- function(x) {
-  stopifnot(length(names(x)) == length(x))
-  stopifnot(all(vapply(x, is.character, logical(1))))
-  genes <- unlist(x, use.names = FALSE)
-  pathways <- rep(names(x), lengths(x))
-  split(pathways, genes)
+  l <- equalize(x)
+  split(l$b, l$a)
 }
 
+#' Convert to characters
+#'
+#' @param x A list with tags and values
+#' @return A list with two elements all the tags and all the values associated
+#' @author Lluís Revilla
+#' @keywords internal
+equalize <- function(x) {
+  stopifnot(length(names(x)) == length(x))
+  stopifnot(all(vapply(x, is.character, logical(1))))
+  a <- unlist(x, use.names = FALSE)
+  b <- rep(names(x), lengths(x))
+  list("a" = a, "b" = b)
+}
 #' Calculate the information content or entropy
 #'
 #' @param x The values to calculate
