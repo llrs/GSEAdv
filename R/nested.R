@@ -1,12 +1,21 @@
-all_in <- function(x, y) {
-  if (length(x) > length(y)) {
-    0
-  } else {
-    ifelse(all(x %in% y), 1, 0)
-  }
-}
+# Compare if the elements of one list  are in another list
+# from https://codereview.stackexchange.com/a/192423/36067
+all_in_outer <- function(list_x, list_y) {
+  uniq_x <- unique(unlist(list_x, use.names = FALSE))
+  len_x <- lengths(list_x)
 
-all_in_vec <- Vectorize(all_in, vectorize.args = c("x", "y"))
+  as_mat <- function(list_a, ids = uniq_x) {
+    vec <- unlist(list_a, use.names = FALSE)
+    len <- lengths(list_a)
+    idx <- rep(seq_along(list_a), len)
+    mat <- matrix(0L, nrow = length(list_a), ncol = length(ids),
+                  dimnames = list(names(list_a), ids))
+    mat[cbind(idx, match(vec, ids))] <- 1L
+    mat
+  }
+
+  (as_mat(list_x) %*% t(as_mat(list_y)) == len_x) * 1
+}
 
 #' @describeIn nested Check if pathways are included in another pathway.
 #' @export
@@ -15,7 +24,7 @@ setMethod("nested",
           function(object) {
   paths2genes <- geneIds(object)
 
-  outer(paths2genes, paths2genes, all_in_vec)
+  all_in_outer(paths2genes, paths2genes)
 }
 )
 
@@ -40,8 +49,8 @@ compare <- function(object1, object2) {
   paths2genes1 <- geneIds(object1)
   paths2genes2 <- geneIds(object2)
 
-  m1_in2 <- outer(paths2genes1, paths2genes2, all_in_vec)
-  m2_in1 <- outer(paths2genes2, paths2genes1, all_in_vec)
+  m1_in2 <- all_in_outer(paths2genes1, paths2genes2)
+  m2_in1 <- all_in_outer(paths2genes2, paths2genes1)
   m <- t(m2_in1) + m1_in2
   equal <- sum(m == 2)
   message(equal, " pathways are the same")
