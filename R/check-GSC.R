@@ -36,7 +36,7 @@ check_size <- function(object){
     if (sum(!keep) == length(object)) {
       stop("All pathways would be removed!")
     }
-    warning("Removing ", sum(!keep), " genes sets with only one gene.")
+    warning("Removing ", sum(!keep), " genes sets with only one gene.\n")
     return(as(inverseList(ids[keep]), "GeneSetCollection"))
   } else {
     object
