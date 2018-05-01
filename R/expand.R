@@ -1,4 +1,5 @@
 # TODO: Finish this draft
+#' @importFrom stats rgeom
 expand <- function(obj, genes) {
 
   if (!requireNamespace("fitdistrplus")){
@@ -12,9 +13,9 @@ expand <- function(obj, genes) {
 
   #Fit a distribution
   f <- fitdistrplus::fitdist(ppg, "geom")
-  ppg_sim <- rgeom(length(genes), f$estimate)
+  ppg_sim <- stats::rgeom(length(genes), f$estimate)
   f <- fitdistrplus::fitdist(gpp, "geom")
-  gpp_sim <- rgeom(length(), f$estimate)
+  gpp_sim <- stats::rgeom(length(), f$estimate)
 
   # Follow the distribution/pattern
   # A raw distribution (fitted)
