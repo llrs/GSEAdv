@@ -47,13 +47,13 @@ gss
 ##     geneIdType: SymbolIdentifier (1 total)
 ##     collectionType: BroadCollection (1 total)
 summary(gss)
-## Genes: 215 
-##  Gene in more pathways: 1 pathways
-##  h-index: 0 genes with at least 0 pathways.
-## Pathways: 2 
-##  Biggest pathway: 129 genes
-##  h-index: 1 pathways with at least 1 genes.
-## All genes in a single gene set.
+## Genes: 215
+##  Gene in more pathways:1pathways
+##  h-index:0genes with at least0pathways.
+## Pathways:2
+##  Biggest pathway:129genes
+##  h-index:1pathways with at least1genes.
+##  All genes in a single gene set.
 ## Some gene set have all genes not present in other gene sets
 ```
 
@@ -68,7 +68,7 @@ genesReact <- as.list(reactomeEXTID2PATHID)
 human <- sapply(genesReact, function(x){all(grepl(pattern = "R-HSA-", x))})
 genesReact <- genesReact[human]
 genesReact <- as.GeneSetCollection(genesReact)
-## Warning in check_size(object): !Removing 203 genes sets with only one gene.
+## Warning in check_size(object): Removing 203 genes sets with only one gene.
 barplot(table(genesPerPathway(genesReact)), main = "Genes per pathway")
 ```
 
@@ -84,24 +84,51 @@ barplot(table(pathwaysPerGene(genesReact)), main = "Pathways per gene")
 
 ``` r
 nPaths <- nPathways(genesReact)
-seqs <- seq(from = 100, to = 1900, by = 10)
+seqs <- seq(from = 100, to = signif(nPaths, 2), by = 10)
 
 o <- sapply(rep(seqs, each = 10), function(x){
-    c("pathways" = x, 
-      # Randomly select some x pathways
-      # check the properties
-      # calculate the number of genes of these GeneSetCollection
-      "genes" = nGenes(check(genesReact[sample(seq_len(nPaths), x)]))) 
-  })
+  c("pathways" = x, 
+    # Randomly select some x pathways
+    # check the properties
+    # calculate the number of genes of these GeneSetCollection
+    "genes" = nGenes(check(genesReact[sample(seq_len(nPaths), x)])))
+})
 out <- as.data.frame(t(o))
 library("ggplot2")
 ggplot(out, aes(pathways, genes)) + 
   geom_point() + 
   geom_smooth() + 
-  theme_bw()
+  theme_bw() +
+  geom_hline(yintercept = nGenes(genesReact), col = "darkgrey")
 ```
 
 ![](man/figures/README-unnamed-chunk-5-1.png)
+
+We can do the same for the number of genes
+
+``` r
+nGenes <- nGenes(genesReact)
+seqs <- seq(from = 100, to = signif(nGenes, 3)-100, by = 100)
+paths2genes <- geneIds(genesReact)
+genes2paths <- GSEAdv:::inverseList(paths2genes)
+o <- sapply(rep(seqs, each = 10), function(x){
+  paths2genes <- GSEAdv:::inverseList(genes2paths[sample(seq_along(genes2paths), x)])
+  
+  c("genes" = x, 
+    # Randomly select some x genes
+    # check the properties
+    # calculate the number of pathways of these GeneSetCollection
+    "paths" = sum(lengths(paths2genes) >= 2)) 
+})
+out <- as.data.frame(t(o))
+ggplot(out, aes(genes, paths)) + 
+  geom_point() + 
+  geom_smooth() + 
+  theme_bw()  +
+  geom_hline(yintercept = nPathways(genesReact), col = "darkgrey")
+```
+
+![](man/figures/README-unnamed-chunk-6-1.png)
 
 Who will use this repo or project?
 ==================================

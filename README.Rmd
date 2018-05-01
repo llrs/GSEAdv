@@ -85,21 +85,45 @@ barplot(table(pathwaysPerGene(genesReact)), main = "Pathways per gene")
 And the relationship between them:
 ```{r}
 nPaths <- nPathways(genesReact)
-seqs <- seq(from = 100, to = 1900, by = 10)
+seqs <- seq(from = 100, to = signif(nPaths, 2), by = 10)
 
 o <- sapply(rep(seqs, each = 10), function(x){
-    c("pathways" = x, 
-      # Randomly select some x pathways
-      # check the properties
-      # calculate the number of genes of these GeneSetCollection
-      "genes" = nGenes(check(genesReact[sample(seq_len(nPaths), x)]))) 
-  })
+  c("pathways" = x, 
+    # Randomly select some x pathways
+    # check the properties
+    # calculate the number of genes of these GeneSetCollection
+    "genes" = nGenes(check(genesReact[sample(seq_len(nPaths), x)])))
+})
 out <- as.data.frame(t(o))
 library("ggplot2")
 ggplot(out, aes(pathways, genes)) + 
   geom_point() + 
   geom_smooth() + 
-  theme_bw()
+  theme_bw() +
+  geom_hline(yintercept = nGenes(genesReact), col = "darkgrey")
+```
+
+We can do the same for the number of genes
+```{r}
+nGenes <- nGenes(genesReact)
+seqs <- seq(from = 100, to = signif(nGenes, 3)-100, by = 100)
+paths2genes <- geneIds(genesReact)
+genes2paths <- GSEAdv:::inverseList(paths2genes)
+o <- sapply(rep(seqs, each = 10), function(x){
+  paths2genes <- GSEAdv:::inverseList(genes2paths[sample(seq_along(genes2paths), x)])
+  
+  c("genes" = x, 
+    # Randomly select some x genes
+    # check the properties
+    # calculate the number of pathways of these GeneSetCollection
+    "paths" = sum(lengths(paths2genes) >= 2)) 
+})
+out <- as.data.frame(t(o))
+ggplot(out, aes(genes, paths)) + 
+  geom_point() + 
+  geom_smooth() + 
+  theme_bw()  +
+  geom_hline(yintercept = nPathways(genesReact), col = "darkgrey")
 ```
 
 # Who will use this repo or project?
