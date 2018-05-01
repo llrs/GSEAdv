@@ -9,25 +9,21 @@
 #' @export
 fromSizePathways <- function(sizePathways){
   # Initial conditions
-  gpp <- colSums(sizePathways)
   paths <- colnames(sizePathways)
   genesSizes <- rowSums(sizePathways)
-  sizes <- as.numeric(names(genesSizes))
+  sizes <- as.numeric(rownames(sizePathways))
   genes <- rep(sizes, genesSizes/sizes)
   genes <- names_vec(genes, "G_")
   nGenes <- length(genes)
 
-
   stopifnot(all(genesSizes != 0))
-  stopifnot(all(gpp != 0))
+  stopifnot(all(sizes != 0))
   stopifnot(min(sizes) >= 1)
-
-  m2 <- prop.table(sizePathways, 1L)
 
   helper <- function(){
     genes2paths <- lapply(genes, function(x){
       unique(sample(colnames(sizePathways), x,
-                    prob = m2[as.character(x), ]))
+                    prob = sizePathways[as.character(x), ]))
     })
 
     suppressWarnings(as(genes2paths, "GeneSetCollection"))
