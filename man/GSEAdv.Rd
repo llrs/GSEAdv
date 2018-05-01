@@ -19,9 +19,9 @@ There are several new methods for GeneSetCollections
 \item \code{\link{pathwaysPerGene}}: The number of gene sets each gene has.
 \item \code{\link{pathway}}: Information about a gene set.
 \item \code{\link{gene}}: Information about a gene.
-\item \code{\link{condPerGene}}: The conditional probability of the length of a
+\item \code{\link{condPerGenes}}: The conditional probability of the length of a
 pathway given the numer of gene sets a gene is in.
-\item \code{\link{condPerPath}}: The conditional probability of the numer of gene
+\item \code{\link{condPerPathways}}: The conditional probability of the numer of gene
 sets a gene is in given the length of a gene set.
 \item \code{\link{sizePathways}}
 \item \code{\link{sizeGenes}}
