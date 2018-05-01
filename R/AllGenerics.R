@@ -243,6 +243,7 @@ setGeneric("nested", function(object)
 #' @param genesPerPathway A numeric vector of the number of genes per pathways.
 #' @return A matrix with the probabilities
 #' @author Lluís Revilla Sancho
+#' @export condPerGenes
 setGeneric("condPerGenes", function(object, genesPerPathway)
   standardGeneric("condPerGenes"))
 
@@ -254,5 +255,6 @@ setGeneric("condPerGenes", function(object, genesPerPathway)
 #' @param pathwaysPerGene A numeric vector of the number of pathways per genes.
 #' @return A matrix with the probabilities
 #' @author Lluís Revilla Sancho
+#' @export condPerPathways
 setGeneric("condPerPathways", function(object, pathwaysPerGene)
   standardGeneric("condPerPathways"))
