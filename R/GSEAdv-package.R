@@ -11,9 +11,9 @@
 #' - \code{\link{pathwaysPerGene}}: The number of gene sets each gene has.
 #' - \code{\link{pathway}}: Information about a gene set.
 #' - \code{\link{gene}}: Information about a gene.
-#' - \code{\link{condPerGene}}: The conditional probability of the length of a
+#' - \code{\link{condPerGenes}}: The conditional probability of the length of a
 #' pathway given the numer of gene sets a gene is in.
-#' - \code{\link{condPerPath}}: The conditional probability of the numer of gene
+#' - \code{\link{condPerPathways}}: The conditional probability of the numer of gene
 #' sets a gene is in given the length of a gene set.
 #'  - \code{\link{sizePathways}}
 #'  - \code{\link{sizeGenes}}
@@ -27,5 +27,12 @@ NULL
 #'
 #' A version of pathways of the KEGG database from the org.Hs.eg.db package
 #' @format A GeneSetCollection
-#' @source \code{\link{as.GeneSetCollection(org.Hs.egPATH)}}
+#' @source \code{as.GeneSetCollection(org.Hs.egPATH)}
 "genesKegg"
+
+#' A GeneSetCollection
+#'
+#' A small GeneSetCollection to test and do examples with
+#' @format A GeneSetCollection
+#' @source Derived from genesKegg
+"Info"
