@@ -12,4 +12,4 @@ info <- structure(list(`1` = NA_character_,
                   .Names = c("1", "10", "2", "3", "4", "5", "6", "7", "8", "9"))
 
 fl <- system.file("extdata", "Broad.xml", package="GSEABase")
-gsc <- getBroadSets(fl) # GeneSetCollection of 2 sets
+gsc <- GSEABase::getBroadSets(fl) # GeneSetCollection of 2 sets

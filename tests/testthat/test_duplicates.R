@@ -7,17 +7,14 @@ doble_dup <- structure(list(G_1 = c("GS_1", "GS_4"),
 
 doble_dup <- as(doble_dup, "GeneSetCollection")
 
-fl <- system.file("extdata", "Broad.xml", package = "GSEABase")
-gss <- getBroadSets(fl)
-
 test_that("duplicatedPathways", {
   expect_true(duplicatedPathways(doble_dup))
   expect_true(duplicatedPathways(Info))
-  expect_false(duplicatedPathways(gss))
+  expect_false(duplicatedPathways(gsc))
 })
 
 test_that("duplicatedGenes", {
   expect_true(duplicatedGenes(doble_dup))
   expect_true(duplicatedGenes(Info))
-  expect_true(duplicatedGenes(gss))
+  expect_true(duplicatedGenes(gsc))
 })
