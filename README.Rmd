@@ -53,7 +53,7 @@ devtools::install_github("llrs/GSEAdv")
 
 # How does it work?
 
-It is simple, load the package and learn about your data!
+It is simple, load the package and learn from your data!
 
 ```{r example}
 # Load some data
@@ -63,68 +63,34 @@ gss <- getBroadSets(fl)
 gss
 summary(gss)
 ```
-Which tells us that each gene in the GeneSetCollection is only on one gene set.
+Which tells us that each gene in the GeneSetCollection is only on one gene set. 
 
-If we want to explore the human pathways of [REACTOME](https://reactome.org/)
-
-```{r, fig.cap="Genes per pathways in humans"}
-library("reactome.db")
-genesReact <- as.list(reactomeEXTID2PATHID)
-# Remove genes and pathways which are not from human pathways 
-human <- sapply(genesReact, function(x){all(grepl(pattern = "R-HSA-", x))})
-genesReact <- genesReact[human]
-genesReact <- as.GeneSetCollection(genesReact)
-barplot(table(genesPerPathway(genesReact)), main = "Genes per pathway")
+We can try with a bigger dataset, one derived from human genes pathways in KEGG:
+```{r summary-kegg}
+summary(genesKegg)
 ```
-
-and the number of pathways
-
-```{r, fig.cap="Pathways per human gene"}
-barplot(table(pathwaysPerGene(genesReact)), main = "Pathways per gene")
+Knowing that it has so much pathways and genes we can learn how do they relate. 
+The number of genes per pathway in the collection is:
+```{r gpp, fig.cap="Distribution of the number of genes per gene set."}
+gpp <- genesPerPathway(genesKegg)
+plot(table(gpp))
 ```
-And the relationship between them:
-```{r}
-nPaths <- nPathways(genesReact)
-seqs <- seq(from = 100, to = signif(nPaths, 2), by = 10)
+We can see that most gene sets have low number of genes but one has 1130 genes in a single gene set (It is the gene set `names(gpp)[gpp > 400]`).
+The genes might be associated too with many gene sets, it is so extreme? Let's see:
 
-o <- sapply(rep(seqs, each = 10), function(x){
-  c("pathways" = x, 
-    # Randomly select some x pathways
-    # check the properties
-    # calculate the number of genes of these GeneSetCollection
-    "genes" = nGenes(check(genesReact[sample(seq_len(nPaths), x)])))
-})
-out <- as.data.frame(t(o))
-library("ggplot2")
-ggplot(out, aes(pathways, genes)) + 
-  geom_point() + 
-  geom_smooth() + 
-  theme_bw() +
-  geom_hline(yintercept = nGenes(genesReact), col = "darkgrey")
+```{r ppg, fig.cap="Distribution of the number of gene sets per gene"}
+ppg <- pathwaysPerGene(genesKegg)
+plot(table(ppg))
 ```
+Not so extreme, one gene (`names(ppg)[which.max(ppg)]`) appears in `max(ppg)` gene sets.
 
-We can do the same for the number of genes
-```{r}
-nGenes <- nGenes(genesReact)
-seqs <- seq(from = 100, to = signif(nGenes, 3)-100, by = 100)
-paths2genes <- geneIds(genesReact)
-genes2paths <- GSEAdv:::inverseList(paths2genes)
-o <- sapply(rep(seqs, each = 10), function(x){
-  paths2genes <- GSEAdv:::inverseList(genes2paths[sample(seq_along(genes2paths), x)])
-  
-  c("genes" = x, 
-    # Randomly select some x genes
-    # check the properties
-    # calculate the number of pathways of these GeneSetCollection
-    "paths" = sum(lengths(paths2genes) >= 2)) 
-})
-out <- as.data.frame(t(o))
-ggplot(out, aes(genes, paths)) + 
-  geom_point() + 
-  geom_smooth() + 
-  theme_bw()  +
-  geom_hline(yintercept = nPathways(genesReact), col = "darkgrey")
+To see which gene sets are included in other gene sets we can use `nested`:
+```{r nested}
+nested(genesKegg)[1:10, 80:90]
 ```
+As expected the pathway with more than 1100 genes has other pathways inside it.
+
+You can see the vignettes for more examples.
 
 # Who will use this repo or project?
 
@@ -144,6 +110,8 @@ The goal of this project is to be able to understand the gene sets collections a
 # Contributing
 
 Please read [how to contribute](.github/CONTRIBUTING.md) for details on the code of conduct, and the process for submitting pull requests.
+
+You can also look at the [tests](https://github.com/llrs/GSEAdv/tree/master/tests) and increase the quality of the package.
 
 # Acknowledgments
 

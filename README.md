@@ -32,7 +32,7 @@ devtools::install_github("llrs/GSEAdv")
 How does it work?
 =================
 
-It is simple, load the package and learn about your data!
+It is simple, load the package and learn from your data!
 
 ``` r
 # Load some data
@@ -48,87 +48,67 @@ gss
 ##     collectionType: BroadCollection (1 total)
 summary(gss)
 ## Genes: 215
-##  Gene in more pathways:1pathways
-##  h-index:0genes with at least0pathways.
-## Pathways:2
-##  Biggest pathway:129genes
-##  h-index:1pathways with at least1genes.
-##  All genes in a single gene set.
+##  Gene in more pathways:1 pathways
+##  h-index: 0 genes with at least 0 pathways.
+## Pathways: 2
+##  Biggest pathway: 129genes
+##  h-index: 1p athways with at least 1 genes.
+## All genes in a single gene set.
 ## Some gene set have all genes not present in other gene sets
 ```
 
 Which tells us that each gene in the GeneSetCollection is only on one gene set.
 
-If we want to explore the human pathways of [REACTOME](https://reactome.org/)
+We can try with a bigger dataset, one derived from human genes pathways in KEGG:
 
 ``` r
-library("reactome.db")
-genesReact <- as.list(reactomeEXTID2PATHID)
-# Remove genes and pathways which are not from human pathways 
-human <- sapply(genesReact, function(x){all(grepl(pattern = "R-HSA-", x))})
-genesReact <- genesReact[human]
-genesReact <- as.GeneSetCollection(genesReact)
-## Warning in check_size(object): Removing 203 genes sets with only one gene.
-barplot(table(genesPerPathway(genesReact)), main = "Genes per pathway")
+summary(genesKegg)
+## Genes: 5869
+##  Gene in more pathways:51 pathways
+##  h-index: 0 genes with at least 0 pathways.
+## Pathways: 228
+##  Biggest pathway: 1130genes
+##  h-index: 15p athways with at least 15 genes.
+## IC(genesPerPathway): 6.65 ( 0.96 of the maximum)
+## IC(pathwaysPerGene): 2.47 ( 0.48 of the maximum)
 ```
 
-![Genes per pathways in humans](man/figures/README-unnamed-chunk-3-1.png)
-
-and the number of pathways
+Knowing that it has so much pathways and genes we can learn how do they relate. The number of genes per pathway in the collection is:
 
 ``` r
-barplot(table(pathwaysPerGene(genesReact)), main = "Pathways per gene")
+gpp <- genesPerPathway(genesKegg)
+plot(table(gpp))
 ```
 
-![Pathways per human gene](man/figures/README-unnamed-chunk-4-1.png) And the relationship between them:
+![Distribution of the number of genes per gene set.](man/figures/README-gpp-1.png) We can see that most gene sets have low number of genes but one has 1130 genes in a single gene set (It is the gene set `names(gpp)[gpp > 400]`). The genes might be associated too with many gene sets, it is so extreme? Let's see:
 
 ``` r
-nPaths <- nPathways(genesReact)
-seqs <- seq(from = 100, to = signif(nPaths, 2), by = 10)
-
-o <- sapply(rep(seqs, each = 10), function(x){
-  c("pathways" = x, 
-    # Randomly select some x pathways
-    # check the properties
-    # calculate the number of genes of these GeneSetCollection
-    "genes" = nGenes(check(genesReact[sample(seq_len(nPaths), x)])))
-})
-out <- as.data.frame(t(o))
-library("ggplot2")
-ggplot(out, aes(pathways, genes)) + 
-  geom_point() + 
-  geom_smooth() + 
-  theme_bw() +
-  geom_hline(yintercept = nGenes(genesReact), col = "darkgrey")
+ppg <- pathwaysPerGene(genesKegg)
+plot(table(ppg))
 ```
 
-![](man/figures/README-unnamed-chunk-5-1.png)
+![Distribution of the number of gene sets per gene](man/figures/README-ppg-1.png) Not so extreme, one gene (`names(ppg)[which.max(ppg)]`) appears in `max(ppg)` gene sets.
 
-We can do the same for the number of genes
+To see which gene sets are included in other gene sets we can use `nested`:
 
 ``` r
-nGenes <- nGenes(genesReact)
-seqs <- seq(from = 100, to = signif(nGenes, 3)-100, by = 100)
-paths2genes <- geneIds(genesReact)
-genes2paths <- GSEAdv:::inverseList(paths2genes)
-o <- sapply(rep(seqs, each = 10), function(x){
-  paths2genes <- GSEAdv:::inverseList(genes2paths[sample(seq_along(genes2paths), x)])
-  
-  c("genes" = x, 
-    # Randomly select some x genes
-    # check the properties
-    # calculate the number of pathways of these GeneSetCollection
-    "paths" = sum(lengths(paths2genes) >= 2)) 
-})
-out <- as.data.frame(t(o))
-ggplot(out, aes(genes, paths)) + 
-  geom_point() + 
-  geom_smooth() + 
-  theme_bw()  +
-  geom_hline(yintercept = nPathways(genesReact), col = "darkgrey")
+nested(genesKegg)[1:10, 80:90]
+##       00970 00980 00982 00983 01040 01100 02010 03008 03010 03013 03015
+## 00010     0     0     0     0     0     0     0     0     0     0     0
+## 00020     0     0     0     0     0     1     0     0     0     0     0
+## 00030     0     0     0     0     0     0     0     0     0     0     0
+## 00040     0     0     0     0     0     0     0     0     0     0     0
+## 00051     0     0     0     0     0     0     0     0     0     0     0
+## 00052     0     0     0     0     0     0     0     0     0     0     0
+## 00053     0     0     0     0     0     0     0     0     0     0     0
+## 00061     0     0     0     0     0     1     0     0     0     0     0
+## 00062     0     0     0     0     0     1     0     0     0     0     0
+## 00071     0     0     0     0     0     0     0     0     0     0     0
 ```
 
-![](man/figures/README-unnamed-chunk-6-1.png)
+As expected the pathway with more than 1100 genes has other pathways inside it.
+
+You can see the vignettes for more examples.
 
 Who will use this repo or project?
 ==================================
@@ -151,6 +131,8 @@ Contributing
 ============
 
 Please read [how to contribute](.github/CONTRIBUTING.md) for details on the code of conduct, and the process for submitting pull requests.
+
+You can also look at the [tests](https://github.com/llrs/GSEAdv/tree/master/tests) and increase the quality of the package.
 
 Acknowledgments
 ===============
