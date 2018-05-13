@@ -198,7 +198,7 @@ setGeneric("sizeGenes", function(object, gene)
 #' @return A matrix or a list of vectors if only some pathways are requested
 #' @seealso \code{\link{sizeGenes}} The equivalent for genes
 #' @export sizePathways
-setGeneric("sizePathways", function(object,pathway)
+setGeneric("sizePathways", function(object, pathway)
   standardGeneric("sizePathways"))
 
 
@@ -231,6 +231,7 @@ setGeneric("duplicatedPathways", function(object)
 #' @return A matrix with 1 if they are included and 0 if not. 1
 #' means that the pathways on the rows are in the ones of the columns
 #' @export nested
+#' @seealso \link{\code{compare}}
 setGeneric("nested", function(object)
   standardGeneric("nested"))
 
@@ -243,6 +244,7 @@ setGeneric("nested", function(object)
 #' @param genesPerPathway A numeric vector of the number of genes per pathways.
 #' @return A matrix with the probabilities
 #' @author Lluís Revilla Sancho
+#' @seealso \link{\code{condPerPathways}}
 #' @export condPerGenes
 setGeneric("condPerGenes", function(object, genesPerPathway)
   standardGeneric("condPerGenes"))
@@ -256,5 +258,30 @@ setGeneric("condPerGenes", function(object, genesPerPathway)
 #' @return A matrix with the probabilities
 #' @author Lluís Revilla Sancho
 #' @export condPerPathways
+#' @seealso \link{\code{condPerGenes}}
 setGeneric("condPerPathways", function(object, pathwaysPerGene)
   standardGeneric("condPerPathways"))
+
+#' Number of different size of pathways per gene
+#'
+#' How many pathways of different length a gene is involved in.
+#' @param object A GeneSetCollection
+#' @param genes A character gene.
+#' @return A vector with the number of different pathways sizes of the genes.
+#' @author Lluís Revilla Sancho
+#' @seealso  \link{\code{sizesPerPathways}}
+#' @export sizesPerGene
+setGeneric("sizesPerGene", function(object, genes)
+  standardGeneric("sizesPerGene"))
+
+#' Number of different sizes of gene per pathway
+#'
+#' How many genes of different length a pathway is involved in.
+#' @param object A GeneSetCollection
+#' @param pathways A character vector of the pathways-
+#' @return A vector with the number of different gene sizes of the pathays
+#' @author Lluís Revilla Sancho
+#' @seealso  \link{\code{sizesPerGenes}}
+#' @export sizesPerPathway
+setGeneric("sizesPerPathway", function(object, pathways)
+  standardGeneric("sizesPerPathway"))
