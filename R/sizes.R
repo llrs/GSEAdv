@@ -103,6 +103,7 @@ helper_sizes <- function(data1, data2){
   # Create the matrix to fill
   m <- matrix(0, ncol = length(names(data1)), nrow = length(sizes),
               dimnames = list(u_sizes, names(data1)))
+  m <- m[order(as.numeric(rownames(m))), , drop = FALSE]
 
   for (obj in colnames(m)) {
     groups <- data1[[obj]]

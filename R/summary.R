@@ -32,11 +32,11 @@ setMethod("summary",
                      pathways = length(gpp)
             )
             msg <- paste0("Genes: ", out["genes"],
-                "\n\tGene in more pathways:", out["maxPPG"], " pathways\n",
+                "\n\tGene in more pathways: ", out["maxPPG"], " pathways\n",
             "\th-index: ", h_gpp, " genes with at least ", h_gpp, " pathways.\n",
             "Pathways: ", out["pathways"], "\n",
-            "\tBiggest pathway: ", out["maxGPP"], "genes\n",
-            "\th-index: ", h_ppg, "p athways with at least ", h_ppg, " genes.\n")
+            "\tBiggest pathway: ", out["maxGPP"], " genes\n",
+            "\th-index: ", h_ppg, " pathways with at least ", h_ppg, " genes.\n")
             if (!out["independence"]) {
               ind <- paste0("IC(genesPerPathway): ", round(out["ICgpp"], 2),
                   " ( ", round(out["ICgpp"]/out["maxICgpp"], 2),

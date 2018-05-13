@@ -25,3 +25,6 @@ Check if all the genes of a pathway are inside another pathway.
 \item \code{GeneSetCollection}: Check if pathways are included in another pathway.
 }}
 
+\seealso{
+\link{\code{compare}}
+}
