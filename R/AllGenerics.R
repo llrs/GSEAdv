@@ -231,7 +231,7 @@ setGeneric("duplicatedPathways", function(object)
 #' @return A matrix with 1 if they are included and 0 if not. 1
 #' means that the pathways on the rows are in the ones of the columns
 #' @export nested
-#' @seealso \link{\code{compare}}
+#' @seealso \code{\link{compare}}
 setGeneric("nested", function(object)
   standardGeneric("nested"))
 
@@ -244,7 +244,7 @@ setGeneric("nested", function(object)
 #' @param genesPerPathway A numeric vector of the number of genes per pathways.
 #' @return A matrix with the probabilities
 #' @author Lluís Revilla Sancho
-#' @seealso \link{\code{condPerPathways}}
+#' @seealso \code{\link{condPerPathways}}
 #' @export condPerGenes
 setGeneric("condPerGenes", function(object, genesPerPathway)
   standardGeneric("condPerGenes"))
@@ -258,7 +258,7 @@ setGeneric("condPerGenes", function(object, genesPerPathway)
 #' @return A matrix with the probabilities
 #' @author Lluís Revilla Sancho
 #' @export condPerPathways
-#' @seealso \link{\code{condPerGenes}}
+#' @seealso \code{\link{condPerGenes}}
 setGeneric("condPerPathways", function(object, pathwaysPerGene)
   standardGeneric("condPerPathways"))
 
@@ -269,7 +269,7 @@ setGeneric("condPerPathways", function(object, pathwaysPerGene)
 #' @param genes A character gene.
 #' @return A vector with the number of different pathways sizes of the genes.
 #' @author Lluís Revilla Sancho
-#' @seealso  \link{\code{sizesPerPathways}}
+#' @seealso  \code{\link{sizesPerPathway}}
 #' @export sizesPerGene
 setGeneric("sizesPerGene", function(object, genes)
   standardGeneric("sizesPerGene"))
@@ -281,7 +281,7 @@ setGeneric("sizesPerGene", function(object, genes)
 #' @param pathways A character vector of the pathways-
 #' @return A vector with the number of different gene sizes of the pathays
 #' @author Lluís Revilla Sancho
-#' @seealso  \link{\code{sizesPerGenes}}
+#' @seealso  \code{\link{sizesPerGene}}
 #' @export sizesPerPathway
 setGeneric("sizesPerPathway", function(object, pathways)
   standardGeneric("sizesPerPathway"))

@@ -26,5 +26,5 @@ Check if all the genes of a pathway are inside another pathway.
 }}
 
 \seealso{
-\link{\code{compare}}
+\code{\link{compare}}
 }

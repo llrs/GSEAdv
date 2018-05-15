@@ -32,7 +32,7 @@ How many genes of different length a pathway is involved in.
 }}
 
 \seealso{
-\link{\code{sizesPerGenes}}
+\code{\link{sizesPerGene}}
 }
 \author{
 Lluís Revilla Sancho

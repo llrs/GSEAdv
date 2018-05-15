@@ -35,7 +35,7 @@ number of genes
 }}
 
 \seealso{
-\link{\code{condPerPathways}}
+\code{\link{condPerPathways}}
 }
 \author{
 Lluís Revilla Sancho
