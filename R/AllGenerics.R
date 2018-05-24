@@ -285,3 +285,16 @@ setGeneric("sizesPerGene", function(object, genes)
 #' @export sizesPerPathway
 setGeneric("sizesPerPathway", function(object, pathways)
   standardGeneric("sizesPerPathway"))
+
+#' Number genes related to a gene
+#'
+#' How many genes of different length a pathway is involved in.
+#' @param object A GeneSetCollection
+#' @param genes A character vector of the genes.
+#' @param unique A logical, to choose between unique genes or not.
+#' @return A vector with the number of genes related to each gene.
+#' @author Lluís Revilla Sancho
+#' @seealso  \code{\link{pathwaysPerGene}}
+#' @export genesPerGene
+setGeneric("genesPerGene", function(object, genes, unique)
+  standardGeneric("genesPerGene"))
