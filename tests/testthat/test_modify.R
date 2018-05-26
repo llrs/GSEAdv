@@ -30,3 +30,12 @@ test_that("pathway as character", {
   expect_equal(nPathways(gsc), nPathways(Info)+1)
 })
 
+
+
+test_that("pathway as character", {
+  expect_warning(gsc <- modify(Info, gene = "2", pathway = c("156581", "211")),
+                 "Removing")
+
+  gsc <- modify(Info, gene = "11", pathway = c("156580", "156582"))
+  expect_equal(nGenes(gsc), nGenes(Info) + 1 )
+})

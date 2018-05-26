@@ -6,6 +6,7 @@ test_that("collectionType", {
 })
 
 test_that("genesPerPathway", {
+  expect_error(genesPerPathway("a"))
   gpp <- genesPerPathway(Info)
   expect_equal(gpp,structure(c(2L, 3L, 2L, 2L, 2L),
                              .Names = c("1430728", "156580",

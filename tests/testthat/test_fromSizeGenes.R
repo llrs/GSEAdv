@@ -1,4 +1,4 @@
-context("Testing drop method")
+context("Testing fromSizeGenes method")
 
 test_that("fromSizeGenes", {
   sG <- sizeGenes(Info)

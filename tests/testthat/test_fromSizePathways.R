@@ -1,4 +1,4 @@
-context("Testing drop method")
+context("Testing fromSizePathways method")
 
 test_that("fromSizePathways", {
   sP <- sizePathways(Info)

@@ -1,4 +1,4 @@
-context("Testing add method")
+context("Testing adding method")
 
 test_that("gene as character", {
   gsc <- add(Info, gene = "2", pathway = "1430728")
@@ -24,4 +24,13 @@ test_that("pathway as character", {
                "Please")
   gsc <- add(Info, gene = c("2", "3"), pathway = "156581")
   expect_equal(nPathways(gsc), nPathways(Info)+1)
+})
+
+
+test_that("pathway as character", {
+  expect_warning(gsc <- add(Info, gene = "2",
+                            pathway = c("156581", "211")),
+                 "Removing")
+  gsc <- add(Info, gene = "2", pathway = c("156580", "1430728"))
+  expect_equal(genesPerPathway(gsc)["156580"], c(`156580` = 4L))
 })
