@@ -7,7 +7,7 @@
 \alias{genesPerGene,GeneSetCollection,character-method}
 \title{Number genes related to a gene}
 \usage{
-genesPerGene(object, genes, unique)
+genesPerGene(object, genes, unique = TRUE)
 
 \S4method{genesPerGene}{GeneSetCollection,missing}(object, unique = TRUE)
 

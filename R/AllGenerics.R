@@ -296,5 +296,5 @@ setGeneric("sizesPerPathway", function(object, pathways)
 #' @author Lluís Revilla Sancho
 #' @seealso  \code{\link{pathwaysPerGene}}
 #' @export genesPerGene
-setGeneric("genesPerGene", function(object, genes, unique)
+setGeneric("genesPerGene", function(object, genes, unique = TRUE)
   standardGeneric("genesPerGene"))

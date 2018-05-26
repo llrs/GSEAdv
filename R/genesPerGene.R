@@ -1,8 +1,8 @@
 #' @describeIn genesPerGene Number of genes for all genes
 setMethod("genesPerGene",
-          signature(object = "GeneSetCollection", genes = "missing"),
+          signature(object = "GeneSetCollection", genes = "missing", unique = "ANY"),
           function(object, unique = TRUE){
-            x <- check(x)
+            x <- check(object)
             pathways2genes <- geneIds(x)
             genes2pathways <- inverseList(pathways2genes)
             genesPer <- function(y) {
@@ -25,7 +25,7 @@ setMethod("genesPerGene",
 #' @describeIn genesPerGene Number of genes per gene selected
 #' @export
   setMethod("genesPerGene",
-            signature(object = "GeneSetCollection", genes = "character"),
+            signature(object = "GeneSetCollection", genes = "character", unique = "ANY"),
             function(object, genes, unique = TRUE){
               x <- check(object)
 
