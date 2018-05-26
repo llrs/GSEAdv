@@ -1,7 +1,5 @@
 context("Testing add method")
 
-expect_warning(Info <- as.GeneSetCollection(info))
-
 test_that("gene as character", {
   gsc <- add(Info, gene = "2", pathway = "1430728")
 

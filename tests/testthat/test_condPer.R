@@ -1,7 +1,5 @@
 context("Testing cond* method")
 
-expect_warning(Info <- as.GeneSetCollection(info))
-
 test_that("condPerGenes missing", {
 
   n <- condPerGenes(Info)

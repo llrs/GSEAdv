@@ -1,7 +1,5 @@
 context("Testing modify method")
 
-expect_warning(Info <- as.GeneSetCollection(info))
-
 test_that("gene as character", {
   gsc <- modify(Info, gene = "2", pathway = "1430728")
 
