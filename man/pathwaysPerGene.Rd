@@ -3,18 +3,23 @@
 \docType{methods}
 \name{pathwaysPerGene}
 \alias{pathwaysPerGene}
-\alias{pathwaysPerGene,GeneSetCollection-method}
+\alias{pathwaysPerGene,GeneSetCollection,missing-method}
+\alias{pathwaysPerGene,GeneSetCollection,character-method}
 \title{Pathways per gene}
 \usage{
-pathwaysPerGene(object)
+pathwaysPerGene(object, genes)
 
-\S4method{pathwaysPerGene}{GeneSetCollection}(object)
+\S4method{pathwaysPerGene}{GeneSetCollection,missing}(object)
+
+\S4method{pathwaysPerGene}{GeneSetCollection,character}(object, genes)
 }
 \arguments{
-\item{object}{A GeneSetCollection object}
+\item{object}{A GeneSetCollection object.}
+
+\item{genes}{A character vector of genes.}
 }
 \value{
-a list of pathways per genes
+A numeric vector of pathways per genes.
 }
 \description{
 Calculates the pathways per gene of a GeneSetCollection. In set theory it is
@@ -22,7 +27,10 @@ called cardinality.
 }
 \section{Methods (by class)}{
 \itemize{
-\item \code{GeneSetCollection}: Pathways per gene in the GeneSetCollection
+\item \code{object = GeneSetCollection,genes = missing}: Pathways per gene in all the GeneSetCollection
+
+\item \code{object = GeneSetCollection,genes = character}: Pathways per gene in the GeneSetCollection for
+those genes.
 }}
 
 \seealso{

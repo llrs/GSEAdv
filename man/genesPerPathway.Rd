@@ -3,26 +3,34 @@
 \docType{methods}
 \name{genesPerPathway}
 \alias{genesPerPathway}
-\alias{genesPerPathway,GeneSetCollection-method}
+\alias{genesPerPathway,GeneSetCollection,missing-method}
+\alias{genesPerPathway,GeneSetCollection,character-method}
 \title{Genes per pathway}
 \usage{
-genesPerPathway(object)
+genesPerPathway(object, pathways)
 
-\S4method{genesPerPathway}{GeneSetCollection}(object)
+\S4method{genesPerPathway}{GeneSetCollection,missing}(object)
+
+\S4method{genesPerPathway}{GeneSetCollection,character}(object, pathways)
 }
 \arguments{
-\item{object}{A GeneSetCollection object}
+\item{object}{A GeneSetCollection object.}
+
+\item{pathways}{A character vector of the pathways.}
 }
 \value{
-A list of genes per pathway.
+A numeric vector of genes per pathway.
 }
 \description{
 Calculates the genes per pathway of a GeneSetCollection
 }
 \section{Methods (by class)}{
 \itemize{
-\item \code{GeneSetCollection}: Calculates genes per pathway of the
+\item \code{object = GeneSetCollection,pathways = missing}: Calculates genes per pathway of all the
 GeneSetCollection
+
+\item \code{object = GeneSetCollection,pathways = character}: Calculates genes per pathway of the
+GeneSetCollection for those pathways
 }}
 
 \seealso{

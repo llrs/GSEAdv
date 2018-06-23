@@ -16,24 +16,26 @@ setGeneric("as.GeneSetCollection", function(object, ...)
 #'
 #' Calculates the pathways per gene of a GeneSetCollection. In set theory it is
 #' called cardinality.
-#' @param object A GeneSetCollection object
-#' @return a list of pathways per genes
+#' @param object A GeneSetCollection object.
+#' @param genes A character vector of genes.
+#' @return A numeric vector of pathways per genes.
 #' @author Lluís Revilla
 #' @export pathwaysPerGene
 #' @seealso \code{\link{genesPerPathway}}
-setGeneric("pathwaysPerGene", function(object) {
+setGeneric("pathwaysPerGene", function(object, genes) {
   standardGeneric("pathwaysPerGene")
 })
 
 #' Genes per pathway
 #'
 #' Calculates the genes per pathway of a GeneSetCollection
-#' @param object A GeneSetCollection object
-#' @return A list of genes per pathway.
+#' @param object A GeneSetCollection object.
+#' @param pathways A character vector of the pathways.
+#' @return A numeric vector of genes per pathway.
 #' @author Lluís Revilla
 #' @export genesPerPathway
 #' @seealso \code{\link{pathwaysPerGene}}
-setGeneric("genesPerPathway", function(object) {
+setGeneric("genesPerPathway", function(object, pathways) {
   standardGeneric("genesPerPathway")
 })
 
