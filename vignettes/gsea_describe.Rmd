@@ -36,7 +36,7 @@ A `GeneSetCollection` is a collection of `GeneSet`s wchich can be totally unrela
 
 # Preparation
 
-First let's load a `GeneSetCollection`
+First let's load a `GeneSetCollection`:
 
 ```{r load}
 fl <- system.file("extdata", "Broad.xml", package = "GSEABase")
