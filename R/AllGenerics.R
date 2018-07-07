@@ -111,10 +111,11 @@ setGeneric("check", function(object)
 #'
 #' Checks if any gene set has all the genes only present in that gene set.
 #' @param object A GeneSetCollection
-#' @return Invisible a logical value
+#' @param warning A logical value to indicate if it should return a warning or not.
+#' @return \code{TRUE} if there is a gene set where all its genes are only present on this gene set.
 #' @seealso \code{\link{independence}}
 #' @export isolation
-setGeneric("isolation", function(object)
+setGeneric("isolation", function(object, warning = FALSE)
   standardGeneric("isolation"))
 
 #' Checks independence of genes
