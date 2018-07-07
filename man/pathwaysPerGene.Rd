@@ -33,6 +33,10 @@ called cardinality.
 those genes.
 }}
 
+\examples{
+pathwaysPerGene(Info)
+pathwaysPerGene(Info, "10")
+}
 \seealso{
 \code{\link{genesPerPathway}}
 }
