@@ -31,6 +31,11 @@ Calculates the number of pathways per gene in pathways.
 \item \code{object = GeneSetCollection,pathway = character}: Number of pathways per gene in all pathways
 }}
 
+\examples{
+sizePathways(Info)
+sizePathways(Info, "1430728")
+sizePathways(Info, c("1430728", "156580"))
+}
 \seealso{
 \code{\link{sizeGenes}} The equivalent for genes
 }

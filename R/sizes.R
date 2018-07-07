@@ -39,13 +39,15 @@ setMethod("sizeGenes",
               }
             }
 
-            m <- helper_sizes(gene2paths[gene], inverseList(gene2paths[gene]))
+            m <- helper_sizes(gene2paths[gene], inverseList(gene2paths))
             names(dimnames(m)) <- c("genePerPathway", "Gene")
             m
           }
 )
 
 #' @describeIn sizePathways Number of pathways per gene in all pathways
+#' @examples
+#' sizePathways(Info)
 #' @export
 setMethod("sizePathways",
           signature(object = "GeneSetCollection", pathway = "missing"),
@@ -62,6 +64,9 @@ setMethod("sizePathways",
 
 
 #' @describeIn sizePathways Number of pathways per gene in all pathways
+#' @examples
+#' sizePathways(Info, "1430728")
+#' sizePathways(Info, c("1430728", "156580"))
 #' @export
 setMethod("sizePathways",
           signature(object = "GeneSetCollection", pathway = "character"),
@@ -84,7 +89,7 @@ setMethod("sizePathways",
               }
             }
 
-            m <- helper_sizes(path2gene[pathway], inverseList(path2gene[pathway]))
+            m <- helper_sizes(path2gene[pathway], inverseList(path2gene))
             names(dimnames(m)) <- c("pathwaysPerGene", "Pathway")
             m
           }

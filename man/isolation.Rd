@@ -6,15 +6,17 @@
 \alias{isolation,GeneSetCollection-method}
 \title{Checks isolated GeneSets}
 \usage{
-isolation(object)
+isolation(object, warning = FALSE)
 
 \S4method{isolation}{GeneSetCollection}(object)
 }
 \arguments{
 \item{object}{A GeneSetCollection}
+
+\item{warning}{A logical value to indicate if it should return a warning or not.}
 }
 \value{
-Invisible a logical value
+\code{TRUE} if there is a gene set where all its genes are only present on this gene set.
 }
 \description{
 Checks if any gene set has all the genes only present in that gene set.
