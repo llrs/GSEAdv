@@ -1,4 +1,6 @@
 #' @describeIn sizeGenes Number of genes per pathway in all genes
+#' @examples
+#' sizeGenes(Info)
 #' @export
 setMethod("sizeGenes",
           signature(object = "GeneSetCollection", gene = "missing"),
@@ -14,6 +16,9 @@ setMethod("sizeGenes",
 )
 
 #' @describeIn sizeGenes Number of genes per pathway in all genes
+#' @examples
+#' sizeGenes(Info, "2")
+#' sizeGenes(Info, c("2", "3"))
 #' @export
 setMethod("sizeGenes",
           signature(object = "GeneSetCollection", gene = "character"),
@@ -28,7 +33,7 @@ setMethod("sizeGenes",
               if (sum(keep) >= 1) {
                 remove <- gene[!keep]
                 gene <- gene[keep]
-                warning("Omitting ", sum(keep), "genes not present.")
+                warning("Omitting ", sum(keep), " genes not present.")
               } else {
                 stop("No provided gene is present.")
               }
@@ -73,7 +78,7 @@ setMethod("sizePathways",
               if (sum(keep) >= 1) {
                 remove <- pathway[!keep]
                 pathway <- pathway[keep]
-                warning("Omitting ", sum(keep), "pathway not present.")
+                warning("Omitting ", sum(keep), " pathway not present.")
               } else {
                 stop("No provided pathway is present.")
               }
@@ -87,7 +92,7 @@ setMethod("sizePathways",
 
 #' Helper for sizes
 #'
-#' Return
+#' Calculates the sizes of the input
 #' @param data1 The list of genes to pathways or of pathways to genes
 #' @param data2 The inverse of the other
 #' @return A matrix with the sizes of the data grouped

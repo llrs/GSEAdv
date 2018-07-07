@@ -15,6 +15,6 @@ helper_sizes(data1, data2)
 A matrix with the sizes of the data grouped
 }
 \description{
-Return
+Calculates the sizes of the input
 }
 \keyword{internal}
