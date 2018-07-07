@@ -5,6 +5,8 @@ genesPerPathway <- function(object, pathways) {
 
 #' @describeIn genesPerPathway Calculates genes per pathway of all the
 #' GeneSetCollection
+#' @examples
+#' genesPerPathway(Info)
 #' @export
 setMethod("genesPerPathway",
           signature = c("GeneSetCollection", "missing"),
@@ -16,6 +18,8 @@ setMethod("genesPerPathway",
 
 #' @describeIn genesPerPathway Calculates genes per pathway of the
 #' GeneSetCollection for those pathways
+#' @examples
+#' genesPerPathway(Info, "1430728")
 #' @export
 setMethod("genesPerPathway",
           signature = c("GeneSetCollection", "character"),

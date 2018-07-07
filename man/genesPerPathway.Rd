@@ -33,6 +33,10 @@ GeneSetCollection
 GeneSetCollection for those pathways
 }}
 
+\examples{
+genesPerPathway(Info)
+genesPerPathway(Info, "1430728")
+}
 \seealso{
 \code{\link{pathwaysPerGene}}
 }
