@@ -26,6 +26,8 @@ knitr::opts_chunk$set(collapse = TRUE, warning = TRUE)
 BiocStyle::markdown()
 library("BiocStyle")
 library("GSEAdv")
+fl <- system.file("extdata", "Broad.xml", package = "GSEABase")
+gss <- getBroadSets(fl)
 ```
 # Introduction
 
@@ -35,20 +37,59 @@ This vignette assumes that the reader is familiar with the infraestructure build
 
 This functions calculate for each gene or pathway how are their elements distributed:
 
-```{r}
+```{r sizes}
 sizeGenes(Info)
 sizePathways(Info)
 ```
 We can see that genes are distributed in pathways of size 2 or 3, but pathways have genes in either 1, 2 or 4 pathways. If we are only interested in how many different sizes they are distributed we can use the following functions:
 
-# Number of different sizes per genes or pathways
-
 These two functions evaluate how many elements of different length they are involved in
 
-```{r}
+```{r sizesPer}
 sizesPerGene(Info)
 sizesPerPathway(Info)
 ```
+
+
+# Relationships between pathways
+
+Sometimes some databases due to different reasons use the same genes to describe different pathways or use all the genes in a pathway to describe another pathway. To find those cases we can use the function `nested`:
+
+```{r nested}
+nested(Info)
+```
+
+Here we can see that pathway "156582" and "211859" are inside the "1430728". If you look carefully you'll see that the matrix is not symmetric. That is because the pathways on the rows are in the pathways in the columns. So, pathway "156580" includes pathway "1430728" (and therefore pathways "156582" and "211859") and pathway "156580".
+
+## Duplicated pathways
+
+This might mean that some pathways are duplicated. To check this there is the function `duplicatedPathways`:
+
+```{r}
+duplicatedPathways(Info)
+```
+And conversively the `duplicatedGenes` function, checks if some genes are described as the same combination of pathways :
+```{r}
+duplicatedGenes(Info)
+
+```
+
+If we want to check if a GeneSetCollection is not a group of isolated genes without relation between different gene sets we can use the function `isolation`
+
+```{r isolation}
+isolation(gss)
+isolation(Info)
+```
+
+
+# Relationships between number of genes per pathway and number of pathways per gene
+
+To see what is the conditional probability between the number of pathways gene in n number of pathways are involved $P( pathways_{genes} | genes_{pathway} )$ there is the function `condPerGene`. While the oposite $P( genes_{pathway} | pathways_{genes} )$) can be done with `condPerPathways`
+```{r condPer}
+condPerGenes(Info)
+condPerPathways(Info)
+```
+
 
 # Style macros
 
