@@ -88,3 +88,8 @@ pathway(gss)
 head(gene(gss)) # To avoid a long table
 ```
 
+# Session info {.unnumbered}
+
+```{r sessionInfo, echo=FALSE}
+sessionInfo()
+```
