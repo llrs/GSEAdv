@@ -36,7 +36,7 @@ drop(object, gene, pathway)
 A GeneSetCollection object without those genes or pathways.
 }
 \description{
-Removes either genes or pathways of a GeneSetCollection if present
+Removes either genes or pathways of a GeneSetCollection if present.
 }
 \section{Methods (by class)}{
 \itemize{
@@ -57,6 +57,10 @@ Removes either genes or pathways of a GeneSetCollection if present
 Remember that a GeneSet is defined as a group of genes (more than one),
 and if one gene set has only one gene it is removed. Conversely, a gene is
 removed if it doesn't belong to any GeneSet.
+}
+\examples{
+drop(Info, gene = "3", pathway = "156580")
+drop(Info, pathway = "156580")
 }
 \seealso{
 \code{\link{add}} To just add a relationship.

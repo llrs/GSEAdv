@@ -1,4 +1,6 @@
 #' @describeIn drop Drop genes and pathways
+#' @examples
+#' drop(Info, gene = "3", pathway = "156580")
 #' @export
 setMethod("drop",
           signature(object = "GeneSetCollection", gene = "character", pathway = "character"),
@@ -25,6 +27,8 @@ setMethod("drop",
 
 
 #' @describeIn drop Drop pathways
+#' @examples
+#' drop(Info, pathway = "156580")
 #' @export
 setMethod("drop",
           signature(object = "GeneSetCollection", gene = "missing", pathway = "character"),
@@ -119,5 +123,30 @@ setMethod("drop",
 
             # Return a GeneSetCollection
             as(genes2paths, "GeneSetCollection")
+          }
+)
+
+#' @describeIn dropRel a relationship between a genes and a pathway
+#' @examples
+#' genesPerPathway(Info)
+#' out <- dropRel(Info, "9", "156580")
+#' genesPerPathway(out)
+#' @export
+setMethod("dropRel",
+          signature(object = "GeneSetCollection", gene = "character", pathway = "character"),
+          function(object, gene, pathway) {
+            paths2genes <- geneIds(object)
+            if (!pathway %in% names(paths2genes)) {
+              stop("Pathway not present")
+            }
+            genesIn <- paths2genes[[pathway]]
+            remove <- !genesIn %in% gene
+            if (sum(remove) >= 1L) {
+              warning("Removing ", sum(remove), " genes of the pathway")
+            }
+            paths2genes[[pathway]] <- genesIn[remove]
+
+            as(inverseList(paths2genes), "GeneSetCollection")
+
           }
 )
