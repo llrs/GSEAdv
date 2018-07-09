@@ -27,8 +27,7 @@ Checks if all the genes are only present in one gene set
 \examples{
 fl <- system.file("extdata", "Broad.xml", package = "GSEABase")
 gss <- getBroadSets(fl)
-# Warning
-\donttest{independence(gss)}
+independence(gss)
 }
 \seealso{
 \code{\link{isolation}}

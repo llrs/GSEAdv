@@ -1,4 +1,8 @@
 #' @describeIn genesPerGene Number of genes for all genes
+#' @examples
+#' genesPerGene(Info)
+#' genesPerGene(Info, unique = FALSE)
+#'  genesPerGene(Info, unique = )
 setMethod("genesPerGene",
           signature(object = "GeneSetCollection", genes = "missing", unique = "ANY"),
           function(object, unique = TRUE){
@@ -22,7 +26,12 @@ setMethod("genesPerGene",
 )
 
 
+
+
 #' @describeIn genesPerGene Number of genes per gene selected
+#' @examples
+#' genesPerGene(Info, "10")
+#' genesPerGene(Info, "10", unique = FALSE)
 #' @export
   setMethod("genesPerGene",
             signature(object = "GeneSetCollection", genes = "character", unique = "ANY"),

@@ -27,7 +27,7 @@ setMethod("summary",
                      genes = length(ppg),
                      maxGPP = max(gpp),
                      independence = independence(object),
-                     isolation = suppressWarnings(isolation(object)),
+                     isolation = isolation(object),
                      maxPPG = max(ppg),
                      pathways = length(gpp)
             )

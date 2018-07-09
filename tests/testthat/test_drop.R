@@ -42,8 +42,7 @@ test_that("drop pathway as numeric", {
 
 test_that("pathway as character", {
   set.seed(501)
-  expect_warning(gsc <- drop(Info, pathway = "156580", gene = "2"),
-                 "Removing")
+  expect_warning(gsc <- drop(Info, pathway = "156580", gene = "2"), "Removing")
   expect_equal(nGenes(gsc), 2L)
   expect_equal(nPathways(gsc), 3L)
 })
@@ -53,4 +52,12 @@ test_that("pathway as character", {
   expect_warning(gsc <- drop(Info, pathway = 1, gene = 1), "Removing")
   expect_equal(nGenes(gsc), 2L)
   expect_equal(nPathways(gsc), 1L)
+})
+
+test_that("dropRel", {
+  set.seed(501)
+  expect_warning(gsc <- dropRel(Info, pathway = "156580", gene = "10"), "Removing")
+  expect_equal(nGenes(gsc), 4L)
+  expect_equal(nPathways(gsc), 5L)
+  expect_length(geneIds(gsc)[["156580"]], 2L)
 })

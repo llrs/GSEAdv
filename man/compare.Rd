@@ -15,3 +15,6 @@ The names of the pathways that are equivalent.
 \description{
 Check how many pathways are inside another geneSetCollection
 }
+\examples{
+compare(Info, genesKegg)
+}

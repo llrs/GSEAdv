@@ -34,6 +34,11 @@ several pathways and one gene, but not several pathways and several genes.
 \item \code{object = GeneSetCollection,gene = character,pathway = character}: Add or remove relationships between genes and gene sets
 }}
 
+\examples{
+modify(Info, "Gene2", "156580")
+modify(Info, c("Gene2", "Gene3"), "156580")
+modify(Info, "Gene2", c("156580", "211859"))
+}
 \seealso{
 \code{\link{drop}} To just remove a gene or a pathways
 \code{\link{add}} To just add a relationship.

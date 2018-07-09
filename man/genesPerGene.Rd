@@ -34,6 +34,13 @@ How many genes of different length a pathway is involved in.
 \item \code{object = GeneSetCollection,genes = character}: Number of genes per gene selected
 }}
 
+\examples{
+genesPerGene(Info)
+genesPerGene(Info, unique = FALSE)
+ genesPerGene(Info, unique = )
+genesPerGene(Info, "10")
+genesPerGene(Info, "10", unique = FALSE)
+}
 \seealso{
 \code{\link{pathwaysPerGene}}
 }

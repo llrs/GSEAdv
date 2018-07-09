@@ -1,4 +1,8 @@
 #' @describeIn modify Add or remove relationships between genes and gene sets
+#' @examples
+#' modify(Info, "Gene2", "156580")
+#' modify(Info, c("Gene2", "Gene3"), "156580")
+#' modify(Info, "Gene2", c("156580", "211859"))
 #' @export
 setMethod("modify",
           signature(object = "GeneSetCollection", gene = "character", pathway = "character"),

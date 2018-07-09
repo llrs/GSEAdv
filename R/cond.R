@@ -1,5 +1,7 @@
 #' @describeIn condPerGenes Check the conditional probability given the
 #' number of genes
+#' @examples
+#' condPerGenes(Info)
 #' @export
 setMethod("condPerGenes",
           signature(object = "GeneSetCollection", genesPerPathway = "missing"),
@@ -21,6 +23,8 @@ setMethod("condPerGenes",
 
 #' @describeIn condPerGenes Check the conditional probability given the
 #' number of genes
+#' @examples
+#' condPerGenes(Info, 2)
 #' @export
 setMethod("condPerGenes",
           signature(object = "GeneSetCollection", genesPerPathway = "numeric"),
@@ -29,12 +33,23 @@ setMethod("condPerGenes",
             ppg <- pathwaysPerGene(object)
             gpp <- genesPerPathway(object)
 
+            keepGenesSize <- genesPerPathway %in% gpp
+            if (!all(keepGenesSize)){
+
+              warning("There isn't any gene with ", genesPerPathway[!keepGenesSize], " pathways")
+              genesPerPathway <- genesPerPathway[keepGenesSize]
+
+            }
+
             p2g <- equalize(paths2genes)
 
             p2g$a <- ppg[p2g$a]
             p2g$b <- gpp[p2g$b]
 
             keep <- p2g$b %in% genesPerPathway
+            if (sum(keep) == 0) {
+              stop("There isn't any pathway size left")
+            }
             p2g$b <- p2g$b[keep]
             p2g$a <- p2g$a[keep]
 
@@ -47,6 +62,8 @@ setMethod("condPerGenes",
 
 #' @describeIn condPerPathways Check the conditional probability given the
 #' number of pathways
+#' @examples
+#' condPerPathways(Info)
 #' @export
 setMethod("condPerPathways",
           signature(object = "GeneSetCollection", pathwaysPerGene = "missing"),
@@ -67,6 +84,9 @@ setMethod("condPerPathways",
 
 #' @describeIn condPerPathways Check the conditional probability given the
 #' number of pathways
+#' @examples
+#' condPerPathways(Info, 2)
+#' condPerPathways(Info, 5)
 #' @export
 setMethod("condPerPathways",
           signature(object = "GeneSetCollection", pathwaysPerGene = "numeric"),
@@ -75,9 +95,12 @@ setMethod("condPerPathways",
             paths2genes <- geneIds(object)
             ppg <- pathwaysPerGene(object)
             gpp <- genesPerPathway(object)
+            keepPathsSize <- pathwaysPerGene %in% ppg
+            if (!all(keepPathsSize)){
 
-            if (!all(pathwaysPerGene %in% ppg)){
-              pathwaysPerGene <- pathwaysPerGene[pathwaysPerGene %in% ppg]
+              warning("There isn't any gene with ", pathwaysPerGene[!keepPathsSize], " pathways")
+              pathwaysPerGene <- pathwaysPerGene[keepPathsSize]
+
             }
 
             p2g <- equalize(inverseList(paths2genes))
@@ -86,6 +109,9 @@ setMethod("condPerPathways",
             p2g$a <- gpp[p2g$a]
 
             keep <- p2g$b %in% pathwaysPerGene
+            if (sum(keep) == 0) {
+              stop("There isn't any gene size left")
+            }
             p2g$b <- p2g$b[keep]
             p2g$a <- p2g$a[keep]
 

@@ -34,6 +34,10 @@ number of genes
 number of genes
 }}
 
+\examples{
+condPerGenes(Info)
+condPerGenes(Info, 2)
+}
 \seealso{
 \code{\link{condPerPathways}}
 }

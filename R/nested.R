@@ -18,6 +18,8 @@ all_in_outer <- function(list_x, list_y) {
 }
 
 #' @describeIn nested Check if pathways are included in another pathway.
+#' @examples
+#' nested(Info)
 #' @export
 setMethod("nested",
           signature(object = "GeneSetCollection"),
@@ -34,6 +36,8 @@ setMethod("nested",
 #' Check how many pathways are inside another geneSetCollection
 #' @param object1,object2 A GeneSetCollection
 #' @return The names of the pathways that are equivalent.
+#' @examples
+#' compare(Info, genesKegg)
 #' @export compare
 compare <- function(object1, object2) {
   obj1 <- is(object1, "GeneSetCollection")

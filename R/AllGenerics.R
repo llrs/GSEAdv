@@ -111,11 +111,10 @@ setGeneric("check", function(object)
 #'
 #' Checks if any gene set has all the genes only present in that gene set.
 #' @param object A GeneSetCollection
-#' @param warning A logical value to indicate if it should return a warning or not.
 #' @return \code{TRUE} if there is a gene set where all its genes are only present on this gene set.
 #' @seealso \code{\link{independence}}
 #' @export isolation
-setGeneric("isolation", function(object, warning = FALSE)
+setGeneric("isolation", function(object)
   standardGeneric("isolation"))
 
 #' Checks independence of genes
@@ -130,7 +129,7 @@ setGeneric("independence", function(object)
 
 #' Remove from a GeneSetCollection
 #'
-#' Removes either genes or pathways of a GeneSetCollection if present
+#' Removes either genes or pathways of a GeneSetCollection if present.
 #' @param object A GeneSetCollection object.
 #' @param gene The number or names of the genes to be removed.
 #' @param pathway The number or names of the pathways to be removed.
@@ -144,6 +143,18 @@ setGeneric("independence", function(object)
 #' @export drop
 setGeneric("drop", function(object, gene, pathway)
   standardGeneric("drop"))
+
+#' Remove a relationship from a GeneSetCollection
+#'
+#' Removes a relationship between genes and a pathway of a GeneSetCollection
+#' @inheritParams drop
+#' @seealso
+#' \code{\link{add}} To just add a relationship.
+#' \code{\link{modify}} To remove and add relationship at once.
+#' \code{\link{drop}} To remove genes and pathways.
+#' @export
+setGeneric("dropRel", function(object, gene, pathway)
+  standardGeneric("dropRel"))
 
 #' Modify a relationship
 #'

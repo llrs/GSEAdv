@@ -25,6 +25,9 @@ Check if there are some pathways that are only present in the same genes.
 the same combination of pathways
 }}
 
+\examples{
+duplicatedGenes(Info)
+}
 \seealso{
 \code{\link{duplicatedPathways}}
 }

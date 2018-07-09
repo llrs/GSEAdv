@@ -58,11 +58,9 @@ setMethod("isolation",
             ppg <- pathwaysPerGene(object)
             keep <- vapply(paths2genes, function(y){all(ppg[y] == 1)}, logical(1))
             if (any(keep)) {
-              warning("Some gene sets has genes unique for the GeneSetCollection",
-                      "\n\tGene Sets:", paste(names(keep)[keep], collapse = ", "))
-              return(invisible(TRUE))
+              TRUE
             }
-            invisible(FALSE)
+            FALSE
           }
 )
 
@@ -71,8 +69,7 @@ setMethod("isolation",
 #' @examples
 #' fl <- system.file("extdata", "Broad.xml", package = "GSEABase")
 #' gss <- getBroadSets(fl)
-#' # Warning
-#' \donttest{independence(gss)}
+#' independence(gss)
 setMethod("independence",
           signature(object = "GeneSetCollection"),
           function(object) {
