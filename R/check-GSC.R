@@ -102,6 +102,8 @@ setMethod("check",
 )
 
 #' @describeIn check Returns the geneIdType present in the GeneSetCollection
+#' @examples
+#' geneIdType(Info)
 #' @export
 setMethod("geneIdType",
           signature( object = "GeneSetCollection"),
@@ -112,6 +114,8 @@ setMethod("geneIdType",
 )
 
 #' @describeIn check Returns the collectionType present in the GeneSetCollection
+#' @examples
+#' collectionType(Info)
 #' @export
 setMethod("collectionType",
           signature( object = "GeneSetCollection"),
