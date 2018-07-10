@@ -3,25 +3,37 @@ check_vec <- function(ref, test) {
   lr <- length(ref)
   lt <- length(test)
 
-  if (lr == lt) {
-    # Check
-    tr <- table(ref)
-    tt <- table(test)
-    if (length(tr) == length(tt)){
-      if (all(names(tr) == names(tt)) & all(tt == tr)) {
-        return(TRUE)
+
+  # Check
+  tr <- table(ref)
+  tt <- table(test)
+
+  if (prodT(tr) == prodT(tt)) {
+    if (lr == lt) {
+      if (length(tr) == length(tt)) {
+        if (all(names(tr) == names(tt)) & all(tt == tr)) {
+          return(TRUE)
+        }
       }
     }
   }
   FALSE
 }
 
+prodT <- function(x){
+  nam <- as.numeric(names(x))
+  sum(x*nam)
+}
+
 #' Simulate GeneSetCollection
 #'
 #' Simulates a GeneSetCollection following a distribution
 #' @param ppg The number of pathways per genes of the desired GeneSetCollection
+#' @note It might take some iterations to reach the desired output
 #' @return A GeneSetCollection
 #' @seealso \code{\link{fromGPP}}
+#' @examples
+#' fromPPG(c(2, 2, 3, 2, 2, 2, 2))
 #' @export
 fromPPG <- function(ppg) {
   # Check input
@@ -60,10 +72,6 @@ fromPPG <- function(ppg) {
     genes2pathways <- inverseList(pathways)
     suppressWarnings(obj <- as(genes2pathways, "GeneSetCollection"))
 
-    if (nPathways(obj) >= min_paths) {
-      obj <- helper(ppg, genes)
-    }
-
     obj
   }
 
@@ -82,6 +90,7 @@ fromPPG <- function(ppg) {
 
   while (!pass) {
     gsc <- helper(ppg, genes)
+    # message(iter)
 
     if (!is(gsc, "GeneSetCollection")) {
       pass <- FALSE
@@ -137,10 +146,6 @@ fromGPP <- function(gpp) {
     names(genes2pathways) <- paste0("G_", seq_along(genes2pathways))
 
     suppressWarnings(obj <- as(genes2pathways, "GeneSetCollection"))
-
-    if (nGenes(obj) >= min_genes) {
-      obj <- helper(gpp, pathways)
-    }
 
     obj
   }
