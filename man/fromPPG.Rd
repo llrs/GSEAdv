@@ -15,6 +15,12 @@ A GeneSetCollection
 \description{
 Simulates a GeneSetCollection following a distribution
 }
+\note{
+It might take some iterations to reach the desired output
+}
+\examples{
+fromPPG(c(2, 2, 3, 2, 2, 2, 2))
+}
 \seealso{
 \code{\link{fromGPP}}
 }

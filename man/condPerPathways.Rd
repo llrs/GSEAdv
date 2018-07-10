@@ -37,7 +37,6 @@ number of pathways
 \examples{
 condPerPathways(Info)
 condPerPathways(Info, 2)
-condPerPathways(Info, 5)
 }
 \seealso{
 \code{\link{condPerGenes}}

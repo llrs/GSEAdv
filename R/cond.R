@@ -86,7 +86,6 @@ setMethod("condPerPathways",
 #' number of pathways
 #' @examples
 #' condPerPathways(Info, 2)
-#' condPerPathways(Info, 5)
 #' @export
 setMethod("condPerPathways",
           signature(object = "GeneSetCollection", pathwaysPerGene = "numeric"),

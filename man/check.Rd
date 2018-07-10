@@ -37,6 +37,7 @@ all the GeneSets. Checks that a GeneSet is bigger or equal to two genes.
 }}
 
 \examples{
+isTRUE(check(Info))
 data(sample.ExpressionSet)
 ai <- AnnotationIdentifier(annotation(sample.ExpressionSet))
 geneIds <- featureNames(sample.ExpressionSet)[100:109]
@@ -48,4 +49,6 @@ gs4 <- GeneSet(uprotIds, geneIdType=UniprotIdentifier())
 gsc <- GeneSetCollection(list(gs3, gs4))
 gsc
 \donttest{check(gsc)}
+geneIdType(Info)
+collectionType(Info)
 }

@@ -103,6 +103,8 @@ setGeneric("nPathways", function(object)
 #' all the GeneSets. Checks that a GeneSet is bigger or equal to two genes.
 #' @param object A GeneSetCollection
 #' @return A geneSetCollection
+#' @examples
+#' isTRUE(check(Info))
 #' @export
 setGeneric("check", function(object)
   standardGeneric("check"))
