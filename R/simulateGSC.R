@@ -130,7 +130,9 @@ fromGPP <- function(gpp) {
   gpp <- names_vec(gpp, "GS_")
   pathways <- names(gpp)
 
-  min_genes <- max(gpp)
+  nPaths <- length(gpp)
+
+  min_genes <- min(c(max(gpp), 10^(10/3*nPaths)))
 
   helper <- function(gpp, pathways){
     # For each pathway create a random group of genes
