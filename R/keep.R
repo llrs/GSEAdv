@@ -1,29 +1,82 @@
 # keep Methods that look for variations over a given GSC
 
-# Calculates the possibilities of swapping genes between pathways
-keep <- function(gsc){
- i <- incidence(gsc)
- shared <- i %*% t(i)
 
- gpp <- genesPerPathway(gsc)
- o <- abs(sweep(shared, 1, gpp))
- # unique genes https://stats.stackexchange.com/a/181979/105234
- # Add the unique genes of one triangle of the matrix to the upper triangle
- sing <- o[upper.tri(o)]+t(o)[upper.tri(t(o))]
 
- o2 <- as.data.frame(which(upper.tri(o), arr.ind = TRUE))
- o2$row <- colnames(o)[o2$row]
- o2$col <- colnames(o)[o2$col]
- o2$pathway1 <- gpp[o2$row]
- o2$pathway2 <- gpp[o2$col]
- o2$unique <- sing
 
- checking <- apply(o2[, c("pathway1", "pathway2")], 1, sum)
- if (any(sing > checking)) {
-   stop("Error unique genes greater than the genes present in both pathways")
- }
- o2 <- o2[o2$unique > 1, ]
- o2$pos <- choose(o2$unique, o2$pathway1)
- # o2
- sum(o2$pos)
+# x is the input matrix either genes x genes or pathways x pathways
+comb_symm_dif <- function(x, nDistr) {
+  # unique genes https://stats.stackexchange.com/a/358062/105234
+  pairwise <- as.data.frame(which(upper.tri(x), arr.ind = TRUE))
+  pairwise$row <- colnames(x)[pairwise$row]
+  pairwise$col <- colnames(x)[pairwise$col]
+  pairwise$size1 <- nDistr[pairwise$row]
+  pairwise$size2 <- nDistr[pairwise$col]
+  pairwise$shared <- x[upper.tri(x)]
+
+  pairwise$pos <- choose(pairwise$size1 + pairwise$size2 - 2*pairwise$shared, pairwise$size1 - pairwise$shared)
+  # sum(pairwise$pos)
+  pairwise[pairwise$pos != 0, ]
+  # pairwise
 }
+
+keepGPP <- function(gsc){
+  i <- incidence(gsc)
+  shared <- i %*% t(i)
+  gpp <- genesPerPathway(gsc)
+  comb_symm_dif(shared, gpp)
+}
+
+
+keepPPG <- function(gsc){
+  i <- incidence(gsc)
+  shared <- t(i) %*% i
+  ppg <- pathwaysPerGene(gsc)
+  comb_symm_dif(shared, ppg)
+}
+
+#' Estimate pathway per gene combinations
+#'
+#' Estimate the number of combinations that can lead to the current
+#' distribution of pathways per genes
+#' @return A numeric value
+estimatePPG <- function(gsc) {
+  double.factorial(pathwaysPerGene(gsc))
+}
+
+#' Estimate genes per pathway combinations
+#'
+#' Estimate the number of combinations that can lead to the current
+#' distribution of pathways per genes
+#' @return A numeric value
+estimateGPP <- function(gsc) {
+  double.factorial(genesPerPathway(gsc))
+}
+
+
+#' Double factorial
+#'
+#' Calculates the double factorial of the numbers, ie the product of all the
+#' numbers that appear in the pair position.
+#' @param x The number of which the double factorial is wanted
+#' @return The double factorial of the number
+#' @export
+#' @examples
+#' double.factorial(4)
+#' double.factorial(5)
+double.factorial <- function(x) {
+  if (!is.numeric(x)) {
+    x <- length(x)
+  }
+
+  # If pair get the odd value closer
+  if( x %% 2 == 0) {
+    x <- x -1
+  }
+
+  seq_total <- seq_len(x)
+
+  keep <- seq_total %% 2 == 1
+  prod(seq_total[keep])
+}
+
+
