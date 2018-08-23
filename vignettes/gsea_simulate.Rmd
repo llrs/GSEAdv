@@ -91,10 +91,12 @@ When using more information to the simulations it takes more time (as it is rand
  
 ```{r fromGPP}
 fromGPP(genesPerPathway(Info))
+fromPPG(pathwaysPerGene(Info))
 ```
 
-```{r fromPPG}
-fromPPG(pathwaysPerGene(Info))
+```{r from_n}
+fromPPG_nPathways(pathwaysPerGene(Info), nPathways(Info))
+fromGPP_nGenes(genesPerPathway(Info), nGenes(Info))
 ```
 
 # Side notes
