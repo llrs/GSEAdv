@@ -1,3 +1,14 @@
+#' Create a GeneSetCollection
+#'
+#' Using the genes and to how big pathways thye are associated together with
+#' the pathways and the number of genes each gene in the pathways is associated
+#' it creates a new pathway.
+#' @param sizeGenes A matrix result of \code{sizeGenes}
+#' @param sizePathways A matrix result of \code{sizePathways}
+#' @return A GeneSetCollection object
+#' @seealso
+#' \link{\code{sizeGenes}}, \link{\code{sizePathways}}
+#' @export
 fromSizeGenes_sizePathways <- function(sizeGenes, sizePathways) {
   # Check input
   stopifnot(sum(rowSums(sizeGenes)/as.numeric(rownames(sizeGenes))) == ncol(sizePathways))
