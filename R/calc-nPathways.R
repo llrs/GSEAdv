@@ -17,6 +17,7 @@ calc.nPathways <- function(nGenes){
 #' Given the number of pathways calculates the minimum number of possible genes
 #' @param nPathways Numeric value of number of pathways
 #' @return Numeric value of number of possible genes
+#' @export
 #' @examples
 #' calc.nGenes(6)
 calc.nGenes <- function(nPathways) {
