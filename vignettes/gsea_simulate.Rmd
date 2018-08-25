@@ -89,12 +89,12 @@ When using more information to the simulations it takes more time (as it is rand
  - there can't be duplicated gene sets (gene sets with the same genes)
  
  
-```{r fromGPP}
+```{r fromGPP, eval=FALSE, include=FALSE}
 fromGPP(genesPerPathway(Info))
 fromPPG(pathwaysPerGene(Info))
 ```
 
-```{r from_n}
+```{r from_n, eval=FALSE, include=FALSE}
 fromPPG_nPathways(pathwaysPerGene(Info), nPathways(Info))
 fromGPP_nGenes(genesPerPathway(Info), nGenes(Info))
 ```
