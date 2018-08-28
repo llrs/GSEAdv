@@ -26,12 +26,7 @@ modifyRel <- function(obj, gene, pathway) {
 
   paths2genes <- geneIds(obj)
   if (pathway %in% names(paths2genes)) {
-    if (gene %in% paths2genes[[pathway]]) {
-      match <- paths2genes[[pathway]] %in% gene
-      paths2genes[[pathway]] <- paths2genes[[pathway]][!match]
-    } else {
-      paths2genes[[pathway]] <- c(paths2genes[[pathway]], gene)
-    }
+    paths2genes <- helper_modify(paths2genes, pathway, gene)
   } else {
     warning("Impossible to add a new pathway with only one gene")
   }
@@ -44,14 +39,7 @@ modifyPathway <- function(obj, gene, pathway) {
   stopifnot(length(pathway) == 1)
 
   paths2genes <- geneIds(obj)
-  if (pathway %in% names(paths2genes)) {
-    match <- paths2genes[[pathway]] %in% gene
-    match2 <- gene %in% paths2genes[[pathway]]
-    paths2genes[[pathway]] <- paths2genes[[pathway]][!match]
-    paths2genes[[pathway]] <- c(paths2genes[[pathway]], gene[!match2])
-  } else {
-    paths2genes[[pathway]] <- gene
-  }
+  paths2genes <- helper_modify(paths2genes, pathway, gene)
   as(inverseList(paths2genes), "GeneSetCollection")
 }
 
@@ -63,13 +51,18 @@ modifyGene <- function(obj, gene, pathway) {
   paths2genes <- geneIds(obj)
   genes2paths <- inverseList(paths2genes)
 
-  if (gene %in% names(genes2paths)) {
-    match <- genes2paths[[gene]] %in% pathway
-    match2 <- pathway %in% genes2paths[[gene]]
-    genes2paths[[gene]] <- genes2paths[[gene]][!match]
-    genes2paths[[gene]] <- c(genes2paths[[gene]], pathway[!match2])
-  } else {
-    genes2paths[[gene]] <- pathway
-  }
+  genes2paths <- helper_modify(genes2paths, gene, pathway)
   as(genes2paths, "GeneSetCollection")
+}
+
+# Adds or removes values of a list
+helper_modify <- function(l, key, value) {
+  if (key %in% names(l)) {
+    keep <- l[[key]] %in% value # values to remove
+    remove <- value %in% l[[key]] #  values to keep
+    l[[key]] <- unique(c(l[[key]][!keep], value[!remove]))
+  } else {
+    l[[key]] <- value
+  }
+  l
 }
