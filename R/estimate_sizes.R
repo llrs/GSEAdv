@@ -30,8 +30,7 @@ estimate.nGenes <- function(gpp){
 #' estimate.nPathways(c(4, 5, 5, 5, 5, 5))
 estimate.nPathways <- function(ppg){
 
-  nGenes <- length(ppg)
-  max_paths <- calc.nPathways(nGenes)
-  min_paths <- max(ppg, na.rm = TRUE)
-  c(min_paths, max_paths)
+  min_path <- min(ppg)
+  max_path <- min(max(ppg), calc.nPathways(length(ppg)))
+  c(min_path, max_path)
 }
