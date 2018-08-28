@@ -11,8 +11,8 @@ inverseList <- function(x) {
 
 #' Convert to characters
 #'
-#' @param x A list with tags and values
-#' @return A list with two elements all the tags and all the values associated
+#' @param x A list with keys and values
+#' @return A list with two elements all the keys and all the values associated
 #' @author Lluís Revilla
 #' @keywords internal
 equalize <- function(x) {
