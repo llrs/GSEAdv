@@ -34,32 +34,26 @@ keepPPG <- function(gsc){
   comb_symm_dif(shared, ppg)
 }
 
-#' Estimate pathway per gene combinations
-#'
-#' Estimate the number of combinations that can lead to the current
-#' distribution of pathways per genes
-#' @param gsc GeneSetCollection
-#' @return A numeric value
+#' @describeIn combnPPG Estimate the combinations of pathways per gene
 #' @export
 #' @examples
-#' estimatePPG(Info)
-estimatePPG <- function(gsc) {
-  double.factorial(pathwaysPerGene(gsc))
-}
+#' combnPPG(Info)
+setMethod("combnPPG",
+          signature(object = "GeneSetCollection"),
+          function(object) {
+            double.factorial(nGenes(object))
+          })
 
-#' Estimate genes per pathway combinations
-#'
-#' Estimate the number of combinations that can lead to the current
-#' distribution of pathways per genes
-#' @return A numeric value
-#' @param gsc GeneSetCollection
+
+#' @describeIn combnGPP Estimate the combinations of genes per pathways
 #' @export
 #' @examples
-#' estimateGPP(Info)
-estimateGPP <- function(gsc) {
-  double.factorial(genesPerPathway(gsc))
-}
-
+#' combnGPP(Info)
+setMethod("combnGPP",
+          signature(object = "GeneSetCollection"),
+          function(object) {
+            double.factorial(nPathways(object))
+          })
 
 #' Double factorial
 #'
@@ -77,7 +71,7 @@ double.factorial <- function(x) {
   }
 
   # If pair get the odd value closer
-  if( x %% 2 == 0) {
+  if ( x %% 2 == 0) {
     x <- x -1
   }
 
