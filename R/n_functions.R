@@ -3,7 +3,7 @@
 setMethod("nGenes",
           signature(object = "GeneSetCollection"),
           function(object) {
-            length(unique(unlist(geneIds(object), use.names = FALSE)))
+            nUnique(unlist(geneIds(object), use.names = FALSE))
           }
 )
 
