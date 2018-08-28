@@ -7,9 +7,9 @@
 fromSizeGenes_sizePathways(sizeGenes, sizePathways)
 }
 \arguments{
-\item{sizeGenes}{A matrix result of \code{sizeGenes}}
+\item{sizeGenes}{A matrix result of \code{sizeGenes}.}
 
-\item{sizePathways}{A matrix result of \code{sizePathways}}
+\item{sizePathways}{A matrix result of \code{sizePathways}.}
 }
 \value{
 A GeneSetCollection object
@@ -20,5 +20,5 @@ the pathways and the number of genes each gene in the pathways is associated
 it creates a new pathway.
 }
 \seealso{
-\link{\code{sizeGenes}}, \link{\code{sizePathways}}
+\code{\link{sizeGenes}}, \code{\link{sizePathways}}
 }

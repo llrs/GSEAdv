@@ -38,7 +38,11 @@ keepPPG <- function(gsc){
 #'
 #' Estimate the number of combinations that can lead to the current
 #' distribution of pathways per genes
+#' @param gsc GeneSetCollection
 #' @return A numeric value
+#' @export
+#' @examples
+#' estimatePPG(Info)
 estimatePPG <- function(gsc) {
   double.factorial(pathwaysPerGene(gsc))
 }
@@ -48,6 +52,10 @@ estimatePPG <- function(gsc) {
 #' Estimate the number of combinations that can lead to the current
 #' distribution of pathways per genes
 #' @return A numeric value
+#' @param gsc GeneSetCollection
+#' @export
+#' @examples
+#' estimateGPP(Info)
 estimateGPP <- function(gsc) {
   double.factorial(genesPerPathway(gsc))
 }

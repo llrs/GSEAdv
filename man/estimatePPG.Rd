@@ -6,10 +6,16 @@
 \usage{
 estimatePPG(gsc)
 }
+\arguments{
+\item{gsc}{GeneSetCollection}
+}
 \value{
 A numeric value
 }
 \description{
 Estimate the number of combinations that can lead to the current
 distribution of pathways per genes
+}
+\examples{
+estimatePPG(Info)
 }
