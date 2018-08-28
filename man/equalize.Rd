@@ -7,10 +7,10 @@
 equalize(x)
 }
 \arguments{
-\item{x}{A list with tags and values}
+\item{x}{A list with keys and values}
 }
 \value{
-A list with two elements all the tags and all the values associated
+A list with two elements all the keys and all the values associated
 }
 \description{
 Convert to characters

@@ -8,17 +8,11 @@ setMethod("drop",
 
             paths2genes <- geneIds(object)
 
-            if (is(pathway, "character")) {
-              remove <- names(paths2genes) %in% pathway
-              genes2paths <- inverseList(paths2genes[!remove])
-            } else {
-              genes2paths <- inverseList(paths2genes)
-            }
+            remove <- names(paths2genes) %in% pathway
+            genes2paths <- inverseList(paths2genes[!remove])
 
-            if (is(gene, "character")) {
-              remove <- names(genes2paths) %in% gene
-              genes2paths <- genes2paths[!remove]
-            }
+            remove <- names(genes2paths) %in% gene
+            genes2paths <- genes2paths[!remove]
 
             # Return a GeneSetCollection
             as(genes2paths, "GeneSetCollection")

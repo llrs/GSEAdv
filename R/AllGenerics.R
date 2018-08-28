@@ -314,3 +314,27 @@ setGeneric("sizesPerPathway", function(object, pathways)
 #' @export genesPerGene
 setGeneric("genesPerGene", function(object, genes, unique = TRUE)
   standardGeneric("genesPerGene"))
+
+
+#' The combinations of genes per pathways
+#'
+#' The number of combinations that can lead to the current
+#' distribution of genes per pathway
+#' @return A numeric value
+#' @param object A \code{GeneSetCollection}
+#' @seealso  \code{\link{estimatePPG}}
+#' @export combnGPP
+setGeneric("combnGPP", function(object)
+  standardGeneric("combnGPP"))
+
+#' The combinations of pathways per gene
+#'
+#' The number of combinations that can lead to the current
+#' distribution of pathways per genes
+#' @param object A \code{GeneSetCollection}
+#' @return A numeric value
+#' @author Lluís Revilla Sancho
+#' @seealso  \code{\link{estimateGPP}}
+#' @export combnPPG
+setGeneric("combnPPG", function(object)
+  standardGeneric("combnPPG"))

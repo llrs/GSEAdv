@@ -1,4 +1,4 @@
-
+# TODO: Add a helper function
 
 #' @describeIn gene Calculates statistics for a single gene
 #' @export
