@@ -5,9 +5,9 @@
 #' Given the number of genes calculates the number of possible pathways
 #' @param nGenes Numeric value of number of genes
 #' @return Numeric value of number of possible pathways
+#' @export
 #' @examples
 #' calc.nPathways(6)
-#' @export
 calc.nPathways <- function(nGenes){
   sum(vapply(seq_len(nGenes), choose, n = nGenes, numeric(1L)))-1
 }
