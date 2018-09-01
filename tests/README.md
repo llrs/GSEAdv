@@ -1,6 +1,6 @@
 Tests and Coverage
 ================
-27 agosto, 2018 16:18:22
+01 septiembre, 2018 16:02:29
 
 -   [Coverage](#coverage)
 -   [Unit Tests](#unit-tests)
@@ -14,7 +14,7 @@ Coverage summary is created using the [covr](https://github.com/r-lib/covr) pack
 
 | Object                                                               | Coverage (%) |
 |:---------------------------------------------------------------------|:------------:|
-| GSEAdv                                                               |     77.33    |
+| GSEAdv                                                               |     76.85    |
 | [R/completness.R](../R/completness.R)                                |     0.00     |
 | [R/expand.R](../R/expand.R)                                          |     0.00     |
 | [R/summary.R](../R/summary.R)                                        |     0.00     |
@@ -25,16 +25,16 @@ Coverage summary is created using the [covr](https://github.com/r-lib/covr) pack
 | [R/keep.R](../R/keep.R)                                              |     72.00    |
 | [R/simulate2GSC.R](../R/simulate2GSC.R)                              |     78.38    |
 | [R/fromSizeGenes\_sizePathways.R](../R/fromSizeGenes_sizePathways.R) |     78.57    |
+| [R/AllGenerics.R](../R/AllGenerics.R)                                |     82.22    |
 | [R/as\_GeneSetCollection.R](../R/as_GeneSetCollection.R)             |     83.33    |
 | [R/sizesPer.R](../R/sizesPer.R)                                      |     86.11    |
-| [R/AllGenerics.R](../R/AllGenerics.R)                                |     90.24    |
 | [R/genesPerGene.R](../R/genesPerGene.R)                              |     90.32    |
 | [R/cond.R](../R/cond.R)                                              |     90.91    |
 | [R/fromSizePathways.R](../R/fromSizePathways.R)                      |     92.50    |
 | [R/add.R](../R/add.R)                                                |     92.59    |
 | [R/pathway.R](../R/pathway.R)                                        |     94.64    |
-| [R/remove.R](../R/remove.R)                                          |     95.65    |
 | [R/nested.R](../R/nested.R)                                          |     97.14    |
+| [R/remove.R](../R/remove.R)                                          |     97.67    |
 | [R/duplicated.R](../R/duplicated.R)                                  |    100.00    |
 | [R/estimate\_sizes.R](../R/estimate_sizes.R)                         |    100.00    |
 | [R/fromSizeGenes.R](../R/fromSizeGenes.R)                            |    100.00    |
@@ -55,29 +55,29 @@ Unit Test summary is created using the [testthat](https://github.com/r-lib/testt
 
 |                             | file                                                               |    n|   time|  error|  failed|  skipped|  warning|
 |-----------------------------|:-------------------------------------------------------------------|----:|------:|------:|-------:|--------:|--------:|
-| test\_add.R                 | [test\_add.R](testthat/test_add.R)                                 |    0|  0.003|      3|       0|        0|        0|
+| test\_add.R                 | [test\_add.R](testthat/test_add.R)                                 |    0|  0.038|      3|       0|        0|        0|
 | test\_asGeneSetCollection.R | [test\_asGeneSetCollection.R](testthat/test_asGeneSetCollection.R) |    0|  0.003|      2|       0|        0|        0|
-| test\_calcnPathways.R       | [test\_calcnPathways.R](testthat/test_calcnPathways.R)             |    0|  0.001|      1|       0|        0|        0|
-| test\_check.R               | [test\_check.R](testthat/test_check.R)                             |    0|  0.001|      1|       0|        0|        0|
-| test\_completness.R         | [test\_completness.R](testthat/test_completness.R)                 |    0|  0.009|      1|       0|        0|        0|
-| test\_condPer.R             | [test\_condPer.R](testthat/test_condPer.R)                         |    0|  0.005|      4|       0|        0|        0|
+| test\_calcnPathways.R       | [test\_calcnPathways.R](testthat/test_calcnPathways.R)             |    0|  0.003|      1|       0|        0|        0|
+| test\_check.R               | [test\_check.R](testthat/test_check.R)                             |    0|  0.004|      1|       0|        0|        0|
+| test\_completness.R         | [test\_completness.R](testthat/test_completness.R)                 |    0|  0.004|      1|       0|        0|        0|
+| test\_condPer.R             | [test\_condPer.R](testthat/test_condPer.R)                         |    0|  0.012|      4|       0|        0|        0|
 
 <details open> <summary> Show Detailed Test Results </summary>
 
 | file                                                                   | context                                  | test                     | status |    n|   time|
 |:-----------------------------------------------------------------------|:-----------------------------------------|:-------------------------|:-------|----:|------:|
-| [test\_add.R](testthat/test_add.R#L4)                                  | Testing adding method                    | gene as character        | ERROR  |    0|  0.001|
-| [test\_add.R](testthat/test_add.R#L15)                                 | Testing adding method                    | pathway as character     | ERROR  |    0|  0.001|
-| [test\_add.R](testthat/test_add.R#L31_L33)                             | Testing adding method                    | pathway as character     | ERROR  |    0|  0.001|
+| [test\_add.R](testthat/test_add.R#L4)                                  | Testing adding method                    | gene as character        | ERROR  |    0|  0.019|
+| [test\_add.R](testthat/test_add.R#L15)                                 | Testing adding method                    | pathway as character     | ERROR  |    0|  0.016|
+| [test\_add.R](testthat/test_add.R#L31_L33)                             | Testing adding method                    | pathway as character     | ERROR  |    0|  0.003|
 | [test\_asGeneSetCollection.R](testthat/test_asGeneSetCollection.R#L5)  | Testing list to GeneSetCollection method | info                     | ERROR  |    0|  0.002|
 | [test\_asGeneSetCollection.R](testthat/test_asGeneSetCollection.R#L14) | Testing list to GeneSetCollection method | as.GeneSetCollection     | ERROR  |    0|  0.001|
-| [test\_calcnPathways.R](testthat/test_calcnPathways.R#L6)              | calc.nPathways                           | works                    | ERROR  |    0|  0.001|
-| [test\_check.R](testthat/test_check.R#L4)                              | Testing check-GSC methods                | isolation                | ERROR  |    0|  0.001|
-| [test\_completness.R](testthat/test_completness.R#L9)                  | Testing utilities method                 | completness              | ERROR  |    0|  0.009|
-| [test\_condPer.R](testthat/test_condPer.R#L5)                          | Testing cond\* method                    | condPerGenes missing     | ERROR  |    0|  0.001|
+| [test\_calcnPathways.R](testthat/test_calcnPathways.R#L6)              | calc.nPathways                           | works                    | ERROR  |    0|  0.003|
+| [test\_check.R](testthat/test_check.R#L4)                              | Testing check-GSC methods                | isolation                | ERROR  |    0|  0.004|
+| [test\_completness.R](testthat/test_completness.R#L9)                  | Testing utilities method                 | completness              | ERROR  |    0|  0.004|
+| [test\_condPer.R](testthat/test_condPer.R#L5)                          | Testing cond\* method                    | condPerGenes missing     | ERROR  |    0|  0.002|
 | [test\_condPer.R](testthat/test_condPer.R#L14)                         | Testing cond\* method                    | condPerGenes specific    | ERROR  |    0|  0.002|
-| [test\_condPer.R](testthat/test_condPer.R#L23)                         | Testing cond\* method                    | condPerPathways missing  | ERROR  |    0|  0.001|
-| [test\_condPer.R](testthat/test_condPer.R#L33)                         | Testing cond\* method                    | condPerPathways specific | ERROR  |    0|  0.001|
+| [test\_condPer.R](testthat/test_condPer.R#L23)                         | Testing cond\* method                    | condPerPathways missing  | ERROR  |    0|  0.006|
+| [test\_condPer.R](testthat/test_condPer.R#L33)                         | Testing cond\* method                    | condPerPathways specific | ERROR  |    0|  0.002|
 
 </details>
 
