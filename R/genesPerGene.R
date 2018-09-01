@@ -15,7 +15,7 @@ setMethod("genesPerGene",
               # Substract itself from the count
               genes - 1
               } else {
-                genes <- nUnique(pathways2genes[y], use.names = FALSE)
+                genes <- length(unlist(pathways2genes[y], use.names = FALSE))
                 # Substract itself from the count
                 genes - length(y)
               }
@@ -52,7 +52,7 @@ setMethod("genesPerGene",
               genes <- genes[genes %in% names(genes2pathways)]
               genesPer <- function(y) {
                 if (unique) {
-                  genes <- length(unique(unlist(pathways2genes[y], use.names = FALSE)))
+                  genes <- nUnique(unlist(pathways2genes[y], use.names = FALSE))
                   # Substract itself from the count
                   genes - 1
                 } else {
