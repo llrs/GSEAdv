@@ -38,16 +38,15 @@ install.packages(".", repos = NULL)
 ```
 
 
-It is an R package you can install it from the Bioconductor project with:
+It is an R package you will be able to install it from the Bioconductor project with:
 
 ```{r Bioc-installation, eval = FALSE}
-## try http:// if https:// URLs are not supported
-## source("https://bioconductor.org/biocLite.R")
-## biocLite("GSEAdv")
+## install.packages("BiocManager") 
+BiocManager::install("GSEAdv")
 ```
 You can install this version of *GSEAdv* with:
 ```{r gh-installation, eval = FALSE}
-## library("devtools")
+## install.packages("devtools")
 devtools::install_github("llrs/GSEAdv")
 ```
 

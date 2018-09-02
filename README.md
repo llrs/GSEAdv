@@ -14,18 +14,17 @@ And provides methods to understand the relationships between each property of th
 Installation
 ------------
 
-It is an R package you can install it from the Bioconductor project with:
+It is an R package you will be able to install it from the Bioconductor project with:
 
 ``` r
-## try http:// if https:// URLs are not supported
-## source("https://bioconductor.org/biocLite.R")
-## biocLite("GSEAdv")
+## install.packages("BiocManager") 
+BiocManager::install("GSEAdv")
 ```
 
 You can install this version of *GSEAdv* with:
 
 ``` r
-## library("devtools")
+## install.packages("devtools")
 devtools::install_github("llrs/GSEAdv")
 ```
 
@@ -48,13 +47,12 @@ gss
 ##     collectionType: BroadCollection (1 total)
 summary(gss)
 ## Genes: 215
-##  Gene in more pathways:1 pathways
+##  Gene in more pathways: 1 pathways
 ##  h-index: 0 genes with at least 0 pathways.
 ## Pathways: 2
-##  Biggest pathway: 129genes
-##  h-index: 1p athways with at least 1 genes.
+##  Biggest pathway: 129 genes
+##  h-index: 1 pathways with at least 1 genes.
 ## All genes in a single gene set.
-## Some gene set have all genes not present in other gene sets
 ```
 
 Which tells us that each gene in the GeneSetCollection is only on one gene set.
@@ -64,11 +62,11 @@ We can try with a bigger dataset, one derived from human genes pathways in KEGG:
 ``` r
 summary(genesKegg)
 ## Genes: 5869
-##  Gene in more pathways:51 pathways
+##  Gene in more pathways: 51 pathways
 ##  h-index: 0 genes with at least 0 pathways.
 ## Pathways: 228
-##  Biggest pathway: 1130genes
-##  h-index: 15p athways with at least 15 genes.
+##  Biggest pathway: 1130 genes
+##  h-index: 15 pathways with at least 15 genes.
 ## IC(genesPerPathway): 6.65 ( 0.96 of the maximum)
 ## IC(pathwaysPerGene): 2.47 ( 0.48 of the maximum)
 ```
