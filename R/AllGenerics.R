@@ -322,7 +322,7 @@ setGeneric("genesPerGene", function(object, genes, unique = TRUE)
 #' distribution of genes per pathway
 #' @return A numeric value
 #' @param object A \code{GeneSetCollection}
-#' @seealso  \code{\link{estimatePPG}}
+#' @seealso  \code{\link{combnPPG}}
 #' @export combnGPP
 setGeneric("combnGPP", function(object)
   standardGeneric("combnGPP"))
@@ -334,7 +334,7 @@ setGeneric("combnGPP", function(object)
 #' @param object A \code{GeneSetCollection}
 #' @return A numeric value
 #' @author Lluís Revilla Sancho
-#' @seealso  \code{\link{estimateGPP}}
+#' @seealso  \code{\link{combnGPP}}
 #' @export combnPPG
 setGeneric("combnPPG", function(object)
   standardGeneric("combnPPG"))

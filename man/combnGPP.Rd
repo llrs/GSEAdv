@@ -29,5 +29,5 @@ distribution of genes per pathway
 combnGPP(Info)
 }
 \seealso{
-\code{\link{estimatePPG}}
+\code{\link{combnPPG}}
 }

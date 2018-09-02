@@ -29,7 +29,7 @@ distribution of pathways per genes
 combnPPG(Info)
 }
 \seealso{
-\code{\link{estimateGPP}}
+\code{\link{combnGPP}}
 }
 \author{
 Lluís Revilla Sancho
