@@ -1,7 +1,7 @@
 Package: GSEAdv
 Type: Package
 Title: Analyze Gene Sets Properites 
-Version: 0.0.9
+Version: 0.0.10
 Author@R: person("Lluís Revilla Sancho", email = "lluis.revilla@gmail.com",
                   role = c("aut", "cre"),
                   comment = c(ORCID = "0000-0001-9747-2570"))
