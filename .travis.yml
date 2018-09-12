@@ -3,15 +3,6 @@
 language: R
 sudo: false
 cache: packages
-r_packages:
-  - devtools
-  - covr
-  - roxygen2
-bioc_packages:
-  - org.Hs.eg.db
-  - reactome.db
-  - BiocCheck
-  - BiocStyle
 before_install:
   Rscript -e 'update.packages(ask = FALSE)'
 after_success:
