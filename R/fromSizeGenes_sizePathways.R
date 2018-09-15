@@ -1,6 +1,6 @@
 #' Create a GeneSetCollection
 #'
-#' Using the genes and to how big pathways thye are associated together with
+#' Using the genes and how big the pathways are associated together with
 #' the pathways and the number of genes each gene in the pathways is associated
 #' it creates a new pathway.
 #' @param sizeGenes A matrix result of \code{sizeGenes}.

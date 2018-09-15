@@ -68,7 +68,7 @@ This might mean that some pathways are duplicated. To check this there is the fu
 ```{r}
 duplicatedPathways(Info)
 ```
-And conversively the `duplicatedGenes` function, checks if some genes are described as the same combination of pathways :
+And conversely the `duplicatedGenes` function, checks if some genes are described as the same combination of pathways :
 ```{r}
 duplicatedGenes(Info)
 
@@ -84,7 +84,7 @@ isolation(Info)
 
 # Relationships between number of genes per pathway and number of pathways per gene
 
-To see what is the conditional probability between the number of pathways gene in n number of pathways are involved $P( pathways_{genes} | genes_{pathway} )$ there is the function `condPerGene`. While the oposite $P( genes_{pathway} | pathways_{genes} )$) can be done with `condPerPathways`
+To see what is the conditional probability between the number of pathways gene in n number of pathways are involved $P( pathways_{genes} | genes_{pathway} )$ there is the function `condPerGene`. While the opposite $P( genes_{pathway} | pathways_{genes} )$) can be done with `condPerPathways`
 ```{r condPer}
 condPerGenes(Info)
 condPerPathways(Info)

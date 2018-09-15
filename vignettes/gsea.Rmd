@@ -49,11 +49,11 @@ or from Bioconductor for a stable release:
 
 # Semantics
 
-Thorough the vignettes and the help page a group of genes is both refered as gene sets or as pathways. A pathway or a gene set is defined as a group of genes (more than one) which can't contain twice the same gene. 
+Thorough the vignettes and the help page a group of genes is both referred as gene sets or as pathways. A pathway or a gene set is defined as a group of genes (more than one) which can't contain twice the same gene. 
 
 Also all the genes should use the same identifier type, Entrez, or a Symbol or Ensembl.
 
-In order of doing this there is a function `check` that checks if the `GeneSetCollection` adhers to this principles:
+In order of doing this there is a function `check` that checks if the `GeneSetCollection` comply to this principles:
 
 ```{r check}
 fl <- system.file("extdata", "Broad.xml", package = "GSEABase")

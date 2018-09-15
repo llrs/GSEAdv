@@ -20,7 +20,7 @@ estimate.nGenes <- function(gpp){
 
 #' Estimate range of pathways
 #'
-#' For a given vector of pathays per gene it calculcates how many pathways are
+#' For a given vector of pathways per gene it calculates how many pathways are
 #' possible. Note, the minimum is always 1
 #' @param ppg A numeric vector of pathways per genes
 #' @return The range of possible number of pathways.

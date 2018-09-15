@@ -64,7 +64,7 @@ drop(gss, gene = 5) # 5 random genes
 drop(gss, pathway = "chr5q23", gene = c("AFG3L1", "ANKRD11"))
 drop(Info, pathway = "1430728", gene = c("10", "9"))
 ```
-Dropping by number is aimed to make it possible to bootstrap with different `GeneSetCollections`  comming from the same original one. 
+Dropping by number is aimed to make it possible to bootstrap with different `GeneSetCollections`  coming from the same original one. 
 
 # Simulating 
 

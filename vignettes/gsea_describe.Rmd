@@ -32,7 +32,7 @@ library("GSEAdv")
 
 This vignette assumes that the reader is familiar with the infraestructure build in Bioconductor around gene sets, mainly `r Biocpkg("GSEABase")`. It provides examples of how to use the package to find the relationships between genes and gene sets.
 
-A `GeneSetCollection` is a collection of `GeneSet`s wchich can be totally unrelated or, as expected, related between them. All the over representative analysis (ORA), such as the hypergeometric test or chi-square test) assume that each gene is independent of other genes. This vignette shows how to check and describe the relationship between the genes and the gene sets to improve existing tools testing over-representation.
+A `GeneSetCollection` is a collection of `GeneSet`s which can be totally unrelated or, as expected, related between them. All the over representative analysis (ORA), such as the hypergeometric test or chi-square test) assume that each gene is independent of other genes. This vignette shows how to check and describe the relationship between the genes and the gene sets to improve existing tools testing over-representation.
 
 # Preparation
 
@@ -51,7 +51,7 @@ With `r Biocpkg("GSEABase")` we can see what the collection has but we don't kno
 ```{r, summary}
 summary(gss)
 ```
-This provide us with some information we already knew, like the number of gnes and pathways but also the biggest pathway, and that all genes are in a single gene set.
+This provide us with some information we already knew, like the number of genes and pathways but also the biggest pathway, and that all genes are in a single gene set.
 
 As a `GeneSetCollection` is a collection of gene sets, we can see how many genes are for each gene sets. If the number of genes in all the gene sets is greater than the number of genes in the `GeneSetCollection` then there are some genes in several gene sets breaking the independence between gene sets.
 
@@ -60,7 +60,7 @@ gpp <- genesPerPathway(gss)
 gpp
 ```
 
-Here genesPerPathways returns the number of genes each pathway have, thus adding them will summarize the total number of genes if they are not duplicated. If they are whe have the method `nGenes`, which return  `r nGenes(gss)` genes in both pathways.
+Here genesPerPathways returns the number of genes each pathway have, thus adding them will summarize the total number of genes if they are not duplicated. If they are duplicated, we have the method `nGenes`, which return  `r nGenes(gss)` genes in both pathways.
 
 We can retrieve in how many pathways each gene is :
 
@@ -68,7 +68,7 @@ We can retrieve in how many pathways each gene is :
 ppg <- pathwaysPerGene(gss)
 head(ppg)
 ```
-As expected all the genes `all(ppg == 1)` are in a single gene set. If genes would be repeated in several pathways we could use the `nPathways` method wich returns what we knew, that there are `r nPathways(gss)` pathways in total.
+As expected all the genes `all(ppg == 1)` are in a single gene set. If genes would be repeated in several pathways we could use the `nPathways` method which returns what we knew, that there are `r nPathways(gss)` pathways in total.
 We can also test if gene sets are independent from each other with `independence()`, in this case: `r independence(gss)`.
 
 We can also check if there are duplicated genes (genes that are exactly in the same pathways), and duplicated pathways (pathways with the same genes)
