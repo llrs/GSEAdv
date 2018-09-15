@@ -1,7 +1,8 @@
 context("keep.R")
 
-test_that("keepGPP works", {
-
+test_that("keepPPG works", {
+  out <- keepPPG(Info)
+  expect_equal(ncol(out), 6L)
 })
 
 test_that("keepGPP works", {
