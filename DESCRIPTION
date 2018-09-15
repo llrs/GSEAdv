@@ -1,17 +1,18 @@
-Package: GSEAdv
 Type: Package
-Title: Analyze Gene Sets Properites 
+Package: GSEAdv
+Title: Analyze Gene Sets Collections Properites
 Version: 0.0.11
-Author@R: person("Lluís Revilla Sancho", email = "lluis.revilla@gmail.com",
-                  role = c("aut", "cre"),
-                  comment = c(ORCID = "0000-0001-9747-2570"))
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
-License: GPL-3
-Encoding: UTF-8
-LazyData: true
-biocViews: GeneSetEnrichment, Software, StatisticalMethod, Bayesian
-Suggests: 
+Description: Provides methods for analysing and creating GeneSetCollection.
+License: MIT + file LICENSE
+URL: https://github.com/llrs/GSEAdv/
+BugReports: https://github.com/llrs/GSEAdv/issues
+Depends:
+    R (>= 2.10),
+    GSEABase,
+    methods
+Imports:
+    stats
+Suggests:
     testthat,
     knitr,
     rmarkdown,
@@ -19,14 +20,14 @@ Suggests:
     covr,
     fitdistrplus,
     BiocStyle
-BugReports: https://github.com/llrs/GSEAdv/issues
-URL: https://github.com/llrs/GSEAdv/
+VignetteBuilder:
+    knitr
+Author@R: person("Lluís Revilla Sancho", email =
+    "lluis.revilla@gmail.com", role = c("aut", "cre"), comment = c(ORCID =
+    "0000-0001-9747-2570"))
+biocViews: GeneSetEnrichment, Software, StatisticalMethod,
+    Bayesian
+Encoding: UTF-8
+LazyData: true
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 6.0.1
-Depends:
-    R (>= 2.10),
-    GSEABase,
-    methods
-VignetteBuilder: knitr
-Imports: 
-    stats
