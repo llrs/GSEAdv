@@ -44,7 +44,9 @@ gss <- getBroadSets(fl)
 gss
 ```
 
-We can see what the collection has but we don't know what is the relationship between genes and gene sets. A first approach would be to use summary to find more information about that relationship:
+# New methods
+
+With `r Biocpkg("GSEABase")` we can see what the collection has but we don't know what is the relationship between genes and gene sets. A first approach would be to use summary to find more information about that relationship:
 
 ```{r, summary}
 summary(gss)
