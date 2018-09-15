@@ -2,7 +2,14 @@ Type: Package
 Package: GSEAdv
 Title: Analyze Gene Sets Collections Properites
 Version: 0.0.11
-Description: Provides methods for analysing and creating GeneSetCollection.
+Authors@R: 
+    person(given = "Lluís",
+           family = "Revilla Sancho",
+           role = c("aut", "cre"),
+           email = "lluis.revilla@gmail.com",
+           comment = c(ORCID = "0000-0001-9747-2570"))
+Description: Provides methods for analysing and creating
+    GeneSetCollection.
 License: MIT + file LICENSE
 URL: https://github.com/llrs/GSEAdv/
 BugReports: https://github.com/llrs/GSEAdv/issues
@@ -19,15 +26,14 @@ Suggests:
     ggplot2,
     covr,
     fitdistrplus,
-    BiocStyle
+    BiocStyle,
+    spelling
 VignetteBuilder:
     knitr
-Author@R: person("Lluís Revilla Sancho", email =
-    "lluis.revilla@gmail.com", role = c("aut", "cre"), comment = c(ORCID =
-    "0000-0001-9747-2570"))
 biocViews: GeneSetEnrichment, Software, StatisticalMethod,
     Bayesian
 Encoding: UTF-8
+Language: en-US
 LazyData: true
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 6.0.1
+RoxygenNote: 6.1.0
