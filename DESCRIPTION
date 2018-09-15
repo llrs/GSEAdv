@@ -5,8 +5,6 @@ Version: 0.0.10
 Author@R: person("Lluís Revilla Sancho", email = "lluis.revilla@gmail.com",
                   role = c("aut", "cre"),
                   comment = c(ORCID = "0000-0001-9747-2570"))
-Author: Lluís Revilla Sancho <lluis.revilla@gmail.com>
-Maintainer: Lluís Revilla Sancho <lluis.revilla@gmail.com>
 Description: More about what it does (maybe more than one line)
     Use four spaces when indenting paragraphs within the Description.
 License: GPL-3
