@@ -13,7 +13,8 @@
 \usage{
 drop(object, gene, pathway)
 
-\S4method{drop}{GeneSetCollection,character,character}(object, gene, pathway)
+\S4method{drop}{GeneSetCollection,character,character}(object, gene,
+  pathway)
 
 \S4method{drop}{GeneSetCollection,missing,character}(object, pathway)
 

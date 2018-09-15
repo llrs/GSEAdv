@@ -8,7 +8,8 @@
 \usage{
 dropRel(object, gene, pathway)
 
-\S4method{dropRel}{GeneSetCollection,character,character}(object, gene, pathway)
+\S4method{dropRel}{GeneSetCollection,character,character}(object, gene,
+  pathway)
 }
 \arguments{
 \item{object}{A GeneSetCollection object.}

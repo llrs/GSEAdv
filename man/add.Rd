@@ -8,8 +8,8 @@
 \usage{
 add(object, gene, pathway)
 
-\S4method{add}{GeneSetCollection,character,character}(object, gene = NULL,
-  pathway = NULL)
+\S4method{add}{GeneSetCollection,character,character}(object,
+  gene = NULL, pathway = NULL)
 }
 \arguments{
 \item{object}{A GeneSetCollection}

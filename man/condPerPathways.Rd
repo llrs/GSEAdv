@@ -11,7 +11,8 @@ condPerPathways(object, pathwaysPerGene)
 
 \S4method{condPerPathways}{GeneSetCollection,missing}(object)
 
-\S4method{condPerPathways}{GeneSetCollection,numeric}(object, pathwaysPerGene)
+\S4method{condPerPathways}{GeneSetCollection,numeric}(object,
+  pathwaysPerGene)
 }
 \arguments{
 \item{object}{A GeneSetCollection}
