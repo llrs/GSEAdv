@@ -2,7 +2,7 @@ Type: Package
 Package: GSEAdv
 Title: Analyze Gene Sets Collections Properites
 Version: 0.0.11
-Authors@R: 
+Authors@R:
     person(given = "Lluís",
            family = "Revilla Sancho",
            role = c("aut", "cre"),
