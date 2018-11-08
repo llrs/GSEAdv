@@ -338,3 +338,17 @@ setGeneric("combnGPP", function(object)
 #' @export combnPPG
 setGeneric("combnPPG", function(object)
   standardGeneric("combnPPG"))
+
+#' Adjacency of the genes in GeneSetCollections
+#'
+#' An adjacency matrix summarizes the connection between  genes.
+#' The diagonal is set to 1.
+#' @param object A \code{GeneSetCollection}
+#' @return A matrix
+#' @author Lluís Revilla Sancho
+#' @seealso \link[GSEABase]{incidence}
+#' @export adjacency
+#' @examples
+#' adjacency(Info)
+setGeneric("adjacency", function(object)
+  standardGeneric("adjacency"))
