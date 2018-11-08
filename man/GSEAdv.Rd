@@ -7,7 +7,7 @@
 \title{GSEAdv: A package for analyzing gene sets.}
 \description{
 The GSEAdv package provides methods enhancing the GSEABase package. Mainly it
-address thre points related to GeneSetCollections, describe, analyze, and
+address three points related to GeneSetCollections, describe, analyze, and
 simulate them. Each one has a specific vignette.
 }
 \section{GSEAdv methods}{

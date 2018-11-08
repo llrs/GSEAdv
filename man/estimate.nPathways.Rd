@@ -13,7 +13,7 @@ estimate.nPathways(ppg)
 The range of possible number of pathways.
 }
 \description{
-For a given vector of pathays per gene it calculcates how many pathways are
+For a given vector of pathways per gene it calculates how many pathways are
 possible. Note, the minimum is always 1
 }
 \note{
