@@ -4,7 +4,7 @@
 \alias{adjacency}
 \title{Adjacency of the genes in GeneSetCollections}
 \usage{
-adjacency(object, diag)
+adjacency(object)
 }
 \arguments{
 \item{object}{A \code{GeneSetCollection}}
@@ -14,6 +14,10 @@ A matrix
 }
 \description{
 An adjacency matrix summarizes the connection between  genes.
+The diagonal is set to 1.
+}
+\examples{
+adjacency(Info)
 }
 \seealso{
 \link[GSEABase]{incidence}
