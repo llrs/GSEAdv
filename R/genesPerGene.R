@@ -2,7 +2,7 @@
 #' @examples
 #' genesPerGene(Info)
 #' genesPerGene(Info, unique = FALSE)
-#'  genesPerGene(Info, unique = )
+#' genesPerGene(Info, unique = TRUE)
 setMethod("genesPerGene",
           signature(object = "GeneSetCollection", genes = "missing", unique = "ANY"),
           function(object, unique = TRUE){

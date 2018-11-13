@@ -37,7 +37,7 @@ How many genes of different length a pathway is involved in.
 \examples{
 genesPerGene(Info)
 genesPerGene(Info, unique = FALSE)
- genesPerGene(Info, unique = )
+genesPerGene(Info, unique = TRUE)
 genesPerGene(Info, "10")
 genesPerGene(Info, "10", unique = FALSE)
 }
