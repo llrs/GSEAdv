@@ -9,6 +9,6 @@ test_that("nEdges works", {
 })
 
 
-test_that("edges works", {
+test_that("edges and nEdges match", {
   expect_equal(nEdges(Info), nrow(edges(Info)))
 })
