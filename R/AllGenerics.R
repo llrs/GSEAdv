@@ -9,7 +9,7 @@
 #' @export as.GeneSetCollection
 #' @seealso \code{\link[GSEABase]{GeneSetCollection}}
 setGeneric("as.GeneSetCollection", function(object, ...)
-  standardGeneric("as.GeneSetCollection")
+ standardGeneric("as.GeneSetCollection")
 )
 
 #' Pathways per gene
@@ -23,7 +23,7 @@ setGeneric("as.GeneSetCollection", function(object, ...)
 #' @export pathwaysPerGene
 #' @seealso \code{\link{genesPerPathway}}
 setGeneric("pathwaysPerGene", function(object, genes) {
-  standardGeneric("pathwaysPerGene")
+ standardGeneric("pathwaysPerGene")
 })
 
 #' Genes per pathway
@@ -36,7 +36,7 @@ setGeneric("pathwaysPerGene", function(object, genes) {
 #' @export genesPerPathway
 #' @seealso \code{\link{pathwaysPerGene}}
 setGeneric("genesPerPathway", function(object, pathways) {
-  standardGeneric("genesPerPathway")
+ standardGeneric("genesPerPathway")
 })
 
 #' Statistics about genes
@@ -71,7 +71,7 @@ setGeneric("gene", function(object, gene) standardGeneric("gene") )
 #' @author Lluís Revilla
 #' @export pathway
 setGeneric("pathway", function(object, pathway)
-  standardGeneric("pathway")
+ standardGeneric("pathway")
 )
 
 #' Number of genes
@@ -82,7 +82,7 @@ setGeneric("pathway", function(object, pathway)
 #' @author Lluís Revilla
 #' @export nGenes
 setGeneric("nGenes", function(object)
-  standardGeneric("nGenes"))
+ standardGeneric("nGenes"))
 
 #' Number of GeneSets
 #'
@@ -94,7 +94,7 @@ setGeneric("nGenes", function(object)
 #' @aliases nGeneSets
 #' @export nPathways
 setGeneric("nPathways", function(object)
-  standardGeneric("nPathways"))
+ standardGeneric("nPathways"))
 
 #' Checks a GeneSetCollection
 #'
@@ -107,7 +107,7 @@ setGeneric("nPathways", function(object)
 #' isTRUE(check(Info))
 #' @export
 setGeneric("check", function(object)
-  standardGeneric("check"))
+ standardGeneric("check"))
 
 #' Checks isolated GeneSets
 #'
@@ -117,7 +117,7 @@ setGeneric("check", function(object)
 #' @seealso \code{\link{independence}}
 #' @export isolation
 setGeneric("isolation", function(object)
-  standardGeneric("isolation"))
+ standardGeneric("isolation"))
 
 #' Checks independence of genes
 #'
@@ -127,7 +127,7 @@ setGeneric("isolation", function(object)
 #' @seealso \code{\link{isolation}}
 #' @export independence
 setGeneric("independence", function(object)
-  standardGeneric("independence"))
+ standardGeneric("independence"))
 
 #' Remove from a GeneSetCollection
 #'
@@ -144,7 +144,7 @@ setGeneric("independence", function(object)
 #' \code{\link{modify}} To remove and add relationship at once.
 #' @export drop
 setGeneric("drop", function(object, gene, pathway)
-  standardGeneric("drop"))
+ standardGeneric("drop"))
 
 #' Remove a relationship from a GeneSetCollection
 #'
@@ -156,7 +156,7 @@ setGeneric("drop", function(object, gene, pathway)
 #' \code{\link{drop}} To remove genes and pathways.
 #' @export
 setGeneric("dropRel", function(object, gene, pathway)
-  standardGeneric("dropRel"))
+ standardGeneric("dropRel"))
 
 #' Modify a relationship
 #'
@@ -174,7 +174,7 @@ setGeneric("dropRel", function(object, gene, pathway)
 #' \code{\link{add}} To just add a relationship.
 #' @export modify
 setGeneric("modify", function(object, gene, pathway)
-  standardGeneric("modify"))
+ standardGeneric("modify"))
 
 #' Add a relationship
 #'
@@ -188,11 +188,11 @@ setGeneric("modify", function(object, gene, pathway)
 #' @param object A GeneSetCollection
 #' @return A GeneSetCollection with those relationships added.
 #' @seealso
-#'  \code{\link{drop}} To just remove a gene or a pathways.
-#'  \code{\link{modify}} To remove and add relationship at once.
+#' \code{\link{drop}} To just remove a gene or a pathways.
+#' \code{\link{modify}} To remove and add relationship at once.
 #' @export add
 setGeneric("add", function(object, gene, pathway)
-  standardGeneric("add"))
+ standardGeneric("add"))
 
 #' Number of genes in pathways of genes
 #'
@@ -203,7 +203,7 @@ setGeneric("add", function(object, gene, pathway)
 #' @seealso \code{\link{sizePathways}} To equivalent for pathways
 #' @export sizeGenes
 setGeneric("sizeGenes", function(object, gene)
-  standardGeneric("sizeGenes"))
+ standardGeneric("sizeGenes"))
 
 #' Number of pathways in genes of pathways
 #'
@@ -215,7 +215,7 @@ setGeneric("sizeGenes", function(object, gene)
 #' @seealso \code{\link{sizeGenes}} The equivalent for genes
 #' @export sizePathways
 setGeneric("sizePathways", function(object, pathway)
-  standardGeneric("sizePathways"))
+ standardGeneric("sizePathways"))
 
 
 #' Duplicated genes
@@ -227,18 +227,18 @@ setGeneric("sizePathways", function(object, pathway)
 #' @seealso \code{\link{duplicatedPathways}}
 #' @export duplicatedGenes
 setGeneric("duplicatedGenes", function(object)
-  standardGeneric("duplicatedGenes"))
+ standardGeneric("duplicatedGenes"))
 
 #' Duplicated pathways
 #'
 #' Check if there are some genes that are only present in the same pathways.
 #'
 #' @param object A GeneSetCollection
-#' @return  If some pathways are duplicated returns \code{TRUE} else \code{FALSE}
+#' @return If some pathways are duplicated returns \code{TRUE} else \code{FALSE}
 #' @seealso \code{\link{duplicatedGenes}}
 #' @export duplicatedPathways
 setGeneric("duplicatedPathways", function(object)
-  standardGeneric("duplicatedPathways"))
+ standardGeneric("duplicatedPathways"))
 
 #' Pathways included in other pathways
 #'
@@ -249,7 +249,7 @@ setGeneric("duplicatedPathways", function(object)
 #' @export nested
 #' @seealso \code{\link{compare}}
 setGeneric("nested", function(object)
-  standardGeneric("nested"))
+ standardGeneric("nested"))
 
 
 #' Conditional probability by genes per pathway
@@ -263,7 +263,7 @@ setGeneric("nested", function(object)
 #' @seealso \code{\link{condPerPathways}}
 #' @export condPerGenes
 setGeneric("condPerGenes", function(object, genesPerPathway)
-  standardGeneric("condPerGenes"))
+ standardGeneric("condPerGenes"))
 
 #' Conditional probability by genes per pathway
 #'
@@ -276,7 +276,7 @@ setGeneric("condPerGenes", function(object, genesPerPathway)
 #' @export condPerPathways
 #' @seealso \code{\link{condPerGenes}}
 setGeneric("condPerPathways", function(object, pathwaysPerGene)
-  standardGeneric("condPerPathways"))
+ standardGeneric("condPerPathways"))
 
 #' Number of different size of pathways per gene
 #'
@@ -285,10 +285,10 @@ setGeneric("condPerPathways", function(object, pathwaysPerGene)
 #' @param genes A character gene.
 #' @return A vector with the number of different pathways sizes of the genes.
 #' @author Lluís Revilla Sancho
-#' @seealso  \code{\link{sizesPerPathway}}
+#' @seealso \code{\link{sizesPerPathway}}
 #' @export sizesPerGene
 setGeneric("sizesPerGene", function(object, genes)
-  standardGeneric("sizesPerGene"))
+ standardGeneric("sizesPerGene"))
 
 #' Number of different sizes of gene per pathway
 #'
@@ -297,10 +297,10 @@ setGeneric("sizesPerGene", function(object, genes)
 #' @param pathways A character vector of the pathways-
 #' @return A vector with the number of different gene sizes of the pathays
 #' @author Lluís Revilla Sancho
-#' @seealso  \code{\link{sizesPerGene}}
+#' @seealso \code{\link{sizesPerGene}}
 #' @export sizesPerPathway
 setGeneric("sizesPerPathway", function(object, pathways)
-  standardGeneric("sizesPerPathway"))
+ standardGeneric("sizesPerPathway"))
 
 #' Number genes related to a gene
 #'
@@ -310,10 +310,10 @@ setGeneric("sizesPerPathway", function(object, pathways)
 #' @param unique A logical, to choose between unique genes or not.
 #' @return A vector with the number of genes related to each gene.
 #' @author Lluís Revilla Sancho
-#' @seealso  \code{\link{pathwaysPerGene}}
+#' @seealso \code{\link{pathwaysPerGene}}
 #' @export genesPerGene
 setGeneric("genesPerGene", function(object, genes, unique = TRUE)
-  standardGeneric("genesPerGene"))
+ standardGeneric("genesPerGene"))
 
 
 #' The combinations of genes per pathways
@@ -322,10 +322,10 @@ setGeneric("genesPerGene", function(object, genes, unique = TRUE)
 #' distribution of genes per pathway
 #' @return A numeric value
 #' @param object A \code{GeneSetCollection}
-#' @seealso  \code{\link{combnPPG}}
+#' @seealso \code{\link{combnPPG}}
 #' @export combnGPP
 setGeneric("combnGPP", function(object)
-  standardGeneric("combnGPP"))
+ standardGeneric("combnGPP"))
 
 #' The combinations of pathways per gene
 #'
@@ -334,21 +334,45 @@ setGeneric("combnGPP", function(object)
 #' @param object A \code{GeneSetCollection}
 #' @return A numeric value
 #' @author Lluís Revilla Sancho
-#' @seealso  \code{\link{combnGPP}}
+#' @seealso \code{\link{combnGPP}}
 #' @export combnPPG
 setGeneric("combnPPG", function(object)
-  standardGeneric("combnPPG"))
+ standardGeneric("combnPPG"))
 
-#' Adjacency of the genes in GeneSetCollections
+#' Adjacency of genes in GeneSetCollections
 #'
-#' An adjacency matrix summarizes the connection between  genes.
+#' An adjacency matrix summarizes the connection between genes.
 #' The diagonal is set to 1.
 #' @param object A \code{GeneSetCollection}
 #' @return A matrix
 #' @author Lluís Revilla Sancho
 #' @seealso \link[GSEABase]{incidence}
 #' @export adjacency
+#' @aliases adjacency
 #' @examples
 #' adjacency(Info)
 setGeneric("adjacency", function(object)
-  standardGeneric("adjacency"))
+ standardGeneric("adjacency"))
+
+#' Edges between genes in GeneSetCollections
+#'
+#' Edges return a data.frame with the names of the genes being connected.
+#' @param object A \code{GeneSetCollection}
+#' @return \code{edges} returns a \code{data.frame} where each row is an edge.
+#' @author Lluís Revilla Sancho
+#' @seealso \link{adjacency}, \link[GSEABase]{incidence}
+#' @export edges
+#' @examples
+#' edges(Info)
+setGeneric("edges", function(object)
+ standardGeneric("edges"))
+
+#' @return \code{nEdges} returns the number of edges between genes in
+#' GeneSetCollection.
+#' @export nEdges
+#' @rdname edges
+#' @aliases edges
+#' @examples
+#' nEdges(Info)
+setGeneric("nEdges", function(object)
+ standardGeneric("nEdges"))
