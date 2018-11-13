@@ -78,14 +78,14 @@ gpp <- genesPerPathway(genesKegg)
 plot(table(gpp))
 ```
 
-![Distribution of the number of genes per gene set.](man/figures/README-gpp-1.png) We can see that most gene sets have low number of genes but one has 1130 genes in a single gene set (It is the gene set `names(gpp)[gpp > 400]`). The genes might be associated too with many gene sets, it is so extreme? Let's see:
+![Distribution of the number of genes per gene set.](man/figures/README-gpp-1.png) We can see that most gene sets have low number of genes but one has 1130 genes in a single gene set (It is the gene set 01100). The genes might be associated too with many gene sets, it is so extreme? Let's see:
 
 ``` r
 ppg <- pathwaysPerGene(genesKegg)
 plot(table(ppg))
 ```
 
-![Distribution of the number of gene sets per gene](man/figures/README-ppg-1.png) Not so extreme, one gene (`names(ppg)[which.max(ppg)]`) appears in `max(ppg)` gene sets.
+![Distribution of the number of gene sets per gene](man/figures/README-ppg-1.png) Not so extreme, one gene (5594) appears in 51 gene sets.
 
 To see which gene sets are included in other gene sets we can use `nested`:
 
