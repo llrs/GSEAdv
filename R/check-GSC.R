@@ -59,8 +59,9 @@ setMethod("isolation",
             keep <- vapply(paths2genes, function(y){all(ppg[y] == 1)}, logical(1))
             if (any(keep)) {
               TRUE
+            } else {
+              FALSE
             }
-            FALSE
           }
 )
 
