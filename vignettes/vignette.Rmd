@@ -42,18 +42,18 @@ devtools::install_github("llrs/GSEAdv")
 
 or from Bioconductor for a stable release:
 ```{r Bioc-installation, eval = FALSE}
-## try http:// if https:// URLs are not supported
-## source("https://bioconductor.org/biocLite.R")
-## biocLite("GSEAdv")
+if (!requireNamespace("BiocManager", quietly = TRUE))
+    install.packages("BiocManager")
+BiocManager::install("BioCor", version = "3.8")
 ```
 
 # Semantics
 
 Thorough the vignettes and the help page a group of genes is both referred as gene sets or as pathways. A pathway or a gene set is defined as a group of genes (more than one) which can't contain twice the same gene. 
 
-Also all the genes should use the same identifier type, Entrez, or a Symbol or Ensembl.
+All the genes should use the same identifier type, Entrez, or a Symbol or Ensembl.
 
-In order of doing this there is a function `check` that checks if the `GeneSetCollection` comply to this principles:
+The function `check` returns a `GeneSetCollection` that complies with this principles:
 
 ```{r check}
 fl <- system.file("extdata", "Broad.xml", package = "GSEABase")
@@ -75,11 +75,14 @@ library("GSEAdv")
 
 The package is thought for three main cases, each one has its own vignette:
 
- - *Description*
+ - `r Biocpkg("GSEAdv", "vignette_describe.html", "*Description*")`
+ 
  To provide insight about the relationship between genes and gene sets.
- - *Evaluation*
+ 
+ - `r Biocpkg("GSEAdv", "vignette_evaluate.html", "*Evaluation*")`
+ 
  Compare and estimate the relationship between genes and gene sets.
- - *Simulate*
+ 
+ - `r Biocpkg("GSEAdv", "vignette_simulate.html", "*Simulate*")`
+ 
  Given some approximations of the relationships between genes and gene sets creates a new gene set collection.
-
-

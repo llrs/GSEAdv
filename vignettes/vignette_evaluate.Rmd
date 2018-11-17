@@ -1,0 +1,90 @@
+---
+title: "GSEAdv: Evaluate"
+abstract: >
+  Shows the methods and functions used to evaluate the relationship between genes and gene sets.
+date: "`r BiocStyle::doc_date()`"
+package: "`r BiocStyle::pkg_ver('GSEAdv')`"
+output:
+  BiocStyle::html_document:
+    fig_caption: true
+    toc_float:
+      collapsed: true
+      toc_depth: 3
+author:
+- name: Lluís Revilla
+  affiliation: 
+    - August Pi i Sunyer Biomedical Research Institute (IDIBAPS); Liver Unit, Hospital Clinic
+  email: lrevilla@clinic.cat
+vignette: >
+  %\VignetteIndexEntry{GSEAdv: Describe}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}  
+---
+```{r knitsetup, message=FALSE, warning=FALSE, include=FALSE}
+knitr::opts_knit$set(root.dir = ".")
+knitr::opts_chunk$set(collapse = TRUE, warning = TRUE)
+BiocStyle::markdown()
+library("BiocStyle")
+library("GSEAdv")
+fl <- system.file("extdata", "Broad.xml", package = "GSEABase")
+gss <- getBroadSets(fl)
+```
+# Introduction
+
+This vignette assumes that the reader is familiar with the infraestructure build in Bioconductor around gene sets, mainly `r Biocpkg("GSEABase")`. 
+It provides examples of how to use the package to understand the relationships between genes and gene sets. 
+The reader should be also familiarized with the vignette `r Biocpkg("GSEAdv", "vignette_describe.html", "describing")` the relationship between genes and gene sets.
+
+# Distribution of genes and pathways by size:
+
+This functions calculate for each gene or pathway how are their elements distributed:
+
+```{r sizes}
+sizeGenes(Info)
+sizePathways(Info)
+```
+We can see that genes are distributed in pathways of size 2 or 3, but pathways have genes in either 1, 2 or 4 pathways. If we are only interested in how many different sizes they are distributed we can use the following functions:
+
+# Diferences in genes or pathways 
+
+These two functions evaluate how many elements of different length they are involved in
+
+```{r sizesPer}
+sizesPerGene(Info)
+sizesPerPathway(Info)
+```
+# Isolation
+
+If we want to check if a GeneSetCollection is not a group of isolated genes without relation between different gene sets we can use the function `isolation`
+
+```{r isolation}
+isolation(gss)
+isolation(Info)
+```
+
+
+# Relationships between number of genes per pathway and number of pathways per gene
+
+To see what is the conditional probability between the number of pathways gene in n number of pathways are involved $P( pathways_{genes} | genes_{pathway} )$ there is the function `condPerGene`. While the opposite $P( genes_{pathway} | pathways_{genes} )$) can be done with `condPerPathways`
+```{r condPer}
+condPerGenes(Info)
+condPerPathways(Info)
+```
+
+# Other vignettes
+
+In case you missed, here I link previous vignettes and a new vignette
+
+ - `r Biocpkg("GSEAdv", "vignette_describe.html", "*Description*")`
+ 
+ To provide insight about the relationship between genes and gene sets.
+ 
+ - `r Biocpkg("GSEAdv", "vignette_simulate.html", "*Simulate*")`
+ 
+ Given some approximations of the relationships between genes and gene sets creates a new gene set collection.
+
+# Session info {.unnumbered}
+
+```{r sessionInfo, echo=FALSE}
+sessionInfo()
+```

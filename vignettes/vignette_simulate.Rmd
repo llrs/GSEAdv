@@ -47,6 +47,7 @@ We might want to add a gene to a gene set or to add a new gene set. We can do th
 add(gss, gene = c("ha", "ZNF474", "CCDC100"), pathway = "new")
 add(gss, gene = "ZNF474", pathway = c("chr16q24", "chr5q23"))
 ```
+
 ### Removing
 
 ## Removing genes and `GeneSets`
@@ -103,7 +104,17 @@ fromGPP_nGenes(genesPerPathway(Info), nGenes(Info))
 
 Footnotes are displayed as side notes on the right margin^[this is a side note entered as a footnote], which has the advantage that they appear close to the place where they are defined.
 
+# Other vignettes
 
+
+ - `r Biocpkg("GSEAdv", "vignette_describe.html", "*Description*")`
+ 
+ To provide insight about the relationship between genes and gene sets.
+ 
+ - `r Biocpkg("GSEAdv", "vignette_evaluate.html", "*Evaluation*")`
+ 
+ Compare and estimate the relationship between genes and gene sets.
+ 
 # Session info {.unnumbered}
 
 ```{r sessionInfo, echo=FALSE}
