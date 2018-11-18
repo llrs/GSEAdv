@@ -116,6 +116,18 @@ pathway(gss)
 head(gene(Info)) # To avoid a long table
 ```
 
+# Networks
+
+If you need to use the information on a GeneSetCollection in a network you can use the `adjacency` function to retrieve which genes are connected to which ones.
+The method assumes that all genes in a gene set are connected.
+
+```{r}
+adjacency(Info)
+```
+
+You can also use the `nEdges` to `r nEdges(Info)` to calculate the connections (omitting the connection between a gene and itself)
+
+
 
 # Other vignettes
 

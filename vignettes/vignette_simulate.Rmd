@@ -96,7 +96,8 @@ For this reason, before simulating, first the parameters are estimated: what are
 
 ## Estimating
 
-The information from a GeneSetCollection has been explained in previous vignettes. 
+The information available from a GeneSetCollection has been explained in previous vignettes. 
+It can be used to generate some other GeneSetCollections with the same 
 
 ## Simulating
 As a summary of the methods available and what kind of data they use is provided below:
