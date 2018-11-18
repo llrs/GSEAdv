@@ -34,7 +34,7 @@ gss <- getBroadSets(fl)
 
 This vignette assumes that the reader is familiar with the infraestructure build in Bioconductor around gene sets, mainly `r Biocpkg("GSEABase")`. It provides examples of how to use the package to create and modify different gene sets.
 
-# Modifying existing gene sets
+# Modifying existing gene sets collections
 
 The first step towards simulate a `GeneSetCollection` is to modify it. There are two ways do modifying them: adding new relationships, or removing genes and `GeneSets`.
 
@@ -44,11 +44,23 @@ The first step towards simulate a `GeneSetCollection` is to modify it. There are
 We might want to add a gene to a gene set or to add a new gene set. We can do that with:
 
 ```{r}
-add(gss, gene = c("ha", "ZNF474", "CCDC100"), pathway = "new")
-add(gss, gene = "ZNF474", pathway = c("chr16q24", "chr5q23"))
+independence(gss)
+gss2 <- add(gss, gene = c("ha", "ZNF474", "CCDC100"), pathway = "new")
+independence(gss2)
+isolation(gss)
+gss3 <- add(gss, gene = "ZNF474", pathway = c("chr16q24", "chr5q23"))
+isolation(gss3)
 ```
+As shown the independence of genes or the isolation of the gene sets have changed.
 
-### Removing
+### Removing existing relationships
+
+```{r}
+isolation(Info)
+Info2 <- dropRel(Info, gene = "3", pathway = "156580")
+isolation(Info2)
+```
+We can see that now the Info2 object has now one pathway that is not related to other gene sets.
 
 ## Removing genes and `GeneSets`
 Or we might want to remove a pathway or some genes:
@@ -67,9 +79,27 @@ drop(Info, pathway = "1430728", gene = c("10", "9"))
 ```
 Dropping by number is aimed to make it possible to bootstrap with different `GeneSetCollections`  coming from the same original one. 
 
+## Adding new gene sets or genes
+
+```{r}
+add(Info, c("gene1", "gene2", "gene3"), "chr16q24")
+add(Info, c("gene1", "gene2", "10"), "chr16q24")
+```
+
+
 # Simulating 
 
-All the functions to simulate new `GeneSetCollection`s start with `from*`. As a summary of the methods available and what kind of data they use is provided below:
+It might be needed to simulate `GeneSetCollections` to see the robustness of an algorithm or other `GeneSetCollection`s. 
+The more information we have, the less we need to guess, but it becomes harder to recreate those conditions. 
+Some functions return more information than others, and depending on what are the input the information might be redundant. 
+For this reason, before simulating, first the parameters are estimated: what are the ranges of parameters, then the GeneSetCollection is build.
+
+## Estimating
+
+The information from a GeneSetCollection has been explained in previous vignettes. 
+
+## Simulating
+As a summary of the methods available and what kind of data they use is provided below:
 
 method   | nGenes | nPathways | genesPerPathway| pathwaysPerGene | sizeGenes | sizePathways
 ------- | ----- | ----- | ----- | ----- | ----- | ----- 
@@ -100,9 +130,6 @@ fromPPG_nPathways(pathwaysPerGene(Info), nPathways(Info))
 fromGPP_nGenes(genesPerPathway(Info), nGenes(Info))
 ```
 
-# Side notes
-
-Footnotes are displayed as side notes on the right margin^[this is a side note entered as a footnote], which has the advantage that they appear close to the place where they are defined.
 
 # Other vignettes
 

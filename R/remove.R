@@ -133,11 +133,11 @@ setMethod("dropRel",
             if (!pathway %in% names(paths2genes)) {
               stop("Pathway not present")
             }
+            if (length(gene) > 1 | length(pathway) > 1) {
+              stop("Use just one gene and pathway.")
+            }
             genesIn <- paths2genes[[pathway]]
             remove <- !genesIn %in% gene
-            if (sum(remove) >= 1L) {
-              warning("Removing ", sum(remove), " genes of the pathway")
-            }
             paths2genes[[pathway]] <- genesIn[remove]
 
             as(inverseList(paths2genes), "GeneSetCollection")

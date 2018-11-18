@@ -29,11 +29,22 @@ library("GSEAdv")
 fl <- system.file("extdata", "Broad.xml", package = "GSEABase")
 gss <- getBroadSets(fl)
 ```
+
 # Introduction
 
 This vignette assumes that the reader is familiar with the infraestructure build in Bioconductor around gene sets, mainly `r Biocpkg("GSEABase")`. 
 It provides examples of how to use the package to understand the relationships between genes and gene sets. 
 The reader should be also familiarized with the vignette `r Biocpkg("GSEAdv", "vignette_describe.html", "describing")` the relationship between genes and gene sets.
+
+# Isolation
+
+If we want to check if a GeneSetCollection is not a group of isolated genes without relation between different gene sets we can use the function `isolation`
+
+```{r isolation}
+isolation(gss)
+isolation(Info)
+```
+
 
 # Distribution of genes and pathways by size:
 
@@ -53,14 +64,18 @@ These two functions evaluate how many elements of different length they are invo
 sizesPerGene(Info)
 sizesPerPathway(Info)
 ```
-# Isolation
 
-If we want to check if a GeneSetCollection is not a group of isolated genes without relation between different gene sets we can use the function `isolation`
 
-```{r isolation}
-isolation(gss)
-isolation(Info)
+# Different sizes
+
+If you want to know how many different sizes per gene there are
+```{r sizesPer}
+sizesPerGene(Info)
+sizesPerPathway(Info)
+sizesPerPathway(gss)
 ```
+
+sizesPerGene is the equivalent of counting how many rows are not empty on the `sizeGenes` matrix
 
 
 # Relationships between number of genes per pathway and number of pathways per gene
