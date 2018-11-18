@@ -56,7 +56,7 @@ test_that("pathway as character", {
 
 test_that("dropRel", {
   set.seed(501)
-  expect_warning(gsc <- dropRel(Info, pathway = "156580", gene = "10"), "Removing")
+  gsc <- dropRel(Info, pathway = "156580", gene = "10")
   expect_equal(nGenes(gsc), 4L)
   expect_equal(nPathways(gsc), 5L)
   expect_length(geneIds(gsc)[["156580"]], 2L)
