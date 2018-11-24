@@ -41,7 +41,8 @@ estimate <- function(nGenes = NULL, nPathways = NULL,
     nGenes <- min(calc.max.nGenes(nPathways), nGenes)
   }
   if (!is.null(nGenes)) {
-    nPathways <- min(calc.nPathways(nGenes), nPathways)
+    maxNPathways <- double.factorial(nGenes)
+    nPathways <- min(maxNPathways, nPathways)
   }
   if (!is.null(genesPerPathway)) {
     nGenes <- min(estimate.nGenes(genesPerPathway), nGenes)
