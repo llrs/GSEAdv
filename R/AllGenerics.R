@@ -376,3 +376,29 @@ setGeneric("edges", function(object)
 #' nEdges(Info)
 setGeneric("nEdges", function(object)
  standardGeneric("nEdges"))
+
+#' Distributions of genes in pathways
+#'
+#' Looks for the distribution of the genes in other pathways.
+#' @param object A \code{GeneSetCollection} object.
+#' @return \code{distrPathways} returns a matrix with the number of
+#' genes shared with other pathways.
+#' @seealso \code{\link{distrGenes}}
+#' @export distrPathways
+#' @examples
+#' distrPathways(Info)
+setGeneric("distrPathways", function(object)
+ standardGeneric("distrPathways"))
+
+#' Distributions of pathways in genes
+#'
+#' Looks for the distribution of the pathways in other genes
+#' @param object A \code{GeneSetCollection} object.
+#' @return \code{distrGenes} returns a matrix with the number of
+#' pathways shared with other genes
+#' @seealso \code{\link{distrPathways}}
+#' @export distrGenes
+#' @examples
+#' distrGenes(Info)
+setGeneric("distrGenes", function(object)
+ standardGeneric("distrGenes"))

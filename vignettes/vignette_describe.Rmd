@@ -116,6 +116,19 @@ pathway(gss)
 head(gene(Info)) # To avoid a long table
 ```
 
+# Shared 
+
+If you want to explore the number of genes shared with other pathways or genes 
+you can use the following functions:
+
+```{r}
+distrGenes(Info)
+distrPathways(Info)
+```
+
+Which returns a matrix with the amount of pathways shared with other genes and 
+the gens of each pathway shared with others pathways, respectively.
+
 # Networks
 
 If you need to use the information on a GeneSetCollection in a network you can use the `adjacency` function to retrieve which genes are connected to which ones.
