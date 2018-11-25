@@ -19,8 +19,8 @@ setMethod("gene",
             totalGenes <- length(genes2paths)
             totalPathways <- length(paths2genes)
 
-            Tgpp <- prop.table(table(gpp))
-            Tppg <- prop.table(table(ppg))
+            Tgpp <- helper_table2(gpp)
+            Tppg <- helper_table2(ppg)
 
 
             if (! gene %in% names(genes2paths)) {
@@ -65,8 +65,8 @@ setMethod("gene",
             totalGenes <- length(genes2paths)
             totalPathways <- length(paths2genes)
 
-            Tgpp <- prop.table(table(gpp))
-            Tppg <- prop.table(table(ppg))
+            Tgpp <- helper_table2(gpp)
+            Tppg <- helper_table2(ppg)
 
             maxIC <- maxIC(ppg)
             out <- sapply(names(genes2paths), function(gene) {

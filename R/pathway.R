@@ -8,6 +8,10 @@ setGeneric("pathway",
            }
 )
 
+helper_table2 <- function(x){
+  prop.table(table(x))
+}
+
 #' @describeIn pathway Calculates statistics for a single pathway
 #' @export
 setMethod("pathway",
@@ -19,17 +23,13 @@ setMethod("pathway",
             }
 
             object <- check(object)
-            ppg <- pathwaysPerGene(object)
-            gpp <- genesPerPathway(object)
 
             paths2genes <- geneIds(object)
             genes2paths <- inverseList(paths2genes)
 
-            totalGenes <- length(genes2paths)
-            totalPathways <- length(paths2genes)
-
-            Tgpp <- prop.table(table(gpp))
-            Tppg <- prop.table(table(ppg))
+            ppg <- pathwaysPerGene(object)
+            Tppg <- helper_table2(ppg)
+            Tgpp <- helper_table2(genesPerPathway(object))
 
 
             if (!pathway %in% names(paths2genes)) {
@@ -65,17 +65,15 @@ setMethod("pathway",
 setMethod("pathway",
           signature(object = "GeneSetCollection", pathway = "missing"),
           function(object, pathway) {
-            ppg <- pathwaysPerGene(object)
-            gpp <- genesPerPathway(object)
+
+            object <- check(object)
 
             paths2genes <- geneIds(object)
             genes2paths <- inverseList(paths2genes)
 
-            totalGenes <- length(genes2paths)
-            totalPathways <- length(paths2genes)
-
-            Tgpp <- prop.table(table(gpp))
-            Tppg <- prop.table(table(ppg))
+            ppg <- pathwaysPerGene(object)
+            Tppg <- helper_table2(ppg)
+            Tgpp <- helper_table2(genesPerPathway(object))
 
             maxIC <- maxIC(ppg)
             out <- sapply(names(paths2genes), function(pathway) {

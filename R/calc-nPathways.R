@@ -1,5 +1,3 @@
-# TODO: Estimates change if we assume that the original object pass the check function
-
 #' Estimate the number of pathways
 #'
 #' Given the number of genes calculates the number of possible pathways
