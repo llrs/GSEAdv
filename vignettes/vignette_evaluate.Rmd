@@ -76,6 +76,16 @@ condPerGenes(Info)
 condPerPathways(Info)
 ```
 
+# Number of pathways and genes
+
+The double.factorial calculates can help to calculate how many possibilities there are:
+```{r}
+double.factorial(nGenes(Info))
+double.factorial(nPathways(Info))
+```
+It calculates given the number of genes it calculates the number of pathways that can be made with them and the opposite, with the amount of pathways it calculates the amount of genes that ther could be.
+
+
 # Other vignettes
 
 In case you missed, here I link previous vignettes and a new vignette
